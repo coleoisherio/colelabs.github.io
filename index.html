@@ -8,16 +8,21 @@
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { 
-      background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) url('https://usagif.com/wp-content/uploads/gif/confetti-4.gif') repeat; 
+      background: linear-gradient(45deg, #4b0082, #ff69b4, #4b0082, #ff69b4); 
+      background-size: 400% 400%;
       color: #fff; 
       overflow-x: hidden; 
-      cursor: url('https://img.lovepik.com/png/20231105/Lollipop-Cute-Cartoon-Rainbow-Colored-love-lollipop-Cute-wind-cute_503657_wh1200.png'), auto; 
-      animation: rainbow-bg 10s linear infinite;
+      cursor: url('https://i.imgur.com/5eQJ3Yp.png'), auto; 
+      animation: smoke-shift 20s ease-in-out infinite;
+      text-shadow: 2px 2px 4px #000; /* For legibility */
+      position: relative;
     }
-    @keyframes rainbow-bg { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+    @keyframes smoke-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    .cloud-top { position: fixed; top: 0; left: 0; width: 100%; height: 150px; background: url('https://img.lovepik.com/free-png/20210922/lovepik-cartoon-white-cloud-border-material-png-image_401142016_wh1200.png') repeat-x; background-size: contain; z-index: 100; opacity: 0.8; }
+    .cloud-bottom { position: fixed; bottom: 0; left: 0; width: 100%; height: 150px; background: url('https://img.lovepik.com/free-png/20210922/lovepik-cartoon-white-cloud-border-material-png-image_401142016_wh1200.png') repeat-x; background-size: contain; z-index: 100; opacity: 0.8; transform: rotate(180deg); }
     .glitch { font-family: 'Bangers', cursive; font-size: 7vw; text-align:center; padding:15vh 0; text-shadow: 0.05em 0 0 #f00, -0.05em -0.05em 0 #0f0, 0.05em 0.05em 0 #00f; animation: glitch 2s infinite; }
     @keyframes glitch { 0%,100%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 14%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 15%{text-shadow:-0.05em -0.05em 0 #f00,0.05em 0 0 #0f0,-0.05em 0.05em 0 #00f;} }
-    .eye { width:300px; height:300px; background: url('https://media.tenor.com/mJiSR0cCGQUAAAAM/explode-explosion.gif') center/contain no-repeat; margin:0 auto 30px; animation: stare 5s infinite, rotate-wild 3s infinite alternate; }
+    .eye { width:300px; height:300px; background: url('https://bloximages.newyork1.vip.townnews.com/local3news.com/content/tncms/assets/v3/editorial/8/5e/85e56c80-cc7e-11ec-9439-e7896fd4c975/6273dd54df049.image.gif') center/contain no-repeat; margin:0 auto 30px; animation: stare 5s infinite, rotate-wild 3s infinite alternate; }
     @keyframes stare { 0%,80%{transform:scale(1) rotate(0deg);} 90%{transform:scale(1.5) rotate(360deg);} 100%{transform:scale(1) rotate(0deg);} }
     @keyframes rotate-wild { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
     section { padding:80px 10%; text-align:center; }
@@ -28,10 +33,10 @@
     iframe { width:100%; aspect-ratio:16/9; }
 
     /* SERVICES SECTION */
-    .services { padding:100px 5%; background: rgba(255,255,255,0.2); }
+    .services { padding:100px 5%; background: rgba(75,0,130,0.5); }
     .service-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:40px; max-width:1400px; margin:0 auto; }
     .card { 
-      background: linear-gradient(to bottom, #ff69b4, #ffff00) url('https://media.tenor.com/BhKs5gt0_OUAAAAM/spring-riders-rigby.gif') center/cover; 
+      background: linear-gradient(to bottom, #ff69b4, #4b0082) url('https://www.pngitem.com/pimgs/m/520-5203112_confetti-gif-png-confetti-pop-gif-png-transparent.png') center/cover; 
       border: 6px dashed #0ff; 
       padding:30px 20px; 
       border-radius: 50px 10px; 
@@ -53,25 +58,33 @@
     @keyframes float { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-30px) rotate(360deg);} }
     @keyframes color-shift { 0% { color: #ff0; } 33% { color: #0f0; } 66% { color: #00f; } 100% { color: #ff0; } }
 
-    /* FLOATING LOLLIPOPS AND CONFETTI */
-    .floating { position: fixed; pointer-events: none; z-index: -1; animation: float-wild 20s infinite linear; }
-    .lollipop1 { top: 10%; left: 5%; width: 100px; background: url('https://png.pngtree.com/illustration/20250822/ourmid/pngtree-an-anime-lollipop-of-colors-on-a-background-image_105332.png') no-repeat; height: 100px; }
-    .confetti1 { bottom: 20%; right: 10%; width: 200px; height: 200px; background: url('https://i.pinimg.com/originals/07/03/48/0703483f8e3100d87497817030fb903f.gif') no-repeat; }
-    .spring1 { top: 50%; left: 80%; width: 150px; height: 150px; background: url('https://media.tenor.com/_eeK_l9FaoMAAAAM/buzz-lightyear-boner.gif') no-repeat; animation: bounce 1.5s infinite; }
+    /* ABUNDANT 90S GIFS FLOATING */
+    .floating { position: fixed; pointer-events: none; z-index: 5; animation: float-wild 20s infinite linear; background-size: contain; background-repeat: no-repeat; }
+    .confetti1 { bottom: 20%; right: 10%; width: 200px; height: 200px; background-image: url('https://www.pngitem.com/pimgs/m/520-5203112_confetti-gif-png-confetti-pop-gif-png-transparent.png'); }
+    .flames1 { top: 30%; left: 15%; width: 150px; height: 150px; background-image: url('https://cdn.pixabay.com/animation/2024/05/29/20/32/20-32-06-273_512.gif'); animation: bounce 1.5s infinite; }
+    .hammer1 { bottom: 40%; left: 50%; width: 200px; height: 150px; background-image: url('https://media.tenor.com/tUMGdj7aBSoAAAAM/cl07.gif'); }
+    .construction1 { top: 60%; right: 20%; width: 200px; height: 150px; background-image: url('https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUyZGJ2d3o5M3A5MjZ4MGQwc3A5ZWVhYzh1anhiNHppdDFmZnE4Yno0OCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/wLa0m8uCyEZGhNS6dT/200w.gif'); }
+    .dancingbaby1 { top: 10%; left: 70%; width: 150px; height: 200px; background-image: url('https://bloximages.newyork1.vip.townnews.com/local3news.com/content/tncms/assets/v3/editorial/8/5e/85e56c80-cc7e-11ec-9439-e7896fd4c975/6273dd54df049.image.gif'); animation: rotate-wild 4s infinite; }
+    .confetti2 { top: 50%; left: 5%; width: 200px; height: 200px; background-image: url('https://www.pngitem.com/pimgs/m/520-5203112_confetti-gif-png-confetti-pop-gif-png-transparent.png'); animation: float 5s infinite; }
+    .flames2 { bottom: 10%; right: 30%; width: 150px; height: 150px; background-image: url('https://cdn.pixabay.com/animation/2024/05/29/20/32/20-32-06-273_512.gif'); }
+    @keyframes float-wild { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(50px, 100px) rotate(180deg); } 100% { transform: translate(0, 0) rotate(360deg); } }
 
-    footer { background:linear-gradient(to right, #f00, #ff0, #0f0, #00f, #f0f); padding:50px; font-family:'Creepster'; font-size:30px; text-align:center; animation: rainbow-bg 5s infinite; }
+    footer { background:linear-gradient(to right, #f00, #ff0, #0f0, #00f, #f0f); padding:50px; font-family:'Creepster'; font-size:30px; text-align:center; animation: color-shift 5s infinite; }
     a { color:#0ff; text-decoration:underline wavy #ff0; }
   </style>
 </head>
 <body>
 
-  <audio autoplay loop>
-    <source src="https://bigsoundbank.com/UPLOAD/mp3/2284.mp3" type="audio/mpeg">
-  </audio>
+  <div class="cloud-top"></div>
+  <div class="cloud-bottom"></div>
 
-  <div class="floating lollipop1"></div>
   <div class="floating confetti1"></div>
-  <div class="floating spring1"></div>
+  <div class="floating flames1"></div>
+  <div class="floating hammer1"></div>
+  <div class="floating construction1"></div>
+  <div class="floating dancingbaby1"></div>
+  <div class="floating confetti2"></div>
+  <div class="floating flames2"></div>
 
   <div class="eye"></div>
   <h1 class="glitch">COLEOISCOOLEO</h1>
