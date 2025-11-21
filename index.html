@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">                          <!-- Ensures special characters display correctly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the site mobile-responsive -->
+  <title>COLEOISCOOLEO - SURREAL SHOWREEL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Press+Start+2P&family=Bangers&display=swap" rel="stylesheet">
+* { margin:0; padding:0; box-sizing:border-box; }
+body { 
+  background: #000 url('https://i.imgur.com/9Z3QJ8b.gif') repeat;   /* animated flaming skull GIF tiles everywhere */
+  color: #fff; 
+  overflow-x: hidden; 
+  cursor: url('https://i.imgur.com/5eQJ3Yp.png'), auto;            /* custom rubber-hose cartoon hand cursor */
+}
+.glitch { 
+  font-family: 'Bangers', cursive; 
+  font-size: 7vw;                     /* scales with screen width */
+  text-align:center; 
+  padding: 15vh 0;
+  text-shadow: 0.05em 0 0 #f00, -0.05em -0.05em 0 #0f0, 0.05em 0.05em 0 #00f;
+  animation: glitch 2s infinite;
+}
+@keyframes glitch { ... }             /* classic red/green/blue RGB-split glitch effect */
+.eye { 
+  width:200px; height:200px; 
+  background: url('https://i.imgur.com/KR5Y3pJ.gif') center/contain no-repeat;
+  margin:0 auto 30px;
+  animation: stare 8s infinite;
+}
+@keyframes stare { ... }              /* eye slowly zooms in like it’s judging you */
+section { padding:80px 10%; text-align:center; }
+.portfolio { 
+  display:grid; 
+  grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); /* responsive grid – works on phone or desktop */
+  gap:30px; 
+}
+.vid { 
+  position:relative; overflow:hidden; 
+  border:8px solid #ff0;                    /* bright yellow border */
+  box-shadow:0 0 30px #0f0;                 /* toxic green glow */
+  transform:skew(-5deg);                    /* permanently tilted for chaos */
+  transition:0.5s;
+}
+.vid:hover { 
+  transform:skew(0) scale(1.1);             /* straightens and enlarges on hover */
+  z-index:10; 
+}
+iframe { width:100%; aspect-ratio:16/9; }   /* forces perfect 16:9 YouTube embeds */
+.prices { 
+  background:#111; 
+  font-family:'Press Start 2P'; 
+  font-size:22px; 
+  line-height:2.5; 
+  text-shadow:0 0 10px #f0f;                /* magenta glow */
+}
+.price { 
+  animation: float 6s infinite ease-in-out; 
+  display:inline-block; 
+  margin:0 20px; 
+}
+@keyframes float { ... }                    /* prices gently bob up and down */
+footer { 
+  background:#f00; 
+  padding:40px; 
+  font-family:'Creepster'; 
+  font-size:30px; 
+}
+a { color:#0ff; text-decoration:underline wavy; }  /* cyan wavy underlines */
+<div class="eye"></div>
+<h1 class="glitch">COLEOISCOOLEO</h1>
+<section class="portfolio">
+  <div class="vid"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" ...></iframe></div>  <!-- Rick Astley (safe classic) -->
+  <div class="vid"><iframe src="https://www.youtube.com/embed/9bZkp7q19f0" ...></iframe></div>  <!-- PSY - Gangnam Style -->
+  <div class="vid"><iframe src="https://www.youtube.com/embed/kXYiU_JCYtU" ...></iframe></div>  <!-- Rickroll again for fun -->
+  <div class="vid"><iframe src="https://www.youtube.com/embed/OpQFFLBMEPI" ...></iframe></div>  <!-- Nyan Cat -->
+</section>
+<footer>
+  <p>hire me or else → coleoiscooleo@gmail.com<br>
+  <a href="https://youtube.com/@ColeoIsCooleo" target="_blank">YouTube</a> • 
+  <a href="https://twitter.com/ColeoIsCooleo" target="_blank">Twitter</a> • 
+  <a href="https://instagram.com/ColeoIsCooleo" target="_blank">Instagram</a></p>
+</footer>
