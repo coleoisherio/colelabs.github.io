@@ -14,17 +14,17 @@
       position: relative;
       min-height: 100vh; /* Ensures full height without cut-offs */
     }
-    #bg-iframe { position: fixed; top: 0; left: 0; transform-origin: top left; width: 177.78vh; height: 56.25vw; min-width: 100vw; min-height: 100vh; z-index: -1; border: none; pointer-events: none; }
+    #bg-iframe { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; border: none; pointer-events: none; }
     .lightning-left { position: absolute; top: 0; left: 0; width: 20%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: 0; transform: rotate(0deg); }
     .lightning-right { position: absolute; top: 0; right: 0; width: 20%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: 0; transform: rotate(180deg); }
     .logo-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 80vw; height: 80vh; display: flex; justify-content: center; align-items: center; flex-direction: column; }
-    .beaker-wrapper { position: relative; width: 270px; height: 360px; animation: hue-rotate 5s infinite linear; box-shadow: 0 0 50px #0f0, 0 0 100px #f00; /* Glow effect */ }
+    .beaker-wrapper { position: relative; width: 300px; height: 400px; animation: hue-rotate 5s infinite linear; } /* Rainbow hue on beaker */
     @keyframes hue-rotate { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
-    .gear { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 375px; height: 375px; background: url('https://64.media.tumblr.com/a9fc6f966d96d8b85584b86b9c9b0dab/bfc12810842eacee-40/s540x810/799e1a50ddbc53e0808cf1d8cdf0f5869b794d09.gifv') center/contain no-repeat; z-index: 1; animation: rotate 10s linear infinite; }
+    .gear { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 250px; height: 250px; background: url('https://64.media.tumblr.com/a9fc6f966d96d8b85584b86b9c9b0dab/bfc12810842eacee-40/s540x810/799e1a50ddbc53e0808cf1d8cdf0f5869b794d09.gifv') center/contain no-repeat; z-index: 1; animation: rotate 10s linear infinite; }
     @keyframes rotate { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
     .smoke { position: absolute; top: -100px; left: 50%; transform: translateX(-50%) rotate(0deg); width: 100px; height: 200px; background: url('https://giffiles.alphacoders.com/205/20595.gif') center/contain no-repeat; opacity: 0.8; z-index: 2; animation: smoke-static 2s infinite; }
     @keyframes smoke-static { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
-    .beaker { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 270px; height: 360px; background: url('https://www.clker.com/cliparts/k/9/F/f/a/P/beaker-hi.png') center/contain no-repeat; animation: bubble 2s infinite; z-index: 3; }
+    .beaker { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 400px; background: url('https://www.clker.com/cliparts/k/9/F/f/a/P/beaker-hi.png') center/contain no-repeat; animation: bubble 2s infinite; z-index: 3; }
     @keyframes bubble { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.05); } }
     .service-text { font-size: 3vw; text-transform: uppercase; cursor: pointer; animation: float 5s infinite ease-in-out, color-shift 3s infinite; transition: transform 0.3s; position: absolute; z-index: 4; text-shadow: 0 0 10px currentColor; }
     .service-text:hover { transform: scale(1.2) rotate(5deg); }
@@ -92,7 +92,7 @@
   </style>
 </head>
 <body>
-  <iframe id="bg-iframe" src="https://www.youtube.com/embed/h8loW5yRXBU?autoplay=1&mute=1&loop=1&playlist=h8loW5yRXBU&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+  <iframe id="bg-iframe" src="https://player.vimeo.com/video/245646979?autoplay=1&loop=1&autopause=0&muted=1&background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
   <div class="lightning-left"></div>
   <div class="lightning-right"></div>
 
@@ -132,8 +132,6 @@
           <option>Branding Package</option>
           <option>Intros/Outros</option>
           <option>Titles & Graphics</option>
-          <option>YTP/Surreal Remixes</option>
-          <option>Dancing Baby Rigs</option>
         </select>
         <label>Budget:</label>
         <input type="text" name="budget">
@@ -148,7 +146,7 @@
   </div>
 
   <section id="jungle">
-    <iframe class="section-bg" src="https://www.youtube.com/embed/TudJb_bbZ20?autoplay=1&mute=1&loop=1&playlist=TudJb_bbZ20&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <iframe class="section-bg" src="https://player.vimeo.com/video/672562970?autoplay=1&loop=1&autopause=0&muted=1&background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
     <audio autoplay loop>
       <source src="https://archive.org/download/01-sounds-of-the-jungle/01-sounds-of-the-jungle.mp3" type="audio/mpeg">
     </audio>
@@ -180,7 +178,7 @@
   </section>
 
   <section id="pirate">
-    <iframe class="section-bg" src="https://www.youtube.com/embed/Ft-lJyu_nuY?autoplay=1&mute=1&loop=1&playlist=Ft-lJyu_nuY&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <iframe class="section-bg" src="https://player.vimeo.com/video/520026368?autoplay=1&loop=1&autopause=0&muted=1&background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
     <audio autoplay loop>
       <source src="https://archive.org/download/78_ship-sounds_gbia3000968b/78_ship-sounds_gbia3000968b.mp3" type="audio/mpeg">
     </audio>
@@ -201,7 +199,7 @@
   </section>
 
   <section id="space">
-    <iframe class="section-bg" src="https://www.youtube.com/embed/X-XZx1o_w-A?autoplay=1&mute=1&loop=1&playlist=X-XZx1o_w-A&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <iframe class="section-bg" src="https://player.vimeo.com/video/34476593?autoplay=1&loop=1&autopause=0&muted=1&background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
     <audio autoplay loop>
       <source src="https://archive.org/download/lp_science-fiction-sound-effects-record_mel-kaiser/lp_science-fiction-sound-effects-record_mel-kaiser.mp3" type="audio/mpeg">
     </audio>
@@ -211,19 +209,19 @@
       <p>Thumbnails and stream layouts, $50 for thumbnails, $50-$100 for layouts.</p>
       <div class="grid">
         <div class="grid-item" onclick="openExample('Graphics Example 1: Thumbnail for J Aubrey - Investigative depravity video thumbnail. Price: $50.')">
-          <img src="[image:0]" alt="Random Thumbnail 1" style="width:100%; height:100%; object-fit: cover;">
+          <img src="https://example.com/random-thumbnail1.jpg" alt="Random Thumbnail 1" style="width:100%; height:100%; object-fit: cover;">
           <div class="description">$50</div>
         </div>
         <div class="grid-item" onclick="openExample('Graphics Example 2: Animated Stream Layout for Elvis the Alien - Comedy critique stream overlay. Price: $100.')">
-          <img src="[image:1]" alt="Random Thumbnail 2" style="width:100%; height:100%; object-fit: cover;">
+          <img src="https://example.com/random-thumbnail2.jpg" alt="Random Thumbnail 2" style="width:100%; height:100%; object-fit: cover;">
           <div class="description">$100</div>
         </div>
-        <div class="grid-item" onclick="openExample('Graphics Example 3: Static Thumbnail for Frankie Fey - Surreal horror-comedy YTP thumbnail. Price: $50.')">
-          <img src="[image:2]" alt="Random Thumbnail 3" style="width:100%; height:100%; object-fit: cover;">
+        <div class="grid-item" onclick="openExample('Graphics Example 3: Static Thumbnail for Frankie Fey - Surreal horror-comedy thumbnail. Price: $50.')">
+          <img src="https://example.com/random-thumbnail3.jpg" alt="Random Thumbnail 3" style="width:100%; height:100%; object-fit: cover;">
           <div class="description">$50</div>
         </div>
         <div class="grid-item" onclick="openExample('Graphics Example 4: Stream Layout for Papa Meat - Twisted animation overlay. Price: $50-$100.')">
-          <img src="[image:3]" alt="Random Thumbnail 4" style="width:100%; height:100%; object-fit: cover;">
+          <img src="https://example.com/random-thumbnail4.jpg" alt="Random Thumbnail 4" style="width:100%; height:100%; object-fit: cover;">
           <div class="description">$50-$100</div>
         </div>
       </div>
@@ -233,7 +231,7 @@
   </section>
 
   <section id="arcade">
-    <iframe class="section-bg" src="https://www.youtube.com/embed/FIunYpK-TwI?autoplay=1&mute=1&loop=1&playlist=FIunYpK-TwI&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <iframe class="section-bg" src="https://player.vimeo.com/video/514256554?autoplay=1&loop=1&autopause=0&muted=1&background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
     <audio autoplay loop>
       <source src="https://archive.org/download/ArcadeAmbience/ArcadeAmbience.mp3" type="audio/mpeg">
     </audio>
@@ -241,32 +239,15 @@
     <div class="content">
       <h2>Video Editing</h2>
       <p>From $100</p>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Video Editing Example 1: Frankie Fey - Surreal horror-comedy YTPs, edited with twisted cuts and effects. Price: $300+ for remixes. External Link: https://www.youtube.com/watch?v=example1')">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/EGDpgY8S9oc" frameborder="0" allowfullscreen></iframe>
-          <div class="description">$300+</div>
-        </div>
-        <div class="grid-item" onclick="openExample('Video Editing Example 2: Papa Meat - Twisted animations with immersive sound design. Price: $500 for 1-10 min videos. External Link: https://www.youtube.com/watch?v=example2')">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/7Vlu1NoHJjg" frameborder="0" allowfullscreen></iframe>
-          <div class="description">$500</div>
-        </div>
-        <div class="grid-item" onclick="openExample('Video Editing Example 3: J Aubrey - Investigative depravity dives with cinematic pacing. Price: $1000 for 10-20 min videos. External Link: https://www.youtube.com/watch?v=example3')">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/rsUk81nj2KY" frameborder="0" allowfullscreen></iframe>
-          <div class="description">$1000</div>
-        </div>
-        <div class="grid-item" onclick="openExample('Video Editing Example 4: Elvis the Alien - Comedy critiques with engaging effects. Price: $1500 for 20-30 min videos. External Link: https://www.youtube.com/watch?v=example4')">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0gcMPChpWgg" frameborder="0" allowfullscreen></iframe>
-          <div class="description">$1500</div>
-        </div>
-      </div>
-      <p>Other videos: Crash Of The Titans, LilBpixi3 | Cartooneo, Emily Youcis & Alfred Alfer, The Strangest Videos on the Internet.</p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+      <!-- Replace with user video IDs -->
     </div>
     <div class="dancing-element" style="top:50%; left:20%;"></div>
     <img src="https://png.pngtree.com/png-clipart/20231005/ourmid/pngtree-arcade-machine-with-joystick-and-buttons-png-image_10141756.png" style="position:absolute; bottom:30%; left:10%; width:200px; background:none;">
   </section>
 
   <section id="playground">
-    <iframe class="section-bg" src="https://www.youtube.com/embed/G8zlYN_ruhw?autoplay=1&mute=1&loop=1&playlist=G8zlYN_ruhw&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <iframe class="section-bg" src="https://player.vimeo.com/video/673504184?autoplay=1&loop=1&autopause=0&muted=1&background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
     <audio autoplay loop>
       <source src="https://archive.org/download/SSE_Library_AMBIENCE/SSE_Library_AMBIENCE.mp3" type="audio/mpeg">
     </audio>
@@ -274,16 +255,25 @@
     <div class="content">
       <h2>Voice Acting</h2>
       <p>Dancing baby rigs and voice samples.</p>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Voice Acting Example 1: Made-up bio - Energetic voice for animated characters. Price: $300.')">
-          <img src="https://thumbs.dreamstime.com/z/playground-slide-swing-set-kids-play-area-outdoor-fun-park-png-transparent-image-colorful-providing-children-364902412.jpg" alt="Voice Acting Example" style="width:100%; height:100%; object-fit: cover;">
-          <div class="description">$300</div>
-        </div>
-        <!-- Add more made-up bios -->
-      </div>
+      <img src="https://thumbs.dreamstime.com/z/playground-slide-swing-set-kids-play-area-outdoor-fun-park-png-transparent-image-colorful-providing-children-364902412.jpg" alt="High-quality Playground" style="max-width:300px; background:none;">
     </div>
     <div class="dancing-element" style="top:30%; left:10%;"></div>
     <img src="https://png.pngtree.com/png-clipart/20240427/ourmid/pngtree-tropical-jungle-leaves-frame-png-image_12202977.png" style="position:absolute; top:30%; right:10%; width:200px; background:none;">
+  </section>
+
+  <section id="scifi">
+    <iframe class="section-bg" src="https://player.vimeo.com/video/497995313?autoplay=1&loop=1&autopause=0&muted=1&background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <audio autoplay loop>
+      <source src="https://archive.org/download/lp_science-fiction-sound-effects-record_mel-kaiser/lp_science-fiction-sound-effects-record_mel-kaiser.mp3" type="audio/mpeg">
+    </audio>
+    <button class="back-home" onclick="hideAllSections()">Back to Home</button>
+    <div class="content">
+      <h2>YTP / Surreal Remixes</h2>
+      <p>$300+</p>
+      <img src="https://thumbs.dreamstime.com/b/retro-sci-fi-background-s-sunrise-sunset-sun-futuristic-synthesizer-wave-vector-vintage-illustration-disco-172468577.jpg" alt="High-quality Sci-Fi" style="max-width:300px; background:none;">
+    </div>
+    <div class="dancing-element" style="top:70%; left:40%;"></div>
+    <img src="https://png.pngtree.com/png-clipart/20231005/ourmid/pngtree-retro-futuristic-spaceship-in-neon-colors-png-image_10141756.png" style="position:absolute; top:10%; right:10%; width:200px; background:none;">
   </section>
 
   <div id="example-modal">
