@@ -8,111 +8,180 @@
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { 
-      background: url('https://www.webdesignmuseum.org/uploaded/fullscreen/2009/jim-carrey-2009.jpg') no-repeat center/cover fixed; 
+      background: #000; 
       color: #fff; 
       overflow: hidden; 
-      cursor: url('https://i.imgur.com/5eQJ3Yp.png'), auto; 
       font-family: 'Bangers', cursive;
       position: relative;
     }
-    .logo-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; }
-    .logo { font-size: 6vw; color: #ff0; text-shadow: 0 0 20px #f00, 0 0 40px #00f; animation: glitch 1.5s infinite; }
-    .services-circle { position: relative; width: 50vw; height: 50vw; max-width: 600px; max-height: 600px; margin: 0 auto; }
-    .flask { width: 20%; position: absolute; top: 40%; left: 40%; background: url('https://img.icons8.com/color/96/000000/test-tube.png') center/contain no-repeat; height: 20%; filter: hue-rotate(120deg); animation: pulse 2s infinite; }
-    .service-text { position: absolute; font-size: 2vw; text-transform: uppercase; animation: float 5s infinite ease-in-out; }
-    .graphic-design { top: 10%; left: 50%; transform: translate(-50%, 0); color: #ff69b4; text-shadow: 0 0 10px #ff0; }
-    .writing { top: 30%; right: 10%; color: #0ff; text-shadow: 0 0 10px #00f; transform: rotate(20deg); }
-    .visual-effects { bottom: 10%; left: 50%; transform: translate(-50%, 0); color: #f0f; text-shadow: 0 0 10px #f00; }
-    .video-editing { bottom: 30%; left: 10%; color: #ff0; text-shadow: 0 0 10px #0f0; transform: rotate(-20deg); }
-    .voice-acting { top: 50%; right: 20%; color: #0f0; text-shadow: 0 0 10px #ff0; transform: rotate(10deg); }
-    @keyframes glitch { 0%,100%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 14%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 15%{text-shadow:-0.05em -0.05em 0 #f00,0.05em 0 0 #0f0,-0.05em 0.05em 0 #00f;} }
+    #bgvideo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+    .lightning-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: 0; }
+    .logo-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 80vw; height: 80vh; }
+    .beaker { width: 300px; height: 400px; background: url('https://png.pngtree.com/png-vector/20250118/ourmid/pngtree-illustration-of-a-scientific-beaker-with-colorful-liquids-molecules-and-bubbles-png-image_15263995.png') center/contain no-repeat; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: bubble 2s infinite; }
+    @keyframes bubble { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.05); } }
+    .smoke { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 200px; height: 300px; background: url('https://thumbs.dreamstime.com/b/colorful-smoke-rises-beaker-filled-vibrant-liquid-creating-mystical-effect-353085202.jpg') center/contain no-repeat; opacity: 0.8; animation: smoke-rise 5s infinite linear; }
+    @keyframes smoke-rise { 0% { opacity: 0.8; transform: translate(-50%, 0); } 100% { opacity: 0; transform: translate(-50%, -200px); } }
+    .service-text { position: absolute; font-size: 2vw; text-transform: uppercase; cursor: pointer; animation: float 5s infinite ease-in-out, color-shift 3s infinite; transition: transform 0.3s; }
+    .service-text:hover { transform: scale(1.2) rotate(5deg); }
+    .graphic-design { top: 10%; left: 50%; transform: translate(-50%, 0); color: #ff69b4; }
+    .writing { top: 30%; right: 10%; color: #0ff; transform: rotate(20deg); }
+    .visual-effects { bottom: 10%; left: 50%; transform: translate(-50%, 0); color: #f0f; }
+    .video-editing { bottom: 30%; left: 10%; color: #ff0; transform: rotate(-20deg); }
+    .voice-acting { top: 50%; right: 20%; color: #0f0; transform: rotate(10deg); }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
+    @keyframes color-shift { 0% { color: #ff0; } 33% { color: #0f0; } 66% { color: #00f; } 100% { color: #ff0; } }
+    .contact-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,0,0,0.5); color: #fff; padding: 10px 20px; border: none; cursor: pointer; font-family: 'Press Start 2P'; animation: pulse 1s infinite; z-index: 3; }
     @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    .eye { width: 40vw; height: 40vh; background: url('https://media.tenor.com/mJiSR0cCGQUAAAAM/explode-explosion.gif') center/contain no-repeat; position: absolute; top: 20%; right: 10%; animation: blink-stare 10s infinite; opacity: 0.6; mix-blend-mode: screen; z-index: 1; }
-    @keyframes blink-stare { 0%, 90% { opacity: 0.6; transform: scale(1); } 92% { opacity: 0; } 94% { opacity: 0.6; transform: scale(1.1); } 100% { transform: scale(1); } }
-    nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); text-align: center; padding: 10px; z-index: 10; }
-    nav a { color: #fff; text-decoration: none; margin: 0 15px; font-size: 18px; text-transform: uppercase; transition: color 0.3s; }
-    nav a:hover { color: #ff0; text-shadow: 0 0 10px #ff0; }
-    .toggle { float: right; color: #0ff; font-size: 14px; margin-right: 20px; }
-    section { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 60px; overflow-y: auto; padding: 40px; background: rgba(0,0,0,0.5); z-index: 5; }
+    #modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; background: #c0c0c0; border: 2px solid #000; box-shadow: 4px 4px 0 #000; padding: 2px; z-index: 10; font-family: 'MS Sans Serif', sans-serif; font-size: 12px; }
+    .modal-title { background: #000080; color: #fff; padding: 2px 4px; display: flex; justify-content: space-between; }
+    .modal-content { padding: 10px; background: #c0c0c0; }
+    .modal-content label { display: block; margin-bottom: 5px; }
+    .modal-content select, textarea { width: 100%; margin-bottom: 10px; border: 1px inset #fff; background: #fff; color: #000; }
+    .modal-content button { background: #c0c0c0; border: 1px outset #fff; padding: 5px 10px; cursor: pointer; }
+    section { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; padding: 40px; z-index: 5; color: #000; }
     section.active { display: block; }
-    .portfolio { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 30px; }
-    .vid { border: 4px solid #ff0; box-shadow: 0 0 20px #0f0; transform: rotate(-2deg); transition: 0.5s; }
-    .vid:hover { transform: rotate(0) scale(1.1); }
-    iframe { width: 100%; aspect-ratio: 16/9; }
-    .services { padding: 20px; }
-    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 20px; }
-    .card { background: rgba(255,255,255,0.1); border: 2px dashed #f0f; padding: 20px; border-radius: 15px; box-shadow: 0 0 30px #f00; transform: skew(-5deg); animation: wobble 3s infinite; text-align: center; }
-    @keyframes wobble { 0%,100% { transform: skew(-5deg); } 50% { transform: skew(5deg); } }
-    .card h3 { font-size: 24px; color: #0ff; text-shadow: 0 0 15px #00f; }
-    .price-tag { font-size: 28px; color: #ff0; animation: pulse 2s infinite; }
-    /* Floating surreal elements */
-    .floating { position: absolute; pointer-events: none; z-index: 1; animation: float-surreal 15s infinite ease-in-out; }
-    .balloon { width: 100px; top: 10%; left: 20%; background: url('https://media.tenor.com/7ZAA5y9xH5AAAAAM/hot-air-balloon-balloon.gif') no-repeat center/contain; height: 150px; }
-    .octopus { width: 200px; bottom: 30%; right: 10%; background: url('https://media.tenor.com/2K6k3b3G0rEAAAAM/octopus-tentacles.gif') no-repeat center/contain; height: 200px; animation: tentacle-wiggle 5s infinite; }
-    @keyframes tentacle-wiggle { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-50px); } }
-    .bird-face { width: 80px; top: 5%; right: 30%; background: url('https://media.tenor.com/BhKs5gt0_OUAAAAM/spring-riders-rigby.gif') no-repeat center/contain; height: 80px; }
-    @keyframes float-surreal { 0% { transform: translate(0, 0); } 50% { transform: translate(30px, -50px); } 100% { transform: translate(0, 0); } }
-    footer { display: none; }
+    #jungle { background: url('https://img.freepik.com/free-vector/branches-tropical-jungle-frame-with-composition-empty-space-surrounded-by-leaves-stalks-tree-trunks-vector-illustration_1284-82348.jpg') center/cover; }
+    #pirate { background: url('https://i.etsystatic.com/23831015/r/il/7889fb/4811967255/il_fullxfull.4811967255_dehc.jpg') center/cover; }
+    #space { background: url('https://p7.hiclipart.com/preview/1007/928/50/euclidean-vector-outer-space-clip-art-vector-space.jpg') center/cover; }
+    #temple { background: url('https://thumbs.dreamstime.com/b/classic-greek-columns-ancient-architecture-historical-design-ideal-history-content-architectural-themes-classical-designs-370678338.jpg') center/cover; }
+    #playground { background: url('https://thumbs.dreamstime.com/z/playground-slide-swing-set-kids-play-area-outdoor-fun-park-png-transparent-image-colorful-providing-children-364902412.jpg') center/cover; }
+    #arcade { background: url('https://png.pngtree.com/png-vector/20250117/ourmid/pngtree-minimalist-joystick-icon-with-a-retro-arcade-style-perfect-for-gaming-png-image_15235859.png') center/cover; }
+    #scifi { background: url('https://thumbs.dreamstime.com/b/retro-sci-fi-background-s-sunrise-sunset-sun-futuristic-synthesizer-wave-vector-vintage-illustration-disco-172468577.jpg') center/cover; }
+    .content { max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.8); padding: 20px; border-radius: 10px; }
+    .dancing-element { position: absolute; width: 100px; height: 100px; background: url('https://media.tenor.com/BhKs5gt0_OUAAAAM/spring-riders-rigby.gif') center/contain no-repeat; animation: dance 2s infinite alternate; }
+    @keyframes dance { 0% { transform: translate(0,0) rotate(0deg); } 100% { transform: translate(20px, -30px) rotate(10deg); } }
   </style>
-  <script>
-    function showSection(id) {
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-  </script>
 </head>
 <body>
-
-  <div class="floating balloon"></div>
-  <div class="floating octopus"></div>
-  <div class="floating bird-face"></div>
-  <div class="eye"></div>
+  <video autoplay loop muted playsinline id="bgvideo">
+    <source src="https://static.vecteezy.com/system/resources/previews/000/635/original/purple-lightning.mp4" type="video/mp4">
+  </video>
+  <div class="lightning-overlay"></div>
 
   <div class="logo-container">
-    <div class="services-circle">
-      <div class="flask"></div>
-      <div class="service-text graphic-design">Graphic Design</div>
-      <div class="service-text writing">Writing</div>
-      <div class="service-text visual-effects">Visual Effects</div>
-      <div class="service-text video-editing">Video Editing</div>
-      <div class="service-text voice-acting">Voice Acting</div>
+    <div class="beaker">
+      <div class="smoke"></div>
+      <button class="contact-btn" onclick="document.getElementById('modal').style.display='block'">CONTACT</button>
     </div>
-    <h1 class="logo">Cole Labs</h1>
+    <div class="service-text graphic-design" onclick="showSection('jungle')">Graphic Design</div>
+    <div class="service-text writing" onclick="showSection('pirate')">Writing</div>
+    <div class="service-text visual-effects" onclick="showSection('space')">Visual Effects</div>
+    <div class="service-text video-editing" onclick="showSection('temple')">Video Editing</div>
+    <div class="service-text voice-acting" onclick="showSection('playground')">Voice Acting</div>
   </div>
 
-  <nav>
-    <a href="#" onclick="showSection('portfolio'); return false;">SHOWREEL</a>
-    <a href="#" onclick="showSection('services'); return false;">PRICES</a>
-    <a href="https://twitter.com/Cooleo_is_coleo" target="_blank">TWITTER</a>
-    <a href="https://instagram.com/coleoiscooleo" target="_blank">INSTAGRAM</a>
-    <span class="toggle">SFX ON</span>
-  </nav>
-
-  <section id="portfolio">
-    <div class="portfolio">
-      <div class="vid"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Showreel 1" frameborder="0" allowfullscreen></iframe></div>
-      <div class="vid"><iframe src="https://www.youtube.com/embed/9bZkp7q19f0" title="Showreel 2" frameborder="0" allowfullscreen></iframe></div>
-      <div class="vid"><iframe src="https://www.youtube.com/embed/kXYiU_JCYtU" title="Showreel 3" frameborder="0" allowfullscreen></iframe></div>
-      <div class="vid"><iframe src="https://www.youtube.com/embed/OpQFFLBMEPI" title="Showreel 4" frameborder="0" allowfullscreen></iframe></div>
+  <div id="modal">
+    <div class="modal-title">Contact Form <span onclick="document.getElementById('modal').style.display='none'" style="cursor:pointer;">X</span></div>
+    <div class="modal-content">
+      <form action="mailto:coleoisherio@gmail.com" method="post" enctype="text/plain">
+        <label>Service:</label>
+        <select name="service">
+          <option>Video Editing</option>
+          <option>Thumbnails</option>
+          <option>Stream Layouts</option>
+          <option>Branding Package</option>
+          <option>Intros/Outros</option>
+          <option>Titles & Graphics</option>
+          <option>YTP/Surreal Remixes</option>
+          <option>Dancing Baby Rigs</option>
+        </select>
+        <label>Description:</label>
+        <textarea name="description" rows="5"></textarea>
+        <button type="submit">Send</button>
+      </form>
     </div>
+  </div>
+
+  <section id="jungle">
+    <audio autoplay loop>
+      <source src="https://archive.org/download/01-sounds-of-the-jungle/01-sounds-of-the-jungle.mp3" type="audio/mpeg">
+    </audio>
+    <div class="content">
+      <h2>Thumbnails</h2>
+      <p>$50</p>
+      <img src="https://static.vecteezy.com/system/resources/previews/019/909/042/non_2x/abstract-grid-line-neon-retro-style-80s-90s-free-png.png" style="width:200px; position:absolute; top:100px; left:100px;">
+      <!-- Placeholder from Newgrounds or random -->
+    </div>
+    <div class="dancing-element" style="top:20%; left:30%;"></div>
   </section>
 
-  <section id="services">
-    <div class="services">
-      <div class="service-grid">
-        <div class="card"><h3>THUMBNAILS</h3><p>Clickbait so cursed it loops back to genius</p><span class="price-tag">$50</span></div>
-        <div class="card"><h3>STREAM LAYOUTS</h3><p>Static = $50<br>Animated chaos = $100</p><span class="price-tag">$50–$100</span></div>
-        <div class="card"><h3>BRANDING PACKAGE</h3><p>Logo + intro + outro that inflates, screams, and haunts</p><span class="price-tag">$250</span></div>
-        <div class="card"><h3>INTROS / OUTROS</h3><p>One = $100<br>Both = $175 (save your soul)</p><span class="price-tag">$100–$175</span></div>
-        <div class="card"><h3>TITLES & GRAPHICS</h3><p>Kinetic text that punches the screen</p><span class="price-tag">$50</span></div>
-        <div class="card"><h3>VIDEO EDITING</h3><p>Shorts → $100<br>1-10 min → $500<br>10-20 min → $1000<br>20-30 min → $1500<br>30+ min → $2000</p><span class="price-tag">FROM $100</span></div>
-        <div class="card"><h3>YTP / SURREAL REMIXES</h3><p>I will ruin your childhood for money</p><span class="price-tag">$300+</span></div>
-        <div class="card"><h3>DANCING BABY RIGS</h3><p>Yes, the 1996 nightmare returns</p><span class="price-tag">$300</span></div>
-      </div>
-      <p style="text-align:center; margin-top:40px; font-size:20px;">Contact: coleoisherio@gmail.com</p>
+  <section id="pirate">
+    <audio autoplay loop>
+      <source src="https://archive.org/download/78_ship-sounds_gbia3000968b/78_ship-sounds_gbia3000968b.mp3" type="audio/mpeg">
+    </audio>
+    <div class="content">
+      <h2>Stream Layouts</h2>
+      <p>$50-$100</p>
+      <img src="https://i.etsystatic.com/41936347/r/il/80dcc1/5752604862/il_fullxfull.5752604862_o6w9.jpg" style="width:200px; position:absolute; top:150px; left:150px;">
     </div>
+    <div class="dancing-element" style="top:40%; left:50%;"></div>
   </section>
 
+  <section id="space">
+    <audio autoplay loop>
+      <source src="https://archive.org/download/lp_science-fiction-sound-effects-record_mel-kaiser/lp_science-fiction-sound-effects-record_mel-kaiser.mp3" type="audio/mpeg">
+    </audio>
+    <div class="content">
+      <h2>Branding Package</h2>
+      <p>$250</p>
+      <img src="https://png.pngtree.com/png-vector/20250112/ourmid/pngtree-space-exploration-vector-illustration-featuring-rockets-satellites-astronaut-and-planets-in-png-image_15157556.png" style="width:200px; position:absolute; top:200px; left:200px;">
+    </div>
+    <div class="dancing-element" style="top:60%; left:70%;"></div>
+  </section>
+
+  <section id="temple">
+    <audio autoplay loop>
+      <source src="https://archive.org/download/ancient-egyptian-music-al-dakhla-temple-ancient-chants/ancient-egyptian-music-al-dakhla-temple-ancient-chants.mp3" type="audio/mpeg">
+    </audio>
+    <div class="content">
+      <h2>Intros / Outros</h2>
+      <p>$100–$175</p>
+      <img src="https://thumbs.dreamstime.com/b/classic-greek-columns-ancient-architecture-historical-design-ideal-history-content-architectural-themes-classical-designs-370678338.jpg" style="width:200px; position:absolute; top:250px; left:250px;">
+    </div>
+    <div class="dancing-element" style="top:10%; left:80%;"></div>
+  </section>
+
+  <section id="playground">
+    <audio autoplay loop>
+      <source src="https://archive.org/download/SSE_Library_AMBIENCE/SSE_Library_AMBIENCE.mp3" type="audio/mpeg">
+    </audio>
+    <div class="content">
+      <h2>Titles & Graphics</h2>
+      <p>$50</p>
+      <img src="https://png.pngtree.com/png-vector/20241110/ourmid/pngtree-fun-and-safe-children-slide-illustration-perfect-for-playground-recreational-themes-png-image_14339248.png" style="width:200px; position:absolute; top:300px; left:300px;">
+    </div>
+    <div class="dancing-element" style="top:30%; left:10%;"></div>
+  </section>
+
+  <section id="arcade">
+    <audio autoplay loop>
+      <source src="https://archive.org/download/ArcadeAmbience/ArcadeAmbience.mp3" type="audio/mpeg">
+    </audio>
+    <div class="content">
+      <h2>Video Editing</h2>
+      <p>From $100</p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_FROM_USER" frameborder="0" allowfullscreen></iframe> <!-- Replace with user video -->
+    </div>
+    <div class="dancing-element" style="top:50%; left:20%;"></div>
+  </section>
+
+  <section id="scifi">
+    <audio autoplay loop>
+      <source src="https://archive.org/download/lp_science-fiction-sound-effects-record_mel-kaiser/lp_science-fiction-sound-effects-record_mel-kaiser.mp3" type="audio/mpeg">
+    </audio>
+    <div class="content">
+      <h2>YTP / Surreal Remixes</h2>
+      <p>$300+</p>
+      <img src="https://static.vecteezy.com/system/resources/previews/019/909/042/non_2x/abstract-grid-line-neon-retro-style-80s-90s-free-png.png" style="width:200px; position:absolute; top:350px; left:350px;">
+    </div>
+    <div class="dancing-element" style="top:70%; left:40%;"></div>
+  </section>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
+  </script>
 </body>
 </html>
