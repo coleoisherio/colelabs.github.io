@@ -33,11 +33,6 @@
     .logo { font-size: 4vw; color: #ff0; text-shadow: 0 0 20px #f00, 0 0 40px #00f; animation: glitch 1.5s infinite; position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); }
     @keyframes glitch { 0%,100%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 14%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 15%{text-shadow:-0.05em -0.05em 0 #f00,0.05em 0 0 #0f0,-0.05em 0.05em 0 #00f;} }
     .contact-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,0,0,0.5); color: #fff; padding: 10px 20px; border: none; cursor: pointer; font-family: 'Press Start 2P'; animation: pulse 1s infinite; z-index: 3; }
-    .wizard-container { position: absolute; top: 50%; left: 60%; transform: translateY(-50%); cursor: pointer; z-index: 3; animation: wizard-wiggle 3s infinite; }
-    .wizard { width: 150px; height: auto; background: url('https://img1.picmix.com/output/stamp/normal/6/3/1/6/1996136_0f2d1.gif') center/contain no-repeat; }
-    .speech { position: absolute; top: -50px; left: 100px; background: rgba(255,255,255,0.8); color: #000; padding: 10px; border-radius: 20px; border: 2px solid #f00; font-family: 'Comic Sans MS'; white-space: nowrap; animation: speech-bounce 1s infinite; }
-    @keyframes wizard-wiggle { 0%,100% { transform: translateY(-50%) rotate(0deg); } 50% { transform: translateY(-50%) rotate(5deg); } }
-    @keyframes speech-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
     #modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; background: #c0c0c0; border: 2px solid #000; box-shadow: 4px 4px 0 #000; padding: 2px; z-index: 10; font-family: 'MS Sans Serif', sans-serif; font-size: 12px; }
     .modal-title { background: #000080; color: #fff; padding: 2px 4px; display: flex; justify-content: space-between; }
@@ -61,9 +56,6 @@
   </style>
 </head>
 <body>
-  <iframe id="bg-iframe" src="https://www.youtube.com/embed/h8loW5yRXBU?autoplay=1&mute=1&loop=1&playlist=h8loW5yRXBU&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen"></iframe>
-  <div class="lightning-overlay"></div>
-
   <div class="logo-container">
     <div class="beaker">
       <div class="smoke"></div>
@@ -78,7 +70,7 @@
     <div class="service-text visual-effects" onclick="showSection('space')">Visual Effects</div>
     <div class="service-text video-editing" onclick="showSection('arcade')">Video Editing</div>
     <div class="service-text voice-acting" onclick="showSection('playground')">Voice Acting</div>
-    <h1 class="logo">Cole Labs</h1>
+    <h1 class="logo">COLE LABS</h1>
   </div>
 
   <div id="modal">
@@ -125,7 +117,7 @@
     <div class="content">
       <h2>Writing</h2>
       <p>Stream layouts and branding examples.</p>
-      <img src="https://www.google.com/images/placeholder-pirate-ship-transparent.png" alt="Placeholder" style="max-width:300px; background:none;">
+      <img src="https://i.etsystatic.com/23831015/r/il/7889fb/4811967255/il_fullxfull.4811967255_dehc.jpg" alt="Pirate Ship" style="max-width:300px; background:none;">
     </div>
     <div class="dancing-element" style="top:40%; left:50%;"></div>
   </section>
@@ -138,7 +130,7 @@
     <div class="content">
       <h2>Visual Effects</h2>
       <p>YTP and surreal remixes.</p>
-      <img src="https://www.google.com/images/placeholder-space-transparent.png" alt="Placeholder" style="max-width:300px; background:none;">
+      <img src="https://p7.hiclipart.com/preview/1007/928/50/euclidean-vector-outer-space-clip-art-vector-space.jpg" alt="Space" style="max-width:300px; background:none;">
     </div>
     <div class="dancing-element" style="top:60%; left:70%;"></div>
   </section>
@@ -151,7 +143,7 @@
     <div class="content">
       <h2>Intros / Outros</h2>
       <p>Examples of intros and outros.</p>
-      <img src="https://www.google.com/images/placeholder-temple-transparent.png" alt="Placeholder" style="max-width:300px; background:none;">
+      <img src="https://thumbs.dreamstime.com/b/classic-greek-columns-ancient-architecture-historical-design-ideal-history-content-architectural-themes-classical-designs-370678338.jpg" alt="Temple" style="max-width:300px; background:none;">
     </div>
     <div class="dancing-element" style="top:10%; left:80%;"></div>
   </section>
@@ -164,7 +156,7 @@
     <div class="content">
       <h2>Voice Acting</h2>
       <p>Dancing baby rigs and voice samples.</p>
-      <img src="https://www.google.com/images/placeholder-playground-transparent.png" alt="Placeholder" style="max-width:300px; background:none;">
+      <img src="https://thumbs.dreamstime.com/z/playground-slide-swing-set-kids-play-area-outdoor-fun-park-png-transparent-image-colorful-providing-children-364902412.jpg" alt="Playground" style="max-width:300px; background:none;">
     </div>
     <div class="dancing-element" style="top:30%; left:10%;"></div>
   </section>
@@ -191,7 +183,7 @@
     <div class="content">
       <h2>YTP / Surreal Remixes</h2>
       <p>$300+</p>
-      <img src="https://www.google.com/images/placeholder-scifi-transparent.png" alt="Placeholder" style="max-width:300px; background:none;">
+      <img src="https://thumbs.dreamstime.com/b/retro-sci-fi-background-s-sunrise-sunset-sun-futuristic-synthesizer-wave-vector-vintage-illustration-disco-172468577.jpg" alt="Sci-Fi" style="max-width:300px; background:none;">
     </div>
     <div class="dancing-element" style="top:70%; left:40%;"></div>
   </section>
