@@ -19,11 +19,11 @@
     .lightning-right { position: absolute; top: 0; right: 0; width: 20%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: 0; transform: rotate(180deg); }
     .logo-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 80vw; height: 80vh; display: flex; justify-content: center; align-items: center; flex-direction: column; }
     .beaker-wrapper { position: relative; width: 300px; height: 400px; }
-    .gear { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 250px; height: 250px; background: url('https://64.media.tumblr.com/a9fc6f966d96d8b85584b86b9c9b0dab/bfc12810842eacee-40/s540x810/799e1a50ddbc53e0808cf1d8cdf0f5869b794d09.gifv') center/contain no-repeat; z-index: 1; animation: rotate 10s linear infinite; }
+    .gear { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 250px; height: 250px; background: url('https://64.media.tumblr.com/a9fc6f966d96d8b85584b86b9c9b0dab/bfc12810842eacee-40/s540x810/799e1a50ddbc53e0808cf1d8cdf0f5869b794d09.gif') center/contain no-repeat; z-index: 1; animation: rotate 10s linear infinite; }
     @keyframes rotate { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
     .smoke { position: absolute; top: -50px; left: 50%; transform: translateX(-50%) rotate(0deg); width: 100px; height: 150px; background: url('https://giffiles.alphacoders.com/205/20595.gif') center/contain no-repeat; opacity: 0.8; z-index: 2; animation: smoke-static 2s infinite; }
     @keyframes smoke-static { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
-    .beaker { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 400px; background: url('https://www.pngkey.com/png/full/109-1099033_beaker-with-liquid-png-chemicals-in-a-beaker.png') center/contain no-repeat; animation: bubble 2s infinite; z-index: 3; }
+    .beaker { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 400px; background: url('https://www.clker.com/cliparts/k/9/F/f/a/P/beaker-hi.png') center/contain no-repeat; animation: bubble 2s infinite; z-index: 3; }
     @keyframes bubble { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.05); } }
     .service-text { font-size: 3vw; text-transform: uppercase; cursor: pointer; animation: float 5s infinite ease-in-out, color-shift 3s infinite; transition: transform 0.3s; position: absolute; z-index: 4; text-shadow: 0 0 10px currentColor; }
     .service-text:hover { transform: scale(1.2) rotate(5deg); }
@@ -55,8 +55,9 @@
     #arcade { background: url('https://png.pngtree.com/png-vector/20250117/ourmid/pngtree-minimalist-joystick-icon-with-a-retro-arcade-style-perfect-for-gaming-png-image_15235859.png') center/cover; }
     #scifi { background: url('https://thumbs.dreamstime.com/b/retro-sci-fi-background-s-sunrise-sunset-sun-futuristic-synthesizer-wave-vector-vintage-illustration-disco-172468577.jpg') center/cover; }
     .content { max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.8); padding: 20px; border-radius: 10px; text-align: center; } /* Centered content */
+    .content img, .content iframe { border: 5px solid #ff0; border-radius: 10px; margin: 10px; box-shadow: 0 0 20px #f00; }
     .back-home { position: absolute; top: 20px; left: 20px; background: #ff0; color: #000; padding: 10px; border: none; cursor: pointer; font-family: 'Press Start 2P'; z-index: 6; }
-    .dancing-element { position: absolute; width: 100px; height: 100px; background: url('https://media.tenor.com/BhKs5gt0_OUAAAAM/spring-riders-rigby.gif') center/contain no-repeat; animation: dance 2s infinite alternate; }
+    .dancing-element { position: absolute; width: 200px; height: 200px; background: url('https://media.giphy.com/media/xT0BKCkJwfEHmKWMlq/giphy.gif') center/contain no-repeat; animation: dance 2s infinite alternate; }
     @keyframes dance { 0% { transform: translate(0,0) rotate(0deg); } 100% { transform: translate(20px, -30px) rotate(10deg); } }
     .wizard-container { position: absolute; top: 50%; left: 60%; transform: translateY(-50%); cursor: pointer; z-index: 3; animation: wizard-wiggle 3s infinite; }
     .wizard { width: 150px; height: auto; background: url('https://img1.picmix.com/output/stamp/normal/6/3/1/6/1996136_0f2d1.gif') center/contain no-repeat; }
@@ -223,7 +224,7 @@
       if (id) document.getElementById(id).classList.add('active');
     }
     function hideAllSections() {
-      document.query-selectorAll('section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
     }
   </script>
 </body>
