@@ -8,117 +8,84 @@
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { 
-      background: linear-gradient(45deg, #4b0082, #ff69b4, #4b0082, #ff69b4); 
-      background-size: 400% 400%;
+      background: url('https://www.webdesignmuseum.org/uploaded/fullscreen/2009/jim-carrey-2009.jpg') no-repeat center/cover fixed; 
       color: #fff; 
-      overflow-x: hidden; 
+      overflow: hidden; 
       cursor: url('https://i.imgur.com/5eQJ3Yp.png'), auto; 
-      animation: smoke-shift 20s ease-in-out infinite;
-      text-shadow: 2px 2px 4px #000; /* For legibility */
+      font-family: 'Bangers', cursive;
       position: relative;
     }
-    @keyframes smoke-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-    .glitch { font-family: 'Bangers', cursive; font-size: 7vw; text-align:center; padding:15vh 0; text-shadow: 0.05em 0 0 #f00, -0.05em -0.05em 0 #0f0, 0.05em 0.05em 0 #00f; animation: glitch 2s infinite; }
+    .glitch { font-size: 8vw; text-align: center; padding: 5vh 0; text-shadow: 0.05em 0 0 #f00, -0.05em -0.05em 0 #0f0, 0.05em 0.05em 0 #00f; animation: glitch 1.5s infinite; position: absolute; bottom: 20px; left: 20px; color: rgba(255,255,255,0.8); }
     @keyframes glitch { 0%,100%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 14%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 15%{text-shadow:-0.05em -0.05em 0 #f00,0.05em 0 0 #0f0,-0.05em 0.05em 0 #00f;} }
-    .eye { width:300px; height:300px; background: url('https://cdn.mos.cms.futurecdn.net/ZsQmSHKYueHSDgJ4r3KHhk.gif') center/contain no-repeat; margin:0 auto 30px; animation: stare 5s infinite, rotate-wild 3s infinite alternate; }
-    @keyframes stare { 0%,80%{transform:scale(1) rotate(0deg);} 90%{transform:scale(1.5) rotate(360deg);} 100%{transform:scale(1) rotate(0deg);} }
-    @keyframes rotate-wild { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
-    section { padding:80px 10%; text-align:center; }
-    .portfolio { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap:30px; }
-    .vid { position:relative; overflow:hidden; border:8px solid #ff0; box-shadow:0 0 30px #0f0; transform:skew(-5deg) rotate(5deg); transition:0.5s; animation: bounce 1s infinite; }
-    .vid:hover { transform:skew(0) scale(1.2) rotate(0deg); z-index:10; }
-    @keyframes bounce { 0%,100%{transform:translateY(0) skew(-5deg);} 50%{transform:translateY(-20px) skew(5deg);} }
-    iframe { width:100%; aspect-ratio:16/9; }
-
-    /* SERVICES SECTION */
-    .services { padding:100px 5%; background: rgba(75,0,130,0.5); }
-    .service-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:40px; max-width:1400px; margin:0 auto; }
-    .card { 
-      background: linear-gradient(to bottom, #ff69b4, #4b0082) url('https://i.pinimg.com/originals/07/03/48/0703483f8e3100d87497817030fb903f.gif') center/cover; 
-      border: 6px dashed #0ff; 
-      padding:30px 20px; 
-      border-radius: 50px 10px; 
-      box-shadow: 0 0 50px #f0f, 0 0 100px #ff0; 
-      transform: rotate(-10deg) scale(0.9); 
-      transition: all 0.6s ease-in-out; 
-      position:relative; 
-      overflow:hidden;
-      animation: spring 2s infinite;
-    }
-    @keyframes spring { 0%,100% { transform: rotate(-10deg) translateY(0); } 50% { transform: rotate(10deg) translateY(-40px); } }
-    .card:hover { transform: rotate(0) scale(1.2); box-shadow: 0 0 100px #ff0, 0 0 200px #f00; }
-    .card::before { content:""; position:absolute; top:0; left:0; right:0; height:20px; background: repeating-linear-gradient(45deg, #ff0, #ff0 10px, #f00 10px, #f00 20px); animation: scan 2s infinite linear; }
-    @keyframes scan { 0% { background-position: 0 0; } 100% { background-position: 40px 0; } }
-    .card h3 { font-family: 'Orbitron', sans-serif; font-size:32px; color:#0f0; text-shadow: 0 0 20px #0f0, 0 0 40px #00f; margin-bottom:15px; animation: pulse 1.5s infinite; }
-    .card p { font-family: 'Press Start 2P'; font-size:14px; line-height:1.8; margin:15px 0; color:#fff; text-shadow: 2px 2px #000; }
-    .price-tag { font-family: 'Bangers'; font-size:38px; color:#ff0; text-shadow: 3px 3px #f00, -3px -3px #00f; display:block; margin:20px 0; animation: float 3s infinite, color-shift 5s infinite; }
-    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
-    @keyframes float { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-30px) rotate(360deg);} }
-    @keyframes color-shift { 0% { color: #ff0; } 33% { color: #0f0; } 66% { color: #00f; } 100% { color: #ff0; } }
-
-    /* ABUNDANT 90S GIFS FLOATING */
-    .floating { position: fixed; pointer-events: none; z-index: 5; animation: float-wild 20s infinite linear; background-size: contain; background-repeat: no-repeat; }
-    .confetti1 { bottom: 20%; right: 10%; width: 200px; height: 200px; background-image: url('https://i.pinimg.com/originals/07/03/48/0703483f8e3100d87497817030fb903f.gif'); }
-    .flames1 { top: 30%; left: 15%; width: 150px; height: 150px; background-image: url('https://cdn.pixabay.com/animation/2024/05/29/20/32/20-32-06-273_512.gif'); animation: bounce 1.5s infinite; }
-    .hammer1 { bottom: 40%; left: 50%; width: 200px; height: 150px; background-image: url('http://www.netanimations.net/under_construction_hammer.gif'); }
-    .construction1 { top: 60%; right: 20%; width: 200px; height: 150px; background-image: url('https://media.tenor.com/9n1CXysOWEAAAAAj/ethosaur-nonagon.gif'); }
-    .dancingbaby1 { top: 10%; left: 70%; width: 150px; height: 200px; background-image: url('https://cdn.mos.cms.futurecdn.net/ZsQmSHKYueHSDgJ4r3KHhk.gif'); animation: rotate-wild 4s infinite; }
-    .confetti2 { top: 50%; left: 5%; width: 200px; height: 200px; background-image: url('https://i.pinimg.com/originals/07/03/48/0703483f8e3100d87497817030fb903f.gif'); animation: float 5s infinite; }
-    .flames2 { bottom: 10%; right: 30%; width: 150px; height: 150px; background-image: url('https://cdn.pixabay.com/animation/2024/05/29/20/32/20-32-06-273_512.gif'); }
-    @keyframes float-wild { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(50px, 100px) rotate(180deg); } 100% { transform: translate(0, 0) rotate(360deg); } }
-
-    footer { background:linear-gradient(to right, #f00, #ff0, #0f0, #00f, #f0f); padding:50px; font-family:'Creepster'; font-size:30px; text-align:center; animation: color-shift 5s infinite; }
-    a { color:#0ff; text-decoration:underline wavy #ff0; }
+    .eye { width: 40vw; height: 40vh; background: url('https://media.tenor.com/mJiSR0cCGQUAAAAM/explode-explosion.gif') center/contain no-repeat; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: blink-stare 10s infinite; opacity: 0.7; mix-blend-mode: screen; }
+    @keyframes blink-stare { 0%, 90% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); } 92% { opacity: 0; } 94% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.2); } 100% { transform: translate(-50%, -50%) scale(1); } }
+    nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); text-align: center; padding: 10px; z-index: 10; }
+    nav a { color: #fff; text-decoration: none; margin: 0 15px; font-size: 18px; text-transform: uppercase; transition: color 0.3s; }
+    nav a:hover { color: #ff0; text-shadow: 0 0 10px #ff0; }
+    .toggle { float: right; color: #0ff; font-size: 14px; margin-right: 20px; }
+    section { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 60px; overflow-y: auto; padding: 40px; background: rgba(0,0,0,0.5); z-index: 5; }
+    section.active { display: block; }
+    .portfolio { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 30px; }
+    .vid { border: 4px solid #ff0; box-shadow: 0 0 20px #0f0; transform: rotate(-2deg); transition: 0.5s; }
+    .vid:hover { transform: rotate(0) scale(1.1); }
+    iframe { width: 100%; aspect-ratio: 16/9; }
+    .services { padding: 20px; }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 20px; }
+    .card { background: rgba(255,255,255,0.1); border: 2px dashed #f0f; padding: 20px; border-radius: 15px; box-shadow: 0 0 30px #f00; transform: skew(-5deg); animation: wobble 3s infinite; text-align: center; }
+    @keyframes wobble { 0%,100% { transform: skew(-5deg); } 50% { transform: skew(5deg); } }
+    .card h3 { font-size: 24px; color: #0ff; text-shadow: 0 0 15px #00f; }
+    .price-tag { font-size: 28px; color: #ff0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
+    /* Floating surreal elements */
+    .floating { position: absolute; pointer-events: none; z-index: 1; animation: float-surreal 15s infinite ease-in-out; }
+    .balloon { width: 100px; top: 10%; left: 20%; background: url('https://media.tenor.com/7ZAA5y9xH5AAAAAM/hot-air-balloon-balloon.gif') no-repeat center/contain; height: 150px; }
+    .octopus { width: 200px; bottom: 30%; right: 10%; background: url('https://media.tenor.com/2K6k3b3G0rEAAAAM/octopus-tentacles.gif') no-repeat center/contain; height: 200px; animation: tentacle-wiggle 5s infinite; }
+    @keyframes tentacle-wiggle { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-50px); } }
+    .bird-face { width: 80px; top: 5%; right: 30%; background: url('https://media.tenor.com/BhKs5gt0_OUAAAAM/spring-riders-rigby.gif') no-repeat center/contain; height: 80px; }
+    footer { display: none; } /* Hide original footer, use nav instead */
   </style>
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 </head>
 <body>
 
-  <div class="floating confetti1"></div>
-  <div class="floating flames1"></div>
-  <div class="floating hammer1"></div>
-  <div class="floating construction1"></div>
-  <div class="floating dancingbaby1"></div>
-  <div class="floating confetti2"></div>
-  <div class="floating flames2"></div>
-
+  <div class="floating balloon"></div>
+  <div class="floating octopus"></div>
+  <div class="floating bird-face"></div>
   <div class="eye"></div>
   <h1 class="glitch">COLEOISCOOLEO</h1>
 
-  <section class="portfolio">
+  <nav>
+    <a href="#" onclick="showSection('portfolio'); return false;">SHOWREEL</a>
+    <a href="#" onclick="showSection('services'); return false;">PRICES</a>
+    <a href="https://twitter.com/Cooleo_is_coleo" target="_blank">TWITTER</a>
+    <a href="https://instagram.com/coleoiscooleo" target="_blank">INSTAGRAM</a>
+    <span class="toggle">SFX ON</span>
+  </nav>
+
+  <section id="portfolio">
     <div class="vid"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Showreel" frameborder="0" allowfullscreen></iframe></div>
     <div class="vid"><iframe src="https://www.youtube.com/embed/9bZkp7q19f0" title="Showreel" frameborder="0" allowfullscreen></iframe></div>
     <div class="vid"><iframe src="https://www.youtube.com/embed/kXYiU_JCYtU" title="Showreel" frameborder="0" allowfullscreen></iframe></div>
     <div class="vid"><iframe src="https://www.youtube.com/embed/OpQFFLBMEPI" title="Showreel" frameborder="0" allowfullscreen></iframe></div>
   </section>
 
-  <section class="services">
-    <h2 style="font-family:'Bangers';font-size:60px;color:#ff0;text-shadow:0 0 30px #f00, 0 0 60px #00f;margin-bottom:60px;animation:glitch 3s infinite, float 4s infinite;">HIRE THE MADNESS</h2>
+  <section id="services">
     <div class="service-grid">
-
       <div class="card"><h3>THUMBNAILS</h3><p>Clickbait so cursed it loops back to genius</p><span class="price-tag">$50</span></div>
-
       <div class="card"><h3>STREAM LAYOUTS</h3><p>Static = $50<br>Animated chaos = $100</p><span class="price-tag">$50–$100</span></div>
-
       <div class="card"><h3>BRANDING PACKAGE</h3><p>Logo + intro + outro that inflates, screams, and haunts</p><span class="price-tag">$250</span></div>
-
       <div class="card"><h3>INTROS / OUTROS</h3><p>One = $100<br>Both = $175 (save your soul)</p><span class="price-tag">$100–$175</span></div>
-
       <div class="card"><h3>TITLES & GRAPHICS</h3><p>Kinetic text that punches the screen</p><span class="price-tag">$50</span></div>
-
       <div class="card"><h3>VIDEO EDITING</h3><p>Shorts → $100<br>1-10 min → $500<br>10-20 min → $1000<br>20-30 min → $1500<br>30+ min → $2000</p><span class="price-tag">FROM $100</span></div>
-
       <div class="card"><h3>YTP / SURREAL REMIXES</h3><p>I will ruin your childhood for money</p><span class="price-tag">$300+</span></div>
-
-      <div class="card"><h3>DANCING BABY RIGS</h3><p>Yes, 1996 nightmare returns</p><span class="price-tag">$300</span></div>
-
+      <div class="card"><h3>DANCING BABY RIGS</h3><p>Yes, the 1996 nightmare returns</p><span class="price-tag">$300</span></div>
     </div>
   </section>
-
-  <footer>
-    <p>beam me up → coleoisherio@gmail.com<br>
-    <a href="https://twitter.com/Cooleo_is_coleo" target="_blank">Twitter: @Cooleo_is_coleo</a> • 
-    <a href="https://instagram.com/coleoiscooleo" target="_blank">Instagram: @coleoiscooleo</a></p>
-  </footer>
 
 </body>
 </html>
