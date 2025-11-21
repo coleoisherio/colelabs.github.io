@@ -18,7 +18,8 @@
     .lightning-left { position: absolute; top: 0; left: 0; width: 20%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: 0; transform: rotate(0deg); }
     .lightning-right { position: absolute; top: 0; right: 0; width: 20%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: 0; transform: rotate(180deg); }
     .logo-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 80vw; height: 80vh; display: flex; justify-content: center; align-items: center; flex-direction: column; }
-    .beaker-wrapper { position: relative; width: 300px; height: 400px; box-shadow: 0 0 20px #0f0, 0 0 40px #f00; } /* Glow on beaker and gear */
+    .beaker-wrapper { position: relative; width: 300px; height: 400px; animation: hue-rotate 5s infinite linear; } /* Rainbow hue on beaker */
+    @keyframes hue-rotate { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
     .gear { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 250px; height: 250px; background: url('https://64.media.tumblr.com/a9fc6f966d96d8b85584b86b9c9b0dab/bfc12810842eacee-40/s540x810/799e1a50ddbc53e0808cf1d8cdf0f5869b794d09.gifv') center/contain no-repeat; z-index: 1; animation: rotate 10s linear infinite; }
     @keyframes rotate { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
     .smoke { position: absolute; top: -100px; left: 50%; transform: translateX(-50%) rotate(0deg); width: 100px; height: 200px; background: url('https://giffiles.alphacoders.com/205/20595.gif') center/contain no-repeat; opacity: 0.8; z-index: 2; animation: smoke-static 2s infinite; }
@@ -57,7 +58,7 @@
     .content { max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.8); padding: 20px; border-radius: 10px; text-align: center; } /* Centered content */
     .content img, .content iframe { border: 5px solid #ff0; border-radius: 10px; margin: 10px; box-shadow: 0 0 20px #f00; }
     .back-home { position: absolute; top: 20px; left: 20px; background: #ff0; color: #000; padding: 10px; border: none; cursor: pointer; font-family: 'Press Start 2P'; z-index: 6; }
-    .dancing-element { position: absolute; width: 200px; height: 200px; background: url('https://media.giphy.com/media/xT0BKCkJwfEHmKWMlq/giphy.gif') center/contain no-repeat; animation: dance 2s infinite alternate; }
+    .dancing-element { position: absolute; width: 200px; height: 200px; background: url('https://media.giphy.com/media/l0HlRnAWy0gaF9rT2/giphy.gif') center/contain no-repeat; animation: dance 2s infinite alternate; }
     @keyframes dance { 0% { transform: translate(0,0) rotate(0deg); } 100% { transform: translate(20px, -30px) rotate(10deg); } }
     .wizard-container { position: absolute; top: 50%; left: 60%; transform: translateY(-50%); cursor: pointer; z-index: 3; animation: wizard-wiggle 3s infinite; }
     .wizard { width: 150px; height: auto; background: url('https://img1.picmix.com/output/stamp/normal/6/3/1/6/1996136_0f2d1.gif') center/contain no-repeat; }
@@ -72,6 +73,16 @@
     #example-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; background: #c0c0c0; border: 2px solid #000; box-shadow: 4px 4px 0 #000; padding: 2px; z-index: 11; font-family: 'MS Sans Serif', sans-serif; font-size: 12px; }
     #example-modal .modal-title { background: #000080; color: #fff; padding: 2px 4px; display: flex; justify-content: space-between; }
     #example-modal .modal-content { padding: 10px; background: #c0c0c0; text-align: left; }
+    @media (max-width: 768px) {
+      .service-text { font-size: 5vw; }
+      .logo { font-size: 6vw; }
+      .beaker-wrapper { width: 200px; height: 300px; }
+      .gear { width: 150px; height: 150px; }
+      .smoke { width: 80px; height: 120px; top: -60px; }
+      .beaker { width: 200px; height: 300px; }
+      .wizard-container { left: 70%; }
+      .grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -84,6 +95,8 @@
       <div class="gear"></div>
       <div class="smoke"></div>
       <div class="beaker"></div>
+      <h1 class="logo" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 4;">COLE LABS</h1>
+      <button class="contact-btn" onclick="document.getElementById('modal').style.display='block'" style="position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%); z-index: 4;">CONTACT</button>
     </div>
     <div class="wizard-container" onclick="document.getElementById('modal').style.display='block'">
       <div class="wizard"></div>
@@ -94,8 +107,6 @@
     <div class="service-text visual-effects" onclick="showSection('space')">Visual Effects</div>
     <div class="service-text video-editing" onclick="showSection('arcade')">Video Editing</div>
     <div class="service-text voice-acting" onclick="showSection('playground')">Voice Acting</div>
-    <h1 class="logo">COLE LABS</h1>
-    <button class="contact-btn" onclick="document.getElementById('modal').style.display='block'">CONTACT</button>
   </div>
 
   <div id="modal">
@@ -152,7 +163,7 @@
     <img src="https://png.pngtree.com/png-clipart/20240427/ourmid/pngtree-tropical-jungle-leaves-frame-png-image_12202977.png" style="position:absolute; top:10%; left:10%; width:200px; background:none;">
   </section>
 
-  <!-- Similar structure for other sections, with themed content and bios -->
+  <!-- Repeat similar grid structure for other sections with themed content -->
 
   <div id="example-modal">
     <div class="modal-title">Example Details <span onclick="document.getElementById('example-modal').style.display='none'" style="cursor:pointer;">X</span></div>
