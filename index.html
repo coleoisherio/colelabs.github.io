@@ -268,6 +268,148 @@
           <img src="https://i.etsystatic.com/23831015/r/il/7889fb/4811967255/il_fullxfull.4811967255_dehc.jpg" alt="Branding Example" style="width:100%; height:100%; object-fit: cover;">
           <div class="description">$100-$175</div>
         </div>
+        <!-- Addr-radius: 10px; margin: 10px; box-shadow: 0 0 20px #f00; }
+    .back-home { position: absolute; top: 20px; left: 20px; background: #ff0; color: #000; padding: 10px; border: none; cursor: pointer; font-family: 'Press Start 2P'; z-index: 6; }
+    .dancing-element { position: absolute; width: 200px; height: 200px; background: url('https://media.giphy.com/media/l0HlRnAWy0gaF9rT2/giphy.gif') center/contain no-repeat; animation: dance 2s infinite alternate; }
+    @keyframes dance { 0% { transform: translate(0,0) rotate(0deg); } 100% { transform: translate(20px, -30px) rotate(10deg); } }
+    .wizard-container { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 100; animation: wizard-wiggle 3s infinite; } /* Permanent bottom corner */
+    .wizard { width: 100px; height: auto; background: url('https://img1.picmix.com/output/stamp/normal/6/3/1/6/1996136_0f2d1.gif') center/contain no-repeat; }
+    .speech { position: absolute; top: -50px; left: -150px; background: rgba(255,255,255,0.8); color: #000; padding: 10px; border-radius: 20px; border: 2px solid #f00; font-family: 'Comic Sans MS'; white-space: nowrap; animation: speech-bounce 1s infinite; text-align: center; width: 200px; } /* Adjusted for bottom position */
+    @keyframes wizard-wiggle { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
+    @keyframes speech-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 800px; margin: 0 auto; }
+    .grid-item { position: relative; height: 300px; background: rgba(0,0,0,0.5); border: 5px solid #ff0; border-radius: 10px; overflow: hidden; cursor: pointer; transition: transform 0.3s; }
+    .grid-item:hover { transform: scale(1.1); }
+    .grid-item .description { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: #fff; padding: 10px; text-align: center; opacity: 0; transition: opacity 0.3s; }
+    .grid-item:hover .description { opacity: 1; }
+    #example-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; background: #c0c0c0; border: 2px solid #000; box-shadow: 4px 4px 0 #000; padding: 2px; z-index: 11; font-family: 'MS Sans Serif', sans-serif; font-size: 12px; }
+    #example-modal .modal-title { background: #000080; color: #fff; padding: 2px 4px; display: flex; justify-content: space-between; }
+    #example-modal .modal-content { padding: 10px; background: #c0c0c0; text-align: left; }
+    @media (max-width: 768px) {
+      .service-text { font-size: 5vw; }
+      .logo { font-size: 6vw; letter-spacing: -0.05em; word-spacing: -0.15em; }
+      .beaker-wrapper { width: 200px; height: 300px; }
+      .gear { width: 300px; height: 300px; }
+      .smoke { width: 80px; height: 120px; top: -60px; }
+      .beaker { width: 200px; height: 300px; }
+      .wizard-container { right: 10px; bottom: 10px; }
+      .speech { left: -150px; top: -50px; }
+      .grid { grid-template-columns: 1fr; }
+      /* No overrides for service-text positions - keep desktop layout */
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro Video Container -->
+  <div class="intro-container">
+    <iframe src="https://player.vimeo.com/video/893137606?autoplay=1&loop=1&muted=1&background=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <button class="skip-btn" onclick="skipIntro()">Skip Intro</button>
+  </div>
+
+  <div id="transition-overlay"></div>
+
+  <!-- Your Original Body Content - Unchanged -->
+  <iframe id="bg-iframe" src="https://www.youtube.com/embed/KRcNsMWgD1I?autoplay=1&mute=1&loop=1&playlist=KRcNsMWgD1I&controls=0&modestbranding=1&rel=0" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+  <div class="lightning-left"></div>
+  <div class="lightning-right"></div>
+
+  <div class="logo-container">
+    <div class="beaker-wrapper">
+      <div class="gear"></div>
+      <div class="smoke"></div>
+      <div class="beaker"></div>
+      <h1 class="logo" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 4; ">COLE LABS</h1>
+      <button class="contact-btn" onclick="document.getElementById('modal').style.display='block'" style="position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%); z-index: 4; ">CONTACT</button>
+    </div>
+    <div class="wizard-container" onclick="document.getElementById('modal').style.display='block'">
+      <div class="wizard"></div>
+      <div class="speech" id="speechBox">Click on me to order!</div>
+    </div>
+    <div class="service-text graphic-design" onclick="showSection('jungle')">Drawings</div>
+    <div class="service-text writing" onclick="showSection('pirate')">Branding</div>
+    <div class="service-text visual-effects" onclick="showSection('space')">Graphics</div>
+    <div class="service-text video-editing" onclick="showSection('arcade')">Video Editing</div>
+    <div class="service-text voice-acting" onclick="showSection('playground')">Voice Acting</div>
+  </div>
+
+  <!-- SoundCloud Embed -->
+  <iframe width="0" height="0" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-754244104/portal-2-10th-anniversary-cinematic-mega-remix&auto_play=true&loop=true" frameborder="no"></iframe>
+
+  <div id="modal">
+    <div class="modal-title">Contact Form <span onclick="document.getElementById('modal').style.display='none'" style="cursor:pointer;">X</span></div>
+    <div class="modal-content">
+      <form action="mailto:coleoisherio@gmail.com" method="post" enctype="text/plain">
+        <label>Name:</label>
+        <input type="text" name="name">
+        <label>Email:</label>
+        <input type="email" name="email">
+        <label>Service:</label>
+        <select name="service">
+          <option>Video Editing</option>
+          <option>Thumbnails</option>
+          <option>Stream Layouts</option>
+          <option>Branding Package</option>
+          <option>Intros/Outros</option>
+          <option>Titles & Graphics</option>
+        </select>
+        <label>Budget:</label>
+        <input type="text" name="budget">
+        <label>Expected Completion Date:</label>
+        <input type="date" name="completion_date">
+        <label>Description:</label>
+        <textarea name="description" rows="5"></textarea>
+        <p>This will send an email to coleoisherio@gmail.com</p>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <section id="jungle">
+    <iframe class="section-bg" src="https://player.vimeo.com/video/62613453?background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <audio autoplay loop>
+      <source src="https://archive.org/download/01-sounds-of-the-jungle/01-sounds-of-the-jungle.mp3" type="audio/mpeg">
+    </audio>
+    <button class="back-home" onclick="hideAllSections()">Back to Home</button>
+    <div class="content">
+      <h2>Drawings</h2>
+      <p>Custom drawings and illustrations.</p>
+      <div class="grid">
+        <div class="grid-item" onclick="openExample('Drawings Example 1: Nitro Titan - A vibrant cartoon illustration featuring a powerful character. Price: $50 for thumbnails.')">
+          <img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339" alt="Nitro Titan Art" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$50</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Drawings Example 2: Custom Illustration - Surreal art piece. Price: $250 for branding package.')">
+          <img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339" alt="Custom Illustration" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$250</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Drawings Example 3: Logo Design - Inflatable logo. Price: $150.')">
+          <img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339" alt="Logo Design" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$150</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Drawings Example 4: Thumbnail Art - Cursed clickbait. Price: $50.')">
+          <img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339" alt="Thumbnail Art" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$50</div>
+        </div>
+      </div>
+    </div>
+    <div class="dancing-element" style="top:20%; left:30%;"></div>
+    <img src="https://png.pngtree.com/png-clipart/20240427/ourmid/pngtree-tropical-jungle-leaves-frame-png-image_12202977.png" style="position:absolute; top:10%; left:10%; width:200px; background:none;">
+  </section>
+
+  <section id="pirate">
+    <iframe class="section-bg" src="https://player.vimeo.com/video/774402304?background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <audio autoplay loop>
+      <source src="https://archive.org/download/78_ship-sounds_gbia3000968b/78_ship-sounds_gbia3000968b.mp3" type="audio/mpeg">
+    </audio>
+    <button class="back-home" onclick="hideAllSections()">Back to Home</button>
+    <div class="content">
+      <h2>Branding</h2>
+      <p>Intro and outro information, $100-$175.</p>
+      <div class="grid">
+        <div class="grid-item" onclick="openExample('Branding Example 1: Intro/Outro for Papa Meat - Twisted animations with surreal effects. Price: $100-$175.')">
+          <img src="https://i.etsystatic.com/23831015/r/il/7889fb/4811967255/il_fullxfull.4811967255_dehc.jpg" alt="Branding Example" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$100-$175</div>
+        </div>
         <!-- Add      pointer-events: none;
     }
     .skip-btn {
