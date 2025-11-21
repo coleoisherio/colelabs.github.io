@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>COLEOISCOOLEO - SURREAL SHOWREEL</title>
+  <title>COLE LABS - CREATIVE SERVICES</title>
   <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Press+Start+2P&family=Bangers&family=Orbitron:wght@900&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -15,10 +15,21 @@
       font-family: 'Bangers', cursive;
       position: relative;
     }
-    .glitch { font-size: 8vw; text-align: center; padding: 5vh 0; text-shadow: 0.05em 0 0 #f00, -0.05em -0.05em 0 #0f0, 0.05em 0.05em 0 #00f; animation: glitch 1.5s infinite; position: absolute; bottom: 20px; left: 20px; color: rgba(255,255,255,0.8); }
+    .logo-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; }
+    .logo { font-size: 6vw; color: #ff0; text-shadow: 0 0 20px #f00, 0 0 40px #00f; animation: glitch 1.5s infinite; }
+    .services-circle { position: relative; width: 50vw; height: 50vw; max-width: 600px; max-height: 600px; margin: 0 auto; }
+    .flask { width: 20%; position: absolute; top: 40%; left: 40%; background: url('https://img.icons8.com/color/96/000000/test-tube.png') center/contain no-repeat; height: 20%; filter: hue-rotate(120deg); animation: pulse 2s infinite; }
+    .service-text { position: absolute; font-size: 2vw; text-transform: uppercase; animation: float 5s infinite ease-in-out; }
+    .graphic-design { top: 10%; left: 50%; transform: translate(-50%, 0); color: #ff69b4; text-shadow: 0 0 10px #ff0; }
+    .writing { top: 30%; right: 10%; color: #0ff; text-shadow: 0 0 10px #00f; transform: rotate(20deg); }
+    .visual-effects { bottom: 10%; left: 50%; transform: translate(-50%, 0); color: #f0f; text-shadow: 0 0 10px #f00; }
+    .video-editing { bottom: 30%; left: 10%; color: #ff0; text-shadow: 0 0 10px #0f0; transform: rotate(-20deg); }
+    .voice-acting { top: 50%; right: 20%; color: #0f0; text-shadow: 0 0 10px #ff0; transform: rotate(10deg); }
     @keyframes glitch { 0%,100%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 14%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 15%{text-shadow:-0.05em -0.05em 0 #f00,0.05em 0 0 #0f0,-0.05em 0.05em 0 #00f;} }
-    .eye { width: 40vw; height: 40vh; background: url('https://media.tenor.com/mJiSR0cCGQUAAAAM/explode-explosion.gif') center/contain no-repeat; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: blink-stare 10s infinite; opacity: 0.7; mix-blend-mode: screen; }
-    @keyframes blink-stare { 0%, 90% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); } 92% { opacity: 0; } 94% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.2); } 100% { transform: translate(-50%, -50%) scale(1); } }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .eye { width: 40vw; height: 40vh; background: url('https://media.tenor.com/mJiSR0cCGQUAAAAM/explode-explosion.gif') center/contain no-repeat; position: absolute; top: 20%; right: 10%; animation: blink-stare 10s infinite; opacity: 0.6; mix-blend-mode: screen; z-index: 1; }
+    @keyframes blink-stare { 0%, 90% { opacity: 0.6; transform: scale(1); } 92% { opacity: 0; } 94% { opacity: 0.6; transform: scale(1.1); } 100% { transform: scale(1); } }
     nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); text-align: center; padding: 10px; z-index: 10; }
     nav a { color: #fff; text-decoration: none; margin: 0 15px; font-size: 18px; text-transform: uppercase; transition: color 0.3s; }
     nav a:hover { color: #ff0; text-shadow: 0 0 10px #ff0; }
@@ -35,14 +46,14 @@
     @keyframes wobble { 0%,100% { transform: skew(-5deg); } 50% { transform: skew(5deg); } }
     .card h3 { font-size: 24px; color: #0ff; text-shadow: 0 0 15px #00f; }
     .price-tag { font-size: 28px; color: #ff0; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
     /* Floating surreal elements */
     .floating { position: absolute; pointer-events: none; z-index: 1; animation: float-surreal 15s infinite ease-in-out; }
     .balloon { width: 100px; top: 10%; left: 20%; background: url('https://media.tenor.com/7ZAA5y9xH5AAAAAM/hot-air-balloon-balloon.gif') no-repeat center/contain; height: 150px; }
     .octopus { width: 200px; bottom: 30%; right: 10%; background: url('https://media.tenor.com/2K6k3b3G0rEAAAAM/octopus-tentacles.gif') no-repeat center/contain; height: 200px; animation: tentacle-wiggle 5s infinite; }
     @keyframes tentacle-wiggle { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-50px); } }
     .bird-face { width: 80px; top: 5%; right: 30%; background: url('https://media.tenor.com/BhKs5gt0_OUAAAAM/spring-riders-rigby.gif') no-repeat center/contain; height: 80px; }
-    footer { display: none; } /* Hide original footer, use nav instead */
+    @keyframes float-surreal { 0% { transform: translate(0, 0); } 50% { transform: translate(30px, -50px); } 100% { transform: translate(0, 0); } }
+    footer { display: none; }
   </style>
   <script>
     function showSection(id) {
@@ -57,7 +68,18 @@
   <div class="floating octopus"></div>
   <div class="floating bird-face"></div>
   <div class="eye"></div>
-  <h1 class="glitch">COLEOISCOOLEO</h1>
+
+  <div class="logo-container">
+    <div class="services-circle">
+      <div class="flask"></div>
+      <div class="service-text graphic-design">Graphic Design</div>
+      <div class="service-text writing">Writing</div>
+      <div class="service-text visual-effects">Visual Effects</div>
+      <div class="service-text video-editing">Video Editing</div>
+      <div class="service-text voice-acting">Voice Acting</div>
+    </div>
+    <h1 class="logo">Cole Labs</h1>
+  </div>
 
   <nav>
     <a href="#" onclick="showSection('portfolio'); return false;">SHOWREEL</a>
@@ -68,22 +90,27 @@
   </nav>
 
   <section id="portfolio">
-    <div class="vid"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Showreel" frameborder="0" allowfullscreen></iframe></div>
-    <div class="vid"><iframe src="https://www.youtube.com/embed/9bZkp7q19f0" title="Showreel" frameborder="0" allowfullscreen></iframe></div>
-    <div class="vid"><iframe src="https://www.youtube.com/embed/kXYiU_JCYtU" title="Showreel" frameborder="0" allowfullscreen></iframe></div>
-    <div class="vid"><iframe src="https://www.youtube.com/embed/OpQFFLBMEPI" title="Showreel" frameborder="0" allowfullscreen></iframe></div>
+    <div class="portfolio">
+      <div class="vid"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Showreel 1" frameborder="0" allowfullscreen></iframe></div>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/9bZkp7q19f0" title="Showreel 2" frameborder="0" allowfullscreen></iframe></div>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/kXYiU_JCYtU" title="Showreel 3" frameborder="0" allowfullscreen></iframe></div>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/OpQFFLBMEPI" title="Showreel 4" frameborder="0" allowfullscreen></iframe></div>
+    </div>
   </section>
 
   <section id="services">
-    <div class="service-grid">
-      <div class="card"><h3>THUMBNAILS</h3><p>Clickbait so cursed it loops back to genius</p><span class="price-tag">$50</span></div>
-      <div class="card"><h3>STREAM LAYOUTS</h3><p>Static = $50<br>Animated chaos = $100</p><span class="price-tag">$50–$100</span></div>
-      <div class="card"><h3>BRANDING PACKAGE</h3><p>Logo + intro + outro that inflates, screams, and haunts</p><span class="price-tag">$250</span></div>
-      <div class="card"><h3>INTROS / OUTROS</h3><p>One = $100<br>Both = $175 (save your soul)</p><span class="price-tag">$100–$175</span></div>
-      <div class="card"><h3>TITLES & GRAPHICS</h3><p>Kinetic text that punches the screen</p><span class="price-tag">$50</span></div>
-      <div class="card"><h3>VIDEO EDITING</h3><p>Shorts → $100<br>1-10 min → $500<br>10-20 min → $1000<br>20-30 min → $1500<br>30+ min → $2000</p><span class="price-tag">FROM $100</span></div>
-      <div class="card"><h3>YTP / SURREAL REMIXES</h3><p>I will ruin your childhood for money</p><span class="price-tag">$300+</span></div>
-      <div class="card"><h3>DANCING BABY RIGS</h3><p>Yes, the 1996 nightmare returns</p><span class="price-tag">$300</span></div>
+    <div class="services">
+      <div class="service-grid">
+        <div class="card"><h3>THUMBNAILS</h3><p>Clickbait so cursed it loops back to genius</p><span class="price-tag">$50</span></div>
+        <div class="card"><h3>STREAM LAYOUTS</h3><p>Static = $50<br>Animated chaos = $100</p><span class="price-tag">$50–$100</span></div>
+        <div class="card"><h3>BRANDING PACKAGE</h3><p>Logo + intro + outro that inflates, screams, and haunts</p><span class="price-tag">$250</span></div>
+        <div class="card"><h3>INTROS / OUTROS</h3><p>One = $100<br>Both = $175 (save your soul)</p><span class="price-tag">$100–$175</span></div>
+        <div class="card"><h3>TITLES & GRAPHICS</h3><p>Kinetic text that punches the screen</p><span class="price-tag">$50</span></div>
+        <div class="card"><h3>VIDEO EDITING</h3><p>Shorts → $100<br>1-10 min → $500<br>10-20 min → $1000<br>20-30 min → $1500<br>30+ min → $2000</p><span class="price-tag">FROM $100</span></div>
+        <div class="card"><h3>YTP / SURREAL REMIXES</h3><p>I will ruin your childhood for money</p><span class="price-tag">$300+</span></div>
+        <div class="card"><h3>DANCING BABY RIGS</h3><p>Yes, the 1996 nightmare returns</p><span class="price-tag">$300</span></div>
+      </div>
+      <p style="text-align:center; margin-top:40px; font-size:20px;">Contact: coleoisherio@gmail.com</p>
     </div>
   </section>
 
