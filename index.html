@@ -30,7 +30,6 @@
       width: 100%;
       height: 100%;
       border: none;
-      object-fit: cover; /* Ensures full screen coverage */
     }
     .intro-container.fade-out {
       opacity: 0;
@@ -154,7 +153,11 @@
       .wizard-container { right: 10px; bottom: 10px; }
       .speech { left: -150px; top: -50px; }
       .grid { grid-template-columns: 1fr; }
-      /* No overrides for service-text positions - keep desktop layout */
+      .graphic-design { top: calc(50% - 125px); left: 50%; transform: translateX(-50%) rotate(-15deg); }
+      .writing { top: calc(50% - 38px); left: calc(50% + 119px); transform: translateX(-50%) rotate(-25deg); }
+      .visual-effects { top: calc(50% + 101px); left: calc(50% + 73px); transform: translateX(-50%) rotate(15deg); }
+      .video-editing { top: calc(50% + 101px); left: calc(50% - 73px); transform: translateX(-50%) rotate(15deg); }
+      .voice-acting { top: calc(50% - 38px); left: calc(50% - 119px); transform: translateX(-50%) rotate(-15deg); }
     }
   </style>
 </head>
@@ -267,4 +270,130 @@
       <div class="grid">
         <div class="grid-item" onclick="openExample('Branding Example 1: Intro/Outro for Papa Meat - Twisted animations with surreal effects. Price: $100-$175.')">
           <img src="https://i.etsystatic.com/23831015/r/il/7889fb/4811967255/il_fullxfull.4811967255_dehc.jpg" alt="Branding Example" style="width:100%; height:100%; object-fit: cover;">
-          <div class="
+          <div class="description">$100-$175</div>
+        </div>
+        <!-- Add more -->
+      </div>
+    </div>
+    <div class="dancing-element" style="top:40%; left:50%;"></div>
+    <img src="https://png.pngtree.com/png-clipart/20230627/ourmid/pngtree-pirate-ship-treasure-chest-png-image_10033176.png" style="position:absolute; top:20%; right:10%; width:200px; background:none;">
+  </section>
+
+  <section id="space">
+    <iframe class="section-bg" src="https://player.vimeo.com/video/392174949?background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <audio autoplay loop>
+      <source src="https://archive.org/download/lp_science-fiction-sound-effects-record_mel-kaiser/lp_science-fiction-sound-effects-record_mel-kaiser.mp3" type="audio/mpeg">
+    </audio>
+    <button class="back-home" onclick="hideAllSections()">Back to Home</button>
+    <div class="content">
+      <h2>Graphics</h2>
+      <p>Thumbnails and stream layouts, $50 for thumbnails, $50-$100 for layouts.</p>
+      <div class="grid">
+        <div class="grid-item" onclick="openExample('Graphics Example 1: Thumbnail for J Aubrey - Investigative depravity video thumbnail. Price: $50.')">
+          <img src="https://example.com/random-thumbnail1.jpg" alt="Random Thumbnail 1" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$50</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Graphics Example 2: Animated Stream Layout for Elvis the Alien - Comedy critique stream overlay. Price: $100.')">
+          <img src="https://example.com/random-thumbnail2.jpg" alt="Random Thumbnail 2" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$100</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Graphics Example 3: Static Thumbnail for Frankie Fey - Surreal horror-comedy thumbnail. Price: $50.')">
+          <img src="https://example.com/random-thumbnail3.jpg" alt="Random Thumbnail 3" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$50</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Graphics Example 4: Stream Layout for Papa Meat - Twisted animation overlay. Price: $50-$100.')">
+          <img src="https://example.com/random-thumbnail4.jpg" alt="Random Thumbnail 4" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$50-$100</div>
+        </div>
+      </div>
+    </div>
+    <div class="dancing-element" style="top:60%; left:70%;"></div>
+    <img src="https://png.pngtree.com/png-clipart/20231005/ourmid/pngtree-astronaut-floating-in-space-png-image_10141756.png" style="position:absolute; bottom:10%; left:10%; width:200px; background:none;">
+  </section>
+
+  <section id="arcade">
+    <iframe class="section-bg" src="https://player.vimeo.com/video/514256554?background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <audio autoplay loop>
+      <source src="https://archive.org/download/ArcadeAmbience/ArcadeAmbience.mp3" type="audio/mpeg">
+    </audio>
+    <button class="back-home" onclick="hideAllSections()">Back to Home</button>
+    <div class="content">
+      <h2>Video Editing</h2>
+      <p>From $100</p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+      <!-- Replace with user video IDs -->
+    </div>
+    <div class="dancing-element" style="top:50%; left:20%;"></div>
+    <img src="https://png.pngtree.com/png-clipart/20231005/ourmid/pngtree-arcade-machine-with-joystick-and-buttons-png-image_10141756.png" style="position:absolute; bottom:30%; left:10%; width:200px; background:none;">
+  </section>
+
+  <section id="playground">
+    <iframe class="section-bg" src="https://player.vimeo.com/video/134056152?background=1" allow="autoplay; fullscreen" allowfullscreen style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <audio autoplay loop>
+      <source src="https://archive.org/download/SSE_Library_AMBIENCE/SSE_Library_AMBIENCE.mp3" type="audio/mpeg">
+    </audio>
+    <button class="back-home" onclick="hideAllSections()">Back to Home</button>
+    <div class="content">
+      <h2>Voice Acting</h2>
+      <p>Dancing baby rigs and voice samples.</p>
+      <img src="https://thumbs.dreamstime.com/z/playground-slide-swing-set-kids-play-area-outdoor-fun-park-png-transparent-image-colorful-providing-children-364902412.jpg" alt="High-quality Playground" style="max-width:300px; background:none;">
+    </div>
+    <div class="dancing-element" style="top:30%; left:10%;"></div>
+    <img src="https://png.pngtree.com/png-clipart/20240427/ourmid/pngtree-tropical-jungle-leaves-frame-png-image_12202977.png" style="position:absolute; top:30%; right:10%; width:200px; background:none;">
+  </section>
+
+  <div id="example-modal">
+    <div class="modal-title">Example Details <span onclick="document.getElementById('example-modal').style.display='none'" style="cursor:pointer;">X</span></div>
+    <div class="modal-content" id="example-content"></div>
+  </div>
+
+  <script>
+    function showSection(id) {
+      const current = document.querySelector('section.active');
+      const overlay = document.getElementById('transition-overlay');
+      
+      if (current) {
+        current.classList.add('leaving');  // Start leaving animation
+        overlay.classList.add('active');   // Show overlay (video placeholder)
+        
+        setTimeout(() => {
+          current.classList.remove('active', 'leaving');  // Remove after animation
+          overlay.classList.remove('active');            // Hide overlay
+          
+          if (id) {
+            document.getElementById(id).classList.add('active');  // Activate new
+          }
+        }, 500);  // Wait for transition duration
+      } else if (id) {
+        document.getElementById(id).classList.add('active');  // No current, just activate
+      }
+    }
+    function hideAllSections() {
+      showSection(null);  // Use showSection with null to handle leaving animation
+    }
+    function openExample(content) {
+      document.getElementById('example-content').innerHTML = content;
+      document.getElementById('example-modal').style.display = 'block';
+    }
+
+    // Intro Fade-Out Script
+    function skipIntro() {
+      document.querySelector('.intro-container').classList.add('fade-out');
+      document.body.style.overflow = ''; // Restore scroll after fade
+    }
+    setTimeout(skipIntro, 6000); // Auto-fade after 6 seconds
+
+    // Randomize starting hue for variety (optional – remove if you don't want randomness)
+    document.querySelector('.beaker-wrapper').style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+
+    // Example wizard speech changer
+    const wizardSpeech = document.getElementById('speechBox');
+    const services = ['Thumbnails - $50', 'Editing Packages - $75', 'Branding - $100+', 'Stream Layouts - $50–$100'];
+    let idx = 0;
+    setInterval(() => {
+      wizardSpeech.textContent = services[idx];
+      idx = (idx + 1) % services.length;
+    }, 3000);
+  </script>
+</body>
+</html>
