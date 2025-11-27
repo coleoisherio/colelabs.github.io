@@ -10,414 +10,268 @@
     body { 
       background: #000; 
       color: #fff; 
-      font-family: 'Bangers', cursive;
+      font-family: 'Creepster', cursive;
       position: relative;
-      min-height: 100vh;
-      overflow: hidden; 
+      min-height: 100vh; /* Ensures full height without cut-offs */
     }
-
-    /* --- Loading Curtain --- */
-    #loading-curtain {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: #000; z-index: 100000;
-      display: flex; justify-content: center; align-items: center;
-      transition: opacity 1s ease;
-    }
-    .loader-text {
-      color: #0f0; font-family: 'Orbitron'; animation: blink 0.2s infinite; font-size: 2em; text-shadow: 0 0 10px #0f0;
-    }
-    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
-
-    /* --- Intro Video --- */
-    .intro-container {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999;
-      transition: all 1s ease-out; background: #000;
-    }
-    .intro-container iframe { width: 100%; height: 100%; border: none; object-fit: cover; pointer-events: none;}
-    .intro-container.fade-out {
-      opacity: 0; transform: scale(1.5); pointer-events: none; filter: blur(20px);
-    }
-    .skip-btn {
-      position: absolute; bottom: 40px; right: 40px; background: rgba(0,0,0,0.8);
-      border: 2px solid #0f0; color: #0f0; padding: 12px 24px; cursor: pointer;
-      font-family: 'Press Start 2P'; transition: all 0.3s; z-index: 10000;
-    }
-    .skip-btn:hover { background: #0f0; color: #000; box-shadow: 0 0 20px #0f0; }
-
-    /* --- Transitions --- */
-    section {
-      display: none; opacity: 0; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      overflow-y: auto; padding: 60px 20px; z-index: 200; color: #fff; text-align: center;
-      transition: opacity 0.5s ease;
-    }
+    #bg-iframe { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; border: none; pointer-events: none; }
+    .lightning-left { position: absolute; top: 0; left: 0; width: 20%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: 0; transform: rotate(0deg); }
+    .lightning-right { position: absolute; top: 0; right: 0; width: 20%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: 0; transform: rotate(180deg); }
+    .logo-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 80vw; height: 80vh; display: flex; justify-content: center; align-items: center; flex-direction: column; }
+    .beaker-wrapper { position: relative; width: 300px; height: 400px; animation: hue-rotate 5s infinite linear; } /* Rainbow hue on beaker */
+    @keyframes hue-rotate { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
+    .gear { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 250px; height: 250px; background: url('https://64.media.tumblr.com/a9fc6f966d96d8b85584b86b9c9b0dab/bfc12810842eacee-40/s540x810/799e1a50ddbc53e0808cf1d8cdf0f5869b794d09.gifv') center/contain no-repeat; z-index: 1; animation: rotate 10s linear infinite; }
+    @keyframes rotate { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+    .smoke { position: absolute; top: -100px; left: 50%; transform: translateX(-50%) rotate(0deg); width: 100px; height: 200px; background: url('https://giffiles.alphacoders.com/205/20595.gif') center/contain no-repeat; opacity: 0.8; z-index: 2; animation: smoke-static 2s infinite; }
+    @keyframes smoke-static { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
+    .beaker { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 400px; background: url('https://team-molequilizer.web.app/img/learn/Testtube.gif') center/contain no-repeat; animation: bubble 2s infinite; z-index: 3; }
+    @keyframes bubble { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.05); } }
+    .service-text { font-size: 3vw; text-transform: uppercase; cursor: pointer; animation: float 5s infinite ease-in-out, color-shift 3s infinite; transition: transform 0.3s; position: absolute; z-index: 4; text-shadow: 0 0 10px currentColor; }
+    .service-text:hover { transform: scale(1.2) rotate(5deg); }
+    .graphic-design { color: #f90; position: absolute; top: 20%; left: 30%; transform: rotate(-15deg); font-size: 3vw; }
+    .writing { color: #ff0; position: absolute; top: 40%; left: 20%; transform: rotate(-25deg); font-size: 3vw; }
+    .visual-effects { color: #f0f; position: absolute; top: 70%; left: 30%; transform: rotate(15deg); font-size: 3vw; }
+    .video-editing { color: #f06; position: absolute; top: 20%; right: 30%; transform: rotate(15deg); font-size: 3vw; }
+    .voice-acting { color: #0cf; position: absolute; top: 70%; right: 30%; transform: rotate(-15deg); font-size: 3vw; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
+    @keyframes color-shift { 0% { text-shadow: 0 0 10px #ff0; } 33% { text-shadow: 0 0 10px #0f0; } 66% { text-shadow: 0 0 10px #00f; } 100% { text-shadow: 0 0 10px #ff0; } }
+    .logo { font-size: 4vw; color: #ff0; text-shadow: 0 0 20px #f00, 0 0 40px #00f; animation: glitch 1.5s infinite; text-align: center; position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%); z-index: 4; }
+    @keyframes glitch { 0%,100%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 14%{text-shadow:0.05em 0 0 #f00,-0.05em -0.05em 0 #0f0,0.05em 0.05em 0 #00f;} 15%{text-shadow:-0.05em -0.05em 0 #f00,0.05em 0 0 #0f0,-0.05em 0.05em 0 #00f;} }
+    .contact-btn { background: repeating-linear-gradient(45deg, #ffd700, #ffd700 10px, #000 10px, #000 20px); color: #f00; font-weight: bold; border: 2px solid #000; padding: 10px 20px; box-shadow: 0 0 10px #ff0; cursor: pointer; font-family: 'Press Start 2P'; animation: pulse 1s infinite; z-index: 3; margin-top: 20px; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+    #modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; background: #c0c0c0; border: 2px solid #000; box-shadow: 4px 4px 0 #000; padding: 2px; z-index: 10; font-family: 'MS Sans Serif', sans-serif; font-size: 12px; }
+    .modal-title { background: #000080; color: #fff; padding: 2px 4px; display: flex; justify-content: space-between; }
+    .modal-content { padding: 10px; background: #c0c0c0; }
+    .modal-content label { display: block; margin-bottom: 5px; }
+    .modal-content input, .modal-content select, .modal-content textarea { width: 100%; margin-bottom: 10px; border: 1px inset #fff; background: #fff; color: #000; }
+    .modal-content button { background: #c0c0c0; border: 1px outset #fff; padding: 5px 10px; cursor: pointer; }
+    section { display: none; opacity: 0; position: fixed; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; padding: 40px; z-index: 5; color: #000; text-align: center; transition: opacity 0.5s ease; } /* Fade transition */
     section.active { display: block; opacity: 1; }
-    
-    #transition-overlay {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: #000; z-index: 150; opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    #transition-overlay.active { opacity: 1; pointer-events: all; }
-
-    /* --- Background Assets --- */
-    #bg-iframe { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -5; border: none; pointer-events: none; opacity: 0.6; transform: scale(1.2); }
-    .lightning-left { position: absolute; top: 0; left: 0; width: 25%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: -4; }
-    .lightning-right { position: absolute; top: 0; right: 0; width: 25%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: -4; transform: rotate(180deg); }
-
-    /* --- HUB CONTAINER --- */
-    .logo-container { 
-      position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
-      overflow: hidden;
-    }
-
-    /* --- CENTER STACK (Gear > Smoke > Beaker > Logo) --- */
-    .center-stack {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      z-index: 10; 
-      width: 400px; height: 500px;
-      display: flex; justify-content: center; align-items: center;
-    }
-
-    /* Layer 1: Gear (Back) */
-    .gear {
-      position: absolute; width: 450px; height: 450px;
-      background: url('https://www.wisc-online.com/assetrepository/getfile?id=2929&getType=view&width=0&height=0') center/contain no-repeat;
-      animation: spin 20s linear infinite; z-index: 1; opacity: 0.7;
-    }
-    @keyframes spin { 100% { transform: rotate(360deg); } }
-
-    /* Layer 2: Smoke (Middle) */
-    .smoke {
-      position: absolute; top: -120px; left: 60%; 
-      width: 200px; height: 350px;
-      background: url('https://giffiles.alphacoders.com/205/20595.gif') center/cover no-repeat;
-      transform: translateX(-50%) rotate(90deg);
-      mix-blend-mode: screen; z-index: 2; opacity: 0.6; pointer-events: none;
-    }
-
-    /* Layer 3: Beaker (Front) */
-    .beaker {
-      position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
-      width: 250px; height: 350px;
-      background: url('https://www.pngkey.com/png/full/109-1099033_beaker-with-liquid-png-chemicals-in-a-beaker.png') center/contain no-repeat;
-      animation: float 4s ease-in-out infinite; z-index: 3;
-      filter: drop-shadow(0 0 20px #00ff00);
-    }
-    @keyframes float { 0%,100%{transform:translate(-50%, -50%);} 50%{transform:translate(-50%, -60px);} }
-
-    /* Layer 4: Logo Text */
-    .logo { 
-      position: absolute; top: 0; width: 100%;
-      font-family: 'Creepster', cursive; font-size: 5rem; 
-      color: #ff00ff; letter-spacing: 2px; text-align: center;
-      text-shadow: 4px 4px 0 #000, -2px -2px 0 #fff, 0 0 25px #ff00ff;
-      z-index: 20; 
-      animation: logo-bounce 3s infinite ease-in-out;
-    }
-    .logo span { display: block; line-height: 0.8; }
-    .logo span:last-child { color: #d500d5; padding-left: 20px; }
-    @keyframes logo-bounce { 0%,100%{transform: scale(1);} 50%{transform: scale(1.05);} }
-
-    /* CONTACT BUTTON - CAUTION STYLE */
-    .contact-btn { 
-      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-      background: repeating-linear-gradient(45deg, #ffcc00, #ffcc00 10px, #000 10px, #000 20px);
-      color: #fff; font-family: 'Press Start 2P'; font-size: 1.2rem;
-      border: 3px solid #ff0000; padding: 15px 30px; 
-      cursor: pointer; z-index: 30;
-      text-shadow: 2px 2px 0 #000;
-      box-shadow: 0 0 15px #ff0000;
-      animation: pulse-danger 1s infinite;
-    }
-    .contact-btn:hover { transform: translateX(-50%) scale(1.1); box-shadow: 0 0 30px #ff0000; }
-    @keyframes pulse-danger { 0%,100%{box-shadow: 0 0 15px #ff0000;} 50%{box-shadow: 0 0 5px #ff0000;} }
-
-    /* --- THE CLUSTER (Navigation Words) --- */
-    .nav-item {
-      position: absolute;
-      font-family: 'Bangers', cursive; font-size: 2.5rem; 
-      text-transform: uppercase; cursor: pointer; z-index: 50;
-      text-shadow: 3px 3px 0 #000, 0 0 10px rgba(0,0,0,0.8);
-      transition: 0.2s; white-space: nowrap;
-    }
-    .nav-item:hover { transform: scale(1.2) rotate(-5deg) !important; color: #fff !important; text-shadow: 0 0 20px #fff; z-index: 100; }
-
-    /* Position Logic */
-    .pos-branding { top: 20%; left: 25%; color: #ffcc00; transform: rotate(-15deg); }
-    .pos-titles { top: 12%; left: 50%; transform: translateX(-50%) rotate(-5deg); color: #00ccff; }
-    .pos-drawings { top: 20%; right: 25%; color: #ff9900; transform: rotate(10deg); }
-    .pos-video { top: 45%; right: 18%; color: #ff3366; transform: rotate(15deg); }
-    .pos-stream { bottom: 25%; right: 22%; color: #fff; transform: rotate(5deg); }
-    .pos-voice { bottom: 15%; left: 50%; transform: translateX(-50%) rotate(-10deg); color: #cc66ff; }
-    .pos-graphics { bottom: 25%; left: 25%; color: #ff0033; transform: rotate(8deg); }
-    .pos-writing { top: 45%; left: 18%; color: #ff6600; transform: rotate(-12deg); }
-
-    /* --- Modals & Content --- */
-    #modal, #example-modal { 
-      display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-      width: 90%; max-width: 500px; background: #c0c0c0; 
-      border: 3px solid #000; box-shadow: 10px 10px 0 #000; 
-      padding: 3px; z-index: 1000; font-family: 'MS Sans Serif', sans-serif; 
-    }
-    .modal-title { background: #000080; color: #fff; padding: 4px 8px; display: flex; justify-content: space-between; font-weight: bold; }
-    .modal-content { padding: 15px; background: #c0c0c0; color: #000; }
-    .modal-content input, .modal-content textarea, .modal-content select { width: 100%; margin-bottom: 10px; border: 2px inset #fff; padding: 5px; font-family: monospace; }
-    .modal-content button { width: 100%; padding: 8px; background: #ddd; border: 2px outset #fff; cursor: pointer; font-weight: bold; }
-
-    .section-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; border: none; opacity: 0.3; object-fit: cover; }
-    .content { 
-      max-width: 800px; margin: 60px auto; 
-      background: rgba(0,0,0,0.8); padding: 30px; 
-      border: 2px solid #fff; border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
-    }
-    .back-home { 
-      position: fixed; top: 20px; right: 20px; 
-      background: #ff0000; color: #fff; padding: 10px 20px; 
-      border: 3px solid #fff; cursor: pointer; 
-      font-family: 'Press Start 2P'; z-index: 300; 
-      box-shadow: 5px 5px 0 #000; 
-    }
-    .back-home:hover { transform: scale(1.1); }
-    
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-    .grid-item { height: 180px; background: #333; border: 2px solid #fff; position: relative; cursor: pointer; overflow: hidden; transition: 0.2s; }
-    .grid-item:hover { border-color: #ff0; transform: scale(1.05); z-index: 10; }
-    .grid-item img { width: 100%; height: 100%; object-fit: cover; }
-    .grid-item .description { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: #fff; padding: 5px; font-size: 0.8em; }
-
-    /* Wizard */
-    .wizard-container { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 100; animation: wiggle 3s infinite; }
-    .wizard { width: 120px; height: 120px; background: url('https://img1.picmix.com/output/stamp/normal/6/3/1/6/1996136_0f2d1.gif') center/contain no-repeat; }
-    .speech { position: absolute; top: -40px; right: 80px; background: #fff; color: #000; padding: 5px 10px; border: 2px solid #000; font-family: 'Comic Sans MS'; border-radius: 10px; white-space: nowrap; }
-    @keyframes wiggle { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
-
-    /* MOBILE ADJUSTMENTS */
+    .section-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; border: none; pointer-events: none; }
+    #jungle { background: url('https://img.freepik.com/free-vector/branches-tropical-jungle-frame-with-composition-empty-space-surrounded-by-leaves-stalks-tree-trunks-vector-illustration_1284-82348.jpg') center/cover; }
+    #pirate { background: url('https://i.etsystatic.com/23831015/r/il/7889fb/4811967255/il_fullxfull.4811967255_dehc.jpg') center/cover; }
+    #space { background: url('https://p7.hiclipart.com/preview/1007/928/50/euclidean-vector-outer-space-clip-art-vector-space.jpg') center/cover; }
+    #temple { background: url('https://thumbs.dreamstime.com/b/classic-greek-columns-ancient-architecture-historical-design-ideal-history-content-architectural-themes-classical-designs-370678338.jpg') center/cover; }
+    #playground { background: url('https://thumbs.dreamstime.com/z/playground-slide-swing-set-kids-play-area-outdoor-fun-park-png-transparent-image-colorful-providing-children-364902412.jpg') center/cover; }
+    #arcade { background: url('https://png.pngtree.com/png-vector/20250117/ourmid/pngtree-minimalist-joystick-icon-with-a-retro-arcade-style-perfect-for-gaming-png-image_15235859.png') center/cover; }
+    #scifi { background: url('https://thumbs.dreamstime.com/b/retro-sci-fi-background-s-sunrise-sunset-sun-futuristic-synthesizer-wave-vector-vintage-illustration-disco-172468577.jpg') center/cover; }
+    .content { max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.8); padding: 20px; border-radius: 10px; text-align: center; } /* Centered content */
+    .content img, .content iframe { border: 5px solid #ff0; border-radius: 10px; margin: 10px; box-shadow: 0 0 20px #f00; }
+    .back-home { position: absolute; top: 20px; left: 20px; background: #ff0; color: #000; padding: 10px; border: none; cursor: pointer; font-family: 'Press Start 2P'; z-index: 6; }
+    .dancing-element { position: absolute; width: 200px; height: 200px; background: url('https://media.giphy.com/media/l0HlRnAWy0gaF9rT2/giphy.gif') center/contain no-repeat; animation: dance 2s infinite alternate; }
+    @keyframes dance { 0% { transform: translate(0,0) rotate(0deg); } 100% { transform: translate(20px, -30px) rotate(10deg); } }
+    .wizard-container { position: absolute; top: 50%; left: 60%; transform: translateY(-50%); cursor: pointer; z-index: 3; animation: wizard-wiggle 3s infinite; }
+    .wizard { width: 150px; height: auto; background: url('https://img1.picmix.com/output/stamp/normal/6/3/1/6/1996136_0f2d1.gif') center/contain no-repeat; }
+    .speech { position: absolute; top: -50px; left: 100px; background: rgba(255,255,255,0.8); color: #000; padding: 10px; border-radius: 20px; border: 2px solid #f00; font-family: 'Comic Sans MS'; white-space: nowrap; animation: speech-bounce 1s infinite; text-align: center; } /* Centered speech */
+    @keyframes wizard-wiggle { 0%,100% { transform: translateY(-50%) rotate(0deg); } 50% { transform: translateY(-50%) rotate(5deg); } }
+    @keyframes speech-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 800px; margin: 0 auto; }
+    .grid-item { position: relative; height: 300px; background: rgba(0,0,0,0.5); border: 5px solid #ff0; border-radius: 10px; overflow: hidden; cursor: pointer; transition: transform 0.3s; }
+    .grid-item:hover { transform: scale(1.1); }
+    .grid-item .description { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: #fff; padding: 10px; text-align: center; opacity: 0; transition: opacity 0.3s; }
+    .grid-item:hover .description { opacity: 1; }
+    #example-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; background: #c0c0c0; border: 2px solid #000; box-shadow: 4px 4px 0 #000; padding: 2px; z-index: 11; font-family: 'MS Sans Serif', sans-serif; font-size: 12px; }
+    #example-modal .modal-title { background: #000080; color: #fff; padding: 2px 4px; display: flex; justify-content: space-between; }
+    #example-modal .modal-content { padding: 10px; background: #c0c0c0; text-align: left; }
     @media (max-width: 768px) {
-      .logo { font-size: 3.5rem; top: 20px; }
-      .center-stack { width: 300px; height: 400px; }
-      .gear { width: 300px; height: 300px; }
-      .beaker { width: 180px; height: 250px; }
-      .nav-item { font-size: 1.5rem; }
-      
-      /* Squeeze items in */
-      .pos-branding { left: 5%; top: 15%; }
-      .pos-drawings { right: 5%; top: 15%; }
-      .pos-writing { left: 5%; top: 40%; }
-      .pos-video { right: 5%; top: 40%; }
-      .pos-graphics { left: 5%; bottom: 25%; }
-      .pos-stream { right: 5%; bottom: 25%; }
+      .service-text { font-size: 5vw; }
+      .logo { font-size: 6vw; }
+      .beaker-wrapper { width: 200px; height: 300px; }
+      .gear { width: 150px; height: 150px; }
+      .smoke { width: 80px; height: 120px; top: -60px; }
+      .beaker { width: 200px; height: 300px; }
+      .wizard-container { left: 70%; }
+      .grid { grid-template-columns: 1fr; }
+      .graphic-design { top: 10%; left: 50%; transform: translateX(-50%) rotate(0deg); }
+      .writing { top: 30%; left: 50%; transform: translateX(-50%) rotate(0deg); }
+      .visual-effects { top: 80%; left: 50%; transform: translateX(-50%) rotate(0deg); }
+      .video-editing { top: 20%; left: 50%; transform: translateX(-50%) rotate(0deg); }
+      .voice-acting { top: 70%; left: 50%; transform: translateX(-50%) rotate(0deg); }
     }
   </style>
 </head>
 <body>
-
-  <div id="loading-curtain">
-    <div class="loader-text">LOADING LABS...</div>
-  </div>
-
-  <div class="intro-container">
-    <iframe src="https://player.vimeo.com/video/893137606?autoplay=1&loop=1&muted=1&background=1" allow="autoplay; fullscreen"></iframe>
-    <button class="skip-btn" onclick="skipIntro()">ENTER LAB</button>
-  </div>
-  
-  <div id="transition-overlay"></div>
-
-  <iframe id="bg-iframe" src="https://www.youtube.com/embed/KRcNsMWgD1I?autoplay=1&mute=1&loop=1&playlist=KRcNsMWgD1I&controls=0&modestbranding=1&rel=0" allow="autoplay; fullscreen"></iframe>
+  <iframe id="bg-iframe" src="https://www.youtube.com/embed/h8loW5yRXBU?autoplay=1&mute=1&loop=1&playlist=h8loW5yRXBU&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
   <div class="lightning-left"></div>
   <div class="lightning-right"></div>
 
   <div class="logo-container">
-    
-    <div class="center-stack">
+    <div class="beaker-wrapper">
       <div class="gear"></div>
       <div class="smoke"></div>
       <div class="beaker"></div>
-      <div class="logo">
-        <span>COLE</span>
-        <span>LABS</span>
-      </div>
-      <button class="contact-btn" onclick="document.getElementById('modal').style.display='block'">⚠ ORDER NOW ⚠</button>
+      <h1 class="logo" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 4; ">COLE LABS</h1>
+      <button class="contact-btn" onclick="document.getElementById('modal').style.display='block'" style="position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%); z-index: 4; ">CONTACT</button>
     </div>
-
-    <div class="nav-item pos-branding" onclick="showSection('section-branding')">Branding</div>
-    <div class="nav-item pos-titles" onclick="showSection('section-titles')">Titles</div>
-    <div class="nav-item pos-drawings" onclick="showSection('section-drawings')">Drawings</div>
-    <div class="nav-item pos-writing" onclick="showSection('section-writing')">Writing</div>
-    <div class="nav-item pos-video" onclick="showSection('section-video')">Video<br>Editing</div>
-    <div class="nav-item pos-graphics" onclick="showSection('section-graphics')">Graphics</div>
-    <div class="nav-item pos-voice" onclick="showSection('section-voice')">Voice<br>Acting</div>
-    <div class="nav-item pos-stream" onclick="showSection('section-stream')">Stream<br>Assets</div>
-
     <div class="wizard-container" onclick="document.getElementById('modal').style.display='block'">
-      <div class="speech">Click me!</div>
       <div class="wizard"></div>
+      <div class="speech">Click on me to order!</div>
     </div>
+    <div class="service-text graphic-design" onclick="showSection('jungle')">Drawings</div>
+    <div class="service-text writing" onclick="showSection('pirate')">Branding</div>
+    <div class="service-text visual-effects" onclick="showSection('space')">Graphics</div>
+    <div class="service-text video-editing" onclick="showSection('arcade')">Video Editing</div>
+    <div class="service-text voice-acting" onclick="showSection('playground')">Voice Acting</div>
   </div>
 
-  <section id="section-branding">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>BRANDING</h2>
-      <p>Intros, Outros, Banners & Backgrounds.</p>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Branding Pkg - $175')"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c9c3e262629861.5a96ab73c8d35.gif"><div class="description">Package</div></div>
-        <div class="grid-item" onclick="openExample('Logo Intro - $75')"><img src="https://i.pinimg.com/originals/91/92/2f/91922f5188849646b52c00f68d6f5172.gif"><div class="description">Logo Intro</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-titles">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>TITLES & TEXT</h2>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('3D Chrome - $40')"><img src="https://img.freepik.com/premium-photo/chrome-text-effect-editable-liquid-metal-style-premium-vector_862489-3543.jpg"><div class="description">Chrome</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-video">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>VIDEO EDITING</h2>
-      <p>Chaotic, Fast-Paced & Fun.</p>
-      <iframe width="100%" height="350" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"></iframe>
-    </div>
-  </section>
-
-  <section id="section-writing">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>WRITING</h2>
-      <div style="background:#fff; color:#000; padding:15px; font-family:'Courier New'; text-align:left;">
-        <p><strong>EXT. SPACE - NIGHT</strong></p>
-        <p>The wizard floats by. He looks tired.</p>
-        <p><strong>WIZARD</strong><br>I need a coffee.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-stream">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>STREAM ASSETS</h2>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Overlay - $100')"><img src="https://i.pinimg.com/originals/18/48/43/18484345437894378.gif"><div class="description">Overlay</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-drawings">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>DRAWINGS</h2>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Character - $50')"><img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339"><div class="description">Character</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-graphics">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>GRAPHICS</h2>
-      <p>Thumbnails & Social Media.</p>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Thumbnail - $50')"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"><div class="description">Thumb</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-voice">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>VOICE ACTING</h2>
-      <p>Audio samples loaded.</p>
-    </div>
-  </section>
-
   <div id="modal">
-    <div class="modal-title">ORDER FORM.EXE <span onclick="document.getElementById('modal').style.display='none'" style="cursor:pointer;">X</span></div>
+    <div class="modal-title">Contact Form <span onclick="document.getElementById('modal').style.display='none'" style="cursor:pointer;">X</span></div>
     <div class="modal-content">
       <form action="mailto:coleoisherio@gmail.com" method="post" enctype="text/plain">
-        <label>WHO ARE YOU?</label>
-        <input type="text" name="name" required>
-        <label>SERVICE REQUIRED:</label>
+        <label>Name:</label>
+        <input type="text" name="name">
+        <label>Email:</label>
+        <input type="email" name="email">
+        <label>Service:</label>
         <select name="service">
-          <option>Video Editing</option><option>Graphic Design</option><option>Voice Acting</option><option>Writing</option><option>Other</option>
+          <option>Video Editing</option>
+          <option>Thumbnails</option>
+          <option>Stream Layouts</option>
+          <option>Branding Package</option>
+          <option>Intros/Outros</option>
+          <option>Titles & Graphics</option>
+          <option>YTP/Surreal Remixes</option>
+          <option>Dancing Baby Rigs</option>
         </select>
-        <label>DETAILS:</label>
-        <textarea name="desc" rows="4"></textarea>
-        <button type="submit">TRANSMIT DATA</button>
+        <label>Description:</label>
+        <textarea name="description" rows="5"></textarea>
+        <button type="submit">Send</button>
       </form>
     </div>
   </div>
 
+  <section id="jungle">
+    <iframe class="section-bg" src="https://www.youtube.com/embed/TudJb_bbZ20?autoplay=1&mute=1&loop=1&playlist=TudJb_bbZ20&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <audio autoplay loop>
+      <source src="https://archive.org/download/01-sounds-of-the-jungle/01-sounds-of-the-jungle.mp3" type="audio/mpeg">
+    </audio>
+    <button class="back-home" onclick="hideAllSections()">Back to Home</button>
+    <div class="content">
+      <h2>Drawings</h2>
+      <p>Custom drawings and illustrations.</p>
+      <div class="grid">
+        <div class="grid-item" onclick="openExample('Drawings Example 1: Nitro Titan - A vibrant cartoon illustration featuring a powerful character. Price: $50 for thumbnails.')">
+          <img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339" alt="Nitro Titan Art" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$50</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Drawings Example 2: Custom Illustration - Surreal art piece. Price: $250 for branding package.')">
+          <img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339" alt="Custom Illustration" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$250</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Drawings Example 3: Logo Design - Inflatable logo. Price: $150.')">
+          <img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339" alt="Logo Design" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$150</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Drawings Example 4: Thumbnail Art - Cursed clickbait. Price: $50.')">
+          <img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339" alt="Thumbnail Art" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$50</div>
+        </div>
+      </div>
+    </div>
+    <div class="dancing-element" style="top:20%; left:30%;"></div>
+    <img src="https://png.pngtree.com/png-clipart/20240427/ourmid/pngtree-tropical-jungle-leaves-frame-png-image_12202977.png" style="position:absolute; top:10%; left:10%; width:200px; background:none;">
+  </section>
+
+  <section id="pirate">
+    <iframe class="section-bg" src="https://www.youtube.com/embed/Ft-lJyu_nuY?autoplay=1&mute=1&loop=1&playlist=Ft-lJyu_nuY&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <audio autoplay loop>
+      <source src="https://archive.org/download/78_ship-sounds_gbia3000968b/78_ship-sounds_gbia3000968b.mp3" type="audio/mpeg">
+    </audio>
+    <button class="back-home" onclick="hideAllSections()">Back to Home</button>
+    <div class="content">
+      <h2>Branding</h2>
+      <p>Intro and outro information, $100-$175.</p>
+      <div class="grid">
+        <div class="grid-item" onclick="openExample('Branding Example 1: Intro/Outro for Papa Meat - Twisted animations with surreal effects. Price: $100-$175.')">
+          <img src="https://i.etsystatic.com/23831015/r/il/7889fb/4811967255/il_fullxfull.4811967255_dehc.jpg" alt="Branding Example" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$100-$175</div>
+        </div>
+        <!-- Add more -->
+      </div>
+    </div>
+    <div class="dancing-element" style="top:40%; left:50%;"></div>
+    <img src="https://png.pngtree.com/png-clipart/20230627/ourmid/pngtree-pirate-ship-treasure-chest-png-image_10033176.png" style="position:absolute; top:20%; right:10%; width:200px; background:none;">
+  </section>
+
+  <section id="space">
+    <iframe class="section-bg" src="https://www.youtube.com/embed/X-XZx1o_w-A?autoplay=1&mute=1&loop=1&playlist=X-XZx1o_w-A&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <audio autoplay loop>
+      <source src="https://archive.org/download/lp_science-fiction-sound-effects-record_mel-kaiser/lp_science-fiction-sound-effects-record_mel-kaiser.mp3" type="audio/mpeg">
+    </audio>
+    <button class="back-home" onclick="hideAllSections()">Back to Home</button>
+    <div class="content">
+      <h2>Graphics</h2>
+      <p>Thumbnails and stream layouts, $50 for thumbnails, $50-$100 for layouts.</p>
+      <div class="grid">
+        <div class="grid-item" onclick="openExample('Graphics Example 1: Thumbnail for J Aubrey - Investigative depravity video thumbnail. Price: $50.')">
+          <img src="https://example.com/random-thumbnail1.jpg" alt="Random Thumbnail 1" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$50</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Graphics Example 2: Animated Stream Layout for Elvis the Alien - Comedy critique stream overlay. Price: $100.')">
+          <img src="https://example.com/random-thumbnail2.jpg" alt="Random Thumbnail 2" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$100</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Graphics Example 3: Static Thumbnail for Frankie Fey - Surreal horror-comedy YTP thumbnail. Price: $50.')">
+          <img src="https://example.com/random-thumbnail3.jpg" alt="Random Thumbnail 3" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$50</div>
+        </div>
+        <div class="grid-item" onclick="openExample('Graphics Example 4: Stream Layout for Papa Meat - Twisted animation overlay. Price: $50-$100.')">
+          <img src="https://example.com/random-thumbnail4.jpg" alt="Random Thumbnail 4" style="width:100%; height:100%; object-fit: cover;">
+          <div class="description">$50-$100</div>
+        </div>
+      </div>
+    </div>
+    <div class="dancing-element" style="top:60%; left:70%;"></div>
+    <img src="https://png.pngtree.com/png-clipart/20231005/ourmid/pngtree-astronaut-floating-in-space-png-image_10141756.png" style="position:absolute; bottom:10%; left:10%; width:200px; background:none;">
+  </section>
+
+  <section id="arcade">
+    <iframe class="section-bg" src="https://www.youtube.com/embed/FIunYpK-TwI?autoplay=1&mute=1&loop=1&playlist=FIunYpK-TwI&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <audio autoplay loop>
+      <source src="https://archive.org/download/ArcadeAmbience/ArcadeAmbience.mp3" type="audio/mpeg">
+    </audio>
+    <button class="back-home" onclick="hideAllSections()">Back to Home</button>
+    <div class="content">
+      <h2>Video Editing</h2>
+      <p>From $100</p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+      <!-- Replace with user video IDs -->
+    </div>
+    <div class="dancing-element" style="top:50%; left:20%;"></div>
+    <img src="https://png.pngtree.com/png-clipart/20231005/ourmid/pngtree-arcade-machine-with-joystick-and-buttons-png-image_10141756.png" style="position:absolute; bottom:30%; left:10%; width:200px; background:none;">
+  </section>
+
+  <section id="playground">
+    <iframe class="section-bg" src="https://www.youtube.com/embed/G8zlYN_ruhw?autoplay=1&mute=1&loop=1&playlist=G8zlYN_ruhw&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay; fullscreen" style="width:100vw; height:100vh; object-fit: cover;"></iframe>
+    <audio autoplay loop>
+      <source src="https://archive.org/download/SSE_Library_AMBIENCE/SSE_Library_AMBIENCE.mp3" type="audio/mpeg">
+    </audio>
+    <button class="back-home" onclick="hideAllSections()">Back to Home</button>
+    <div class="content">
+      <h2>Voice Acting</h2>
+      <p>Dancing baby rigs and voice samples.</p>
+      <img src="https://thumbs.dreamstime.com/z/playground-slide-swing-set-kids-play-area-outdoor-fun-park-png-transparent-image-colorful-providing-children-364902412.jpg" alt="High-quality Playground" style="max-width:300px; background:none;">
+    </div>
+    <div class="dancing-element" style="top:30%; left:10%;"></div>
+    <img src="https://png.pngtree.com/png-clipart/20240427/ourmid/pngtree-tropical-jungle-leaves-frame-png-image_12202977.png" style="position:absolute; top:30%; right:10%; width:200px; background:none;">
+  </section>
+
   <div id="example-modal">
-    <div class="modal-title">FILE_PREVIEW.JPG <span onclick="document.getElementById('example-modal').style.display='none'" style="cursor:pointer;">X</span></div>
+    <div class="modal-title">Example Details <span onclick="document.getElementById('example-modal').style.display='none'" style="cursor:pointer;">X</span></div>
     <div class="modal-content" id="example-content"></div>
   </div>
 
   <script>
-    // 1. Loading Handling
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('loading-curtain');
-      if(loader) {
-        loader.style.opacity = 0;
-        setTimeout(() => loader.style.display = 'none', 1000);
-      }
-      // Auto-skip intro for testing if desired, or let user click
-      // setTimeout(skipIntro, 4000); 
-    });
-
-    // 2. Intro Skip
-    function skipIntro() {
-      const intro = document.querySelector('.intro-container');
-      intro.classList.add('fade-out');
-      setTimeout(() => intro.style.display = 'none', 1000);
-      document.body.style.overflow = 'hidden'; // Keep body locked
-    }
-
-    // 3. Navigation Logic
     function showSection(id) {
-      // Create transition effect
-      const overlay = document.getElementById('transition-overlay');
-      overlay.classList.add('active');
-
-      setTimeout(() => {
-        // Hide all current sections
-        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        
-        // Show target section
-        const target = document.getElementById(id);
-        if(target) target.classList.add('active');
-
-        // Remove overlay to reveal new content
-        overlay.classList.remove('active');
-      }, 500);
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      if (id) document.getElementById(id).classList.add('active');
     }
-
     function hideAllSections() {
-      const overlay = document.getElementById('transition-overlay');
-      overlay.classList.add('active');
-
-      setTimeout(() => {
-        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        overlay.classList.remove('active');
-      }, 500);
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
     }
-
-    // 4. Modal Logic
-    function openExample(title) {
-      const modal = document.getElementById('example-modal');
-      const content = document.getElementById('example-content');
-      content.innerHTML = `
-        <h3 style="margin-bottom:10px; color:#000;">${title}</h3>
-        <p>This is a placeholder for the expanded view of this work. Imagine a high-res image or video here.</p>
-        <button onclick="document.getElementById('example-modal').style.display='none'" style="margin-top:20px;">CLOSE</button>
-      `;
-      modal.style.display = 'block';
+    function openExample(content) {
+      document.getElementById('example-content').innerHTML = content;
+      document.getElementById('example-modal').style.display = 'block';
     }
   </script>
 </body>
