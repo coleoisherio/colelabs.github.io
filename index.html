@@ -359,15 +359,21 @@
     <div class="modal-content" id="example-content"></div>
   </div>
 
-  <script>
+<script>
     // 1. Loading Handling
     window.addEventListener('load', () => {
       const loader = document.getElementById('loading-curtain');
-      if(loader) {
-        loader.style.opacity = 0;
-        setTimeout(() => loader.style.display = 'none', 1000);
-      }
-      // Auto-skip intro for testing if desired, or let user click
+      
+      // Ensure the loader disappears after 1 second, even if other resources are slow
+      setTimeout(() => {
+        if(loader) {
+          loader.style.opacity = 0;
+          setTimeout(() => loader.style.display = 'none', 1000);
+        }
+      }, 1000); // Wait 1 second before starting to fade out the 'LOADING LABS...' screen
+
+      // Optional: Auto-skip the intro after a few seconds if the user doesn't click
+      // If you want the intro to play automatically:
       // setTimeout(skipIntro, 4000); 
     });
 
@@ -375,25 +381,24 @@
     function skipIntro() {
       const intro = document.querySelector('.intro-container');
       intro.classList.add('fade-out');
-      setTimeout(() => intro.style.display = 'none', 1000);
-      document.body.style.overflow = 'hidden'; // Keep body locked
+      
+      // Wait for the CSS transition (1s) to finish before setting display: none
+      setTimeout(() => {
+        intro.style.display = 'none';
+      }, 1000); 
+      
+      document.body.style.overflow = 'hidden'; // Keep hub centered
     }
 
     // 3. Navigation Logic
     function showSection(id) {
-      // Create transition effect
       const overlay = document.getElementById('transition-overlay');
       overlay.classList.add('active');
 
       setTimeout(() => {
-        // Hide all current sections
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        
-        // Show target section
         const target = document.getElementById(id);
         if(target) target.classList.add('active');
-
-        // Remove overlay to reveal new content
         overlay.classList.remove('active');
       }, 500);
     }
