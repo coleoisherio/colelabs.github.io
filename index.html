@@ -51,7 +51,7 @@
       transition: opacity 0.5s ease;
     }
     section.active { display: block; opacity: 1; }
-    
+   
     #transition-overlay {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       background: #000; z-index: 150; opacity: 0; pointer-events: none;
@@ -144,11 +144,11 @@
     .pos-voice { top: 85%; left: 50%; transform: translate(-50%, -50%) rotate(-9deg); }
 
     /* --- Modals & Content --- */
-    #modal, #example-modal { 
-      display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-      width: 90%; max-width: 500px; background: #c0c0c0; 
-      border: 3px solid #000; box-shadow: 10px 10px 0 #000; 
-      padding: 3px; z-index: 1000; font-family: 'MS Sans Serif', sans-serif; 
+    #modal, #example-modal {
+      display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 90%; max-width: 500px; background: #c0c0c0;
+      border: 3px solid #000; box-shadow: 10px 10px 0 #000;
+      padding: 3px; z-index: 1000; font-family: 'MS Sans Serif', sans-serif;
     }
     .modal-title { background: #000080; color: #fff; padding: 4px 8px; display: flex; justify-content: space-between; font-weight: bold; }
     .modal-content { padding: 15px; background: #c0c0c0; color: #000; }
@@ -176,12 +176,11 @@
     .grid-item:hover { border-color: #ff0; transform: scale(1.05); z-index: 10; }
     .grid-item img { width: 100%; height: 100%; object-fit: cover; }
     .grid-item .description { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: #fff; padding: 5px; font-size: 0.8em; }
-
     /* Wizard */
     .wizard-container { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 100; animation: wiggle 3s infinite; }
     .wizard { width: 120px; height: 120px; background: url('https://img1.picmix.com/output/stamp/normal/6/3/1/6/1996136_0f2d1.gif') center/contain no-repeat; }
     .speech { position: absolute; top: -40px; right: 80px; background: #fff; color: #000; padding: 5px 10px; border: 2px solid #000; font-family: 'Comic Sans MS'; border-radius: 10px; white-space: nowrap; }
-
+    @keyframes wiggle { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
     /* MOBILE ADJUSTMENTS */
     @media (max-width: 768px) {
       .logo { font-size: 3.5rem; top: 20px; }
@@ -389,19 +388,15 @@ $ INITIALIZING...
     <div class="modal-title">ORDER FORM.EXE <span onclick="document.getElementById('modal').style.display='none'" style="cursor:pointer;">X</span></div>
     <div class="modal-content">
       <form action="mailto:coleoisherio@gmail.com" method="post" enctype="text/plain">
-        <label>EMAIL:</label>
-        <input type="text" name="email" required>
+        <label>WHO ARE YOU?</label>
+        <input type="text" name="name" required>
         <label>SERVICE REQUIRED:</label>
         <select name="service">
           <option>Video Editing</option><option>Graphic Design</option><option>Voice Acting</option><option>Writing</option><option>Other</option>
         </select>
-        <label>PRICE RANGE:</label>
-        <select name="price">
-          <option>$0-$100</option><option>$100-$300</option><option>$300+</option>
-        </select>
-        <label>TELL US DETAILS:</label>
-        <textarea name="details" rows="4"></textarea>
-        <button type="submit">email: coleoisherio@gmail.com</button>
+        <label>DETAILS:</label>
+        <textarea name="desc" rows="4"></textarea>
+        <button type="submit">TRANSMIT DATA</button>
       </form>
     </div>
   </div>
@@ -411,21 +406,7 @@ $ INITIALIZING...
     <div class="modal-content" id="example-content"></div>
   </div>
 
-  <div class="disclaimer-bubble">This will email me at coleoisherio@gmail.com</div>
-  
-  <div class="enquire-bubble">enquire me for prices or see site for more info</div>
-  <div class="guy-gif"></div>
-  
-  <footer id="memphis-footer">
-    <div class="pattern-bar"></div>
-    <p style="margin: 0;">
-      TWITTER: <a href="https://twitter.com/Cooleo_is_coleo" target="_blank">Cooleo_is_coleo</a> |
-      INSTAGRAM: <a href="https://instagram.com/coleoiscooleo" target="_blank">coleoiscooleo</a> |
-      EMAIL: coleoisherio@gmail.com
-    </p>
-  </footer>
-
-  <script>
+<script>
     // 1. Loading Handling
     window.addEventListener('load', () => {
       const loader = document.getElementById('loading-curtain');
@@ -472,10 +453,8 @@ $ INITIALIZING...
       const content = document.getElementById('example-content');
       content.innerHTML = `
         <h3 style="margin-bottom:10px; color:#000;">${title}</h3>
-        <p>This is the expanded view of the work **"${title}"**.</p>
-        <img src="https://i.imgur.com/k6x3E6X.gif" style="width: 100%; max-width: 300px; border: 5px solid #FF00FF;">
-        <p style="font-family: Arial, sans-serif; color:#000;">(Placeholder image. In your live site, link to the actual art!)<p>
-        <button onclick="document.getElementById('example-modal').style.display='none'" style="margin-top:20px; padding: 10px; background: #000; color: #fff; border: 5px solid #00FFFF; cursor: pointer; font-family: 'Press Start 2P', cursive;">CLOSE WINDOW</button>
+        <p>This is a placeholder for the expanded view of this work. Imagine a high-res image or video here.</p>
+        <button onclick="document.getElementById('example-modal').style.display='none'" style="margin-top:20px;">CLOSE</button>
       `;
       modal.style.display = 'block';
     }
