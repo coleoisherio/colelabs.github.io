@@ -86,20 +86,11 @@
     }
     @keyframes spin { 100% { transform: rotate(360deg); } }
 
-    /* Layer 2: Smoke (Middle) */
-    .smoke {
-      position: absolute; top: -120px; left: 60%; 
-      width: 200px; height: 350px;
-      background: url('https://giffiles.alphacoders.com/205/20595.gif') center/cover no-repeat;
-      transform: translateX(-50%) rotate(90deg);
-      mix-blend-mode: screen; z-index: 2; opacity: 0.6; pointer-events: none;
-    }
-
     /* Layer 3: Beaker (Front) */
     .beaker {
       position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
       width: 250px; height: 350px;
-      background: url('https://www.pngkey.com/png/full/109-1099033_beaker-with-liquid-png-chemicals-in-a-beaker.png') center/contain no-repeat;
+      background: url('https://team-molequilizer.web.app/img/learn/Testtube.gif') center/contain no-repeat;
       animation: float 4s ease-in-out infinite; z-index: 3;
       filter: drop-shadow(0 0 20px #00ff00);
     }
@@ -143,14 +134,14 @@
     .nav-item:hover { transform: scale(1.2) rotate(-5deg) !important; color: #fff !important; text-shadow: 0 0 20px #fff; z-index: 100; }
 
     /* Position Logic */
-    .pos-branding { top: 20%; left: 25%; color: #ffcc00; transform: rotate(-15deg); }
-    .pos-titles { top: 12%; left: 50%; transform: translateX(-50%) rotate(-5deg); color: #00ccff; }
-    .pos-drawings { top: 20%; right: 25%; color: #ff9900; transform: rotate(10deg); }
-    .pos-video { top: 45%; right: 18%; color: #ff3366; transform: rotate(15deg); }
-    .pos-stream { bottom: 25%; right: 22%; color: #fff; transform: rotate(5deg); }
-    .pos-voice { bottom: 15%; left: 50%; transform: translateX(-50%) rotate(-10deg); color: #cc66ff; }
-    .pos-graphics { bottom: 25%; left: 25%; color: #ff0033; transform: rotate(8deg); }
-    .pos-writing { top: 45%; left: 18%; color: #ff6600; transform: rotate(-12deg); }
+    .pos-branding { top: 15%; left: 10%; transform: translate(-50%, -50%) rotate(-8deg); }
+    .pos-titles { top: 50%; left: 20%; transform: translate(-50%, -50%) rotate(5deg); }
+    .pos-video { top: 80%; left: 15%; transform: translate(-50%, -50%) rotate(12deg); }
+    .pos-writing { top: 20%; left: 80%; transform: translate(-50%, -50%) rotate(10deg); }
+    .pos-stream { top: 50%; left: 85%; transform: translate(-50%, -50%) rotate(-15deg); }
+    .pos-drawings { top: 85%; left: 80%; transform: translate(-50%, -50%) rotate(-4deg); }
+    .pos-graphics { top: 10%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); }
+    .pos-voice { top: 85%; left: 50%; transform: translate(-50%, -50%) rotate(-9deg); }
 
     /* --- Modals & Content --- */
     #modal, #example-modal { 
@@ -190,7 +181,6 @@
     .wizard-container { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 100; animation: wiggle 3s infinite; }
     .wizard { width: 120px; height: 120px; background: url('https://img1.picmix.com/output/stamp/normal/6/3/1/6/1996136_0f2d1.gif') center/contain no-repeat; }
     .speech { position: absolute; top: -40px; right: 80px; background: #fff; color: #000; padding: 5px 10px; border: 2px solid #000; font-family: 'Comic Sans MS'; border-radius: 10px; white-space: nowrap; }
-    @keyframes wiggle { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
 
     /* MOBILE ADJUSTMENTS */
     @media (max-width: 768px) {
@@ -199,7 +189,7 @@
       .gear { width: 300px; height: 300px; }
       .beaker { width: 180px; height: 250px; }
       .nav-item { font-size: 1.5rem; }
-      
+     
       /* Squeeze items in */
       .pos-branding { left: 5%; top: 15%; }
       .pos-drawings { right: 5%; top: 15%; }
@@ -231,7 +221,6 @@
     
     <div class="center-stack">
       <div class="gear"></div>
-      <div class="smoke"></div>
       <div class="beaker"></div>
       <div class="logo">
         <span>COLE</span>
@@ -270,70 +259,129 @@
   <section id="section-titles">
     <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
-      <h2>TITLES & TEXT</h2>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('3D Chrome - $40')"><img src="https://img.freepik.com/premium-photo/chrome-text-effect-editable-liquid-metal-style-premium-vector_862489-3543.jpg"><div class="description">Chrome</div></div>
+      <div class="chrome-text">TITLE CARD LABORATORY</div>
+      <p style="color: #000; margin-top: 20px;">PRICE: **$50 USD** (TBD)</p>
+      <div style="background-color: #333; padding: 20px; border: 5px solid #000; margin-top: 20px;">
+        <p style="color: #00FFFF; text-align: left;">[TITLE_EXAMPLE.EXE]</p>
+        <img src="https://img.freepik.com/premium-photo/chrome-text-effect-editable-liquid-metal-style-premium-vector_862489-3543.jpg" style="width: 70%; max-width: 300px; border: 3px solid #FFFF00;">
+        <p style="color: #00FFFF; text-align: right;">[END_OF_TITLE_RENDER]</p>
       </div>
+      <p>Need that 90s CD-ROM aesthetic for your project? **[I can render it!]**</p>
     </div>
   </section>
 
   <section id="section-video">
     <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
-      <h2>VIDEO EDITING</h2>
-      <p>Chaotic, Fast-Paced & Fun.</p>
-      <iframe width="100%" height="350" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"></iframe>
+      <h1 style="font-family: 'Bangers', cursive; font-size: 3em;">COLEO'S VIDEO FACTORY!</h1>
+      <p>From Flash animation vibes to cinematic edits, get your video professionally sliced.</p>
+      <table class="price-table" style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+        <caption style="font-weight: bold; padding: 10px; background: #FF00FF; color: #000;">**VIDEO EDITING RATES**</caption>
+        <thead>
+            <tr><th>Project Type</th><th>Length</th><th>PRICE (USD)</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Shorts/TikToks</td><td>< 1 min</td><td>**$100**</td></tr>
+            <tr><td>Standard Video</td><td>1 - 10 mins</td><td>**$500**</td></tr>
+            <tr><td>Long-Form Content</td><td>10 - 20 mins</td><td>**$1000**</td></tr>
+            <tr><td>Extended Feature</td><td>20 - 30 mins</td><td>**$1500**</td></tr>
+            <tr><td>Full Length Film</td><td>30+ mins</td><td>**$2000+**</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 30px;"><img src="https://i.imgur.com/8Q7p7uM.png" alt="Transparent Boombox GIF" style="width: 150px; float: left; margin-right: 15px;">**YouTube Channel:** [@ColeoIsCooleo](https://www.youtube.com/@ColeoIsCooleo)</div>
     </div>
   </section>
 
   <section id="section-writing">
     <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
-      <h2>WRITING</h2>
-      <div style="background:#fff; color:#000; padding:15px; font-family:'Courier New'; text-align:left;">
-        <p><strong>EXT. SPACE - NIGHT</strong></p>
-        <p>The wizard floats by. He looks tired.</p>
-        <p><strong>WIZARD</strong><br>I need a coffee.</p>
-      </div>
+      <p>> C:\USER\COLELABS\SCRIPT.TXT</p>
+      <pre style="white-space: pre-wrap;">
+$ SCRIPT_LORE_DUMP: CLUSTER_PROJECT
+$ INITIALIZING...
+
+01 | FADE IN: GREEN TEXT ON BLACK SCREEN
+02 | 
+03 | **INT. LAB - NIGHT**
+04 | 
+05 | A single, flickering fluorescent bulb hums. COLEO (20s, nervous, wears a backwards hat) is furiously typing. A TEST TUBE (See: Hub Asset) is bubbling dangerously.
+06 | 
+07 |                   COLEO
+08 |       (to himself)
+09 |     The "Lost Island AU" data... 
+10 |     it's corrupting the entire system!
+11 | 
+12 | **INSERT USER-PROVIDED FAN LORE/SCRIPT HERE**
+13 | 
+14 | $ END_OF_FILE
+15 | $ **WRITING SERVICE: $50 USD per Title Card**
+            </pre>
+            <p>> _</p>
     </div>
   </section>
 
   <section id="section-stream">
     <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
-      <h2>STREAM ASSETS</h2>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Overlay - $100')"><img src="https://i.pinimg.com/originals/18/48/43/18484345437894378.gif"><div class="description">Overlay</div></div>
+      <h1>VAPOR-STREAM OVERLAYS // ₡ØLΞØ ŁλB$</h1>
+      <img src="https://i.imgur.com/K1T7lJt.gif" alt="Transparent Glitch Art" style="width: 100px; float: right; margin-left: 10px;">
+      <p>Enhance your Twitch or YouTube stream with custom, aesthetic layouts.</p>
+      <ul style="list-style: '▶ ';">
+        <li>**Static Layouts:** $50 USD</li>
+        <li>**Animated Layouts (Source/Alerts):** $100 USD</li>
+      </ul>
+      <div style="margin-top: 30px; padding: 15px; background: rgba(0, 0, 0, 0.5); border: 3px solid #FF00FF;">
+        <p style="color: #FFFF00;">**TWITCH CHANNEL:** [twitch.tv/coleoisherio](https://www.twitch.tv/coleoisherio)</p>
+        <img src="https://i.imgur.com/7Yj1L8Z.gif" alt="Twitch Overlay Placeholder" style="width: 100%; border: 1px solid #00FFFF;">
       </div>
+      <p>Let's make your stream look like a 90s fever dream! **[HIT ME UP]**</p>
     </div>
   </section>
 
   <section id="section-drawings">
     <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
-      <h2>DRAWINGS</h2>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Character - $50')"><img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339"><div class="description">Character</div></div>
+      <h1 style="color: #FF00FF; text-shadow: 1px 1px #000;">:: C O L E O A R T S ::</h1>
+      <p style="color: #555;">(All art assets are drawn by me or fanart by friends like JavaJake)</p>
+      <div style="border: 1px solid #999; padding: 10px; margin-bottom: 20px;">
+        <div class="art-placeholder" onclick="openExample('Compilation of ColeoIsCooleo')">Art 1</div>
+        <div class="art-placeholder" onclick="openExample('floatie-Coleo')">Art 2</div>
+        <div class="art-placeholder" onclick="openExample('Coleo and the Ink Machine')">Art 3</div>
       </div>
+      <p>**DeviantArt:** [coleoiscooleo](https://www.deviantart.com/tag/coleoiscooleo)</p>
+      <p>**Newgrounds:** [Check my profile for more](https://www.newgrounds.com/art/view/coleoiscooleo/fired)</p>
+      <p style="margin-top: 20px;">**PRICING:** $50 USD for a custom drawing/illustration (This is a placeholder rate).</p>
     </div>
   </section>
 
   <section id="section-graphics">
     <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
-      <h2>GRAPHICS</h2>
-      <p>Thumbnails & Social Media.</p>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Thumbnail - $50')"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"><div class="description">Thumb</div></div>
-      </div>
+      <h1 style="color: #FF00FF;">✨ THUMBNAIL ZONE: $50 USD ✨</h1>
+      <img src="https://i.imgur.com/lM5p9b5.gif" alt="Transparent Rotating Star" style="width: 50px; float: left; margin-right: 10px;">
+      <p>High-impact, custom-designed thumbnails for YouTube and other platforms.</p>
+      <ul style="list-style: '⭐ ';">
+        <li>**Thumbnail Rate:** $50 USD</li>
+      </ul>
+      <p style="margin-top: 30px;">**[INSTAGRAM PLACEMENT]**</p>
+      <img src="https://i.imgur.com/i9g5k0Y.png" alt="Transparent Y2K Phone" style="width: 100px; display: block; margin: 10px auto;">
+      <p>Instagram: [coleoiscooleo](https://www.instagram.com/coleoiscooleo/)</p>
+      <p style="font-size: 0.9em; margin-top: 20px;">Need a GeoCities-style banner? I got you. **<Blink>**</p>
     </div>
   </section>
 
   <section id="section-voice">
     <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
-      <h2>VOICE ACTING</h2>
-      <p>Audio samples loaded.</p>
+      <h1 style="color: #000;">[AUDIO_INTERFACE_ONLINE]</h1>
+      <p>Offering voice acting services for animations, games, or commercials.</p>
+      <div style="margin: 20px; padding: 10px; background: rgba(0, 0, 0, 0.7); border: 5px solid #FF00FF;">
+        <p style="color: #FF00FF;">**VOICE DEMO [PLACEHOLDER]**</p>
+        <div style="height: 50px; background: repeating-linear-gradient(90deg, #00FFFF, #00FFFF 5px, transparent 5px, transparent 10px);"></div>
+        <p style="color: #FF00FF;">**FEATURING:** Sound Effects, Character Voices, and Announcer Reads.</p>
+      </div>
+      <p>Contact for rates on specific voice projects! We can simulate any old-school mic quality.</p>
+      <img src="https://i.imgur.com/YgY71mK.gif" alt="Transparent Pixel Speaker GIF" style="width: 80px;">
     </div>
   </section>
 
@@ -341,15 +389,19 @@
     <div class="modal-title">ORDER FORM.EXE <span onclick="document.getElementById('modal').style.display='none'" style="cursor:pointer;">X</span></div>
     <div class="modal-content">
       <form action="mailto:coleoisherio@gmail.com" method="post" enctype="text/plain">
-        <label>WHO ARE YOU?</label>
-        <input type="text" name="name" required>
+        <label>EMAIL:</label>
+        <input type="text" name="email" required>
         <label>SERVICE REQUIRED:</label>
         <select name="service">
           <option>Video Editing</option><option>Graphic Design</option><option>Voice Acting</option><option>Writing</option><option>Other</option>
         </select>
-        <label>DETAILS:</label>
-        <textarea name="desc" rows="4"></textarea>
-        <button type="submit">TRANSMIT DATA</button>
+        <label>PRICE RANGE:</label>
+        <select name="price">
+          <option>$0-$100</option><option>$100-$300</option><option>$300+</option>
+        </select>
+        <label>TELL US DETAILS:</label>
+        <textarea name="details" rows="4"></textarea>
+        <button type="submit">email: coleoisherio@gmail.com</button>
       </form>
     </div>
   </div>
@@ -359,42 +411,44 @@
     <div class="modal-content" id="example-content"></div>
   </div>
 
-<script>
+  <div class="disclaimer-bubble">This will email me at coleoisherio@gmail.com</div>
+  
+  <div class="enquire-bubble">enquire me for prices or see site for more info</div>
+  <div class="guy-gif"></div>
+  
+  <footer id="memphis-footer">
+    <div class="pattern-bar"></div>
+    <p style="margin: 0;">
+      TWITTER: <a href="https://twitter.com/Cooleo_is_coleo" target="_blank">Cooleo_is_coleo</a> |
+      INSTAGRAM: <a href="https://instagram.com/coleoiscooleo" target="_blank">coleoiscooleo</a> |
+      EMAIL: coleoisherio@gmail.com
+    </p>
+  </footer>
+
+  <script>
     // 1. Loading Handling
     window.addEventListener('load', () => {
       const loader = document.getElementById('loading-curtain');
-      
-      // Ensure the loader disappears after 1 second, even if other resources are slow
-      setTimeout(() => {
-        if(loader) {
-          loader.style.opacity = 0;
-          setTimeout(() => loader.style.display = 'none', 1000);
-        }
-      }, 1000); // Wait 1 second before starting to fade out the 'LOADING LABS...' screen
-
-      // Optional: Auto-skip the intro after a few seconds if the user doesn't click
-      // If you want the intro to play automatically:
-      // setTimeout(skipIntro, 4000); 
+      if(loader) {
+        loader.style.opacity = 0;
+        setTimeout(() => loader.style.display = 'none', 1000);
+      }
+      // Auto-skip intro after 3 seconds
+      setTimeout(skipIntro, 3000);
     });
 
     // 2. Intro Skip
     function skipIntro() {
       const intro = document.querySelector('.intro-container');
       intro.classList.add('fade-out');
-      
-      // Wait for the CSS transition (1s) to finish before setting display: none
-      setTimeout(() => {
-        intro.style.display = 'none';
-      }, 1000); 
-      
-      document.body.style.overflow = 'hidden'; // Keep hub centered
+      setTimeout(() => intro.style.display = 'none', 1000);
+      document.body.style.overflow = 'hidden'; // Keep body locked
     }
 
     // 3. Navigation Logic
     function showSection(id) {
       const overlay = document.getElementById('transition-overlay');
       overlay.classList.add('active');
-
       setTimeout(() => {
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
         const target = document.getElementById(id);
@@ -406,24 +460,26 @@
     function hideAllSections() {
       const overlay = document.getElementById('transition-overlay');
       overlay.classList.add('active');
-
       setTimeout(() => {
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
         overlay.classList.remove('active');
       }, 500);
     }
 
-    // 4. Modal Logic
+    // 4. Modal Logic for Drawings Section
     function openExample(title) {
       const modal = document.getElementById('example-modal');
       const content = document.getElementById('example-content');
       content.innerHTML = `
         <h3 style="margin-bottom:10px; color:#000;">${title}</h3>
-        <p>This is a placeholder for the expanded view of this work. Imagine a high-res image or video here.</p>
-        <button onclick="document.getElementById('example-modal').style.display='none'" style="margin-top:20px;">CLOSE</button>
+        <p>This is the expanded view of the work **"${title}"**.</p>
+        <img src="https://i.imgur.com/k6x3E6X.gif" style="width: 100%; max-width: 300px; border: 5px solid #FF00FF;">
+        <p style="font-family: Arial, sans-serif; color:#000;">(Placeholder image. In your live site, link to the actual art!)<p>
+        <button onclick="document.getElementById('example-modal').style.display='none'" style="margin-top:20px; padding: 10px; background: #000; color: #fff; border: 5px solid #00FFFF; cursor: pointer; font-family: 'Press Start 2P', cursive;">CLOSE WINDOW</button>
       `;
       modal.style.display = 'block';
     }
   </script>
+
 </body>
 </html>
