@@ -1,429 +1,844 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>COLE LABS - CREATIVE SERVICES</title>
-  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Press+Start+2P&family=Bangers&family=Orbitron:wght@900&display=swap" rel="stylesheet">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { 
-      background: #000; 
-      color: #fff; 
-      font-family: 'Bangers', cursive;
-      position: relative;
-      min-height: 100vh;
-      overflow: hidden; 
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ COLE LABS: Digital Arts & Chaos ⚡</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Bangers&display=swap" rel="stylesheet">
+    <style>
+        /* BASE & RESET */
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling of the main background */
+            transition: all 0.5s;
+        }
 
-    /* --- Loading Curtain --- */
-    #loading-curtain {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: #000; z-index: 100000;
-      display: flex; justify-content: center; align-items: center;
-      transition: opacity 1s ease;
-    }
-    .loader-text {
-      color: #0f0; font-family: 'Orbitron'; animation: blink 0.2s infinite; font-size: 2em; text-shadow: 0 0 10px #0f0;
-    }
-    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+        a { color: #00FFFF; text-decoration: none; }
+        a:hover { color: #FF00FF; text-decoration: underline; }
 
-    /* --- Intro Video --- */
-    .intro-container {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999;
-      transition: all 1s ease-out; background: #000;
-    }
-    .intro-container iframe { width: 100%; height: 100%; border: none; object-fit: cover; pointer-events: none;}
-    .intro-container.fade-out {
-      opacity: 0; transform: scale(1.5); pointer-events: none; filter: blur(20px);
-    }
-    .skip-btn {
-      position: absolute; bottom: 40px; right: 40px; background: rgba(0,0,0,0.8);
-      border: 2px solid #0f0; color: #0f0; padding: 12px 24px; cursor: pointer;
-      font-family: 'Press Start 2P'; transition: all 0.3s; z-index: 10000;
-    }
-    .skip-btn:hover { background: #0f0; color: #000; box-shadow: 0 0 20px #0f0; }
+        /* INTRO SCREEN (FIXED) */
+        .intro-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease-in-out, transform 0.5s;
+        }
 
-    /* --- Transitions --- */
-    section {
-      display: none; opacity: 0; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      overflow-y: auto; padding: 60px 20px; z-index: 200; color: #fff; text-align: center;
-      transition: opacity 0.5s ease;
-    }
-    section.active { display: block; opacity: 1; }
-    
-    #transition-overlay {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: #000; z-index: 150; opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    #transition-overlay.active { opacity: 1; pointer-events: all; }
+        .intro-container.fade-out {
+            /* Fun/Chaotic Transition */
+            opacity: 0;
+            transform: scale(2) rotate(3deg) skew(5deg);
+        }
 
-    /* --- Background Assets --- */
-    #bg-iframe { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -5; border: none; pointer-events: none; opacity: 0.6; transform: scale(1.2); }
-    .lightning-left { position: absolute; top: 0; left: 0; width: 25%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: -4; }
-    .lightning-right { position: absolute; top: 0; right: 0; width: 25%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: -4; transform: rotate(180deg); }
+        /* LOADING CURTAIN (FIXED) */
+        #loading-curtain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 10000; /* Above the intro */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #FF00FF;
+            transition: opacity 1s ease-in-out;
+        }
 
-    /* --- HUB CONTAINER --- */
-    .logo-container { 
-      position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
-      overflow: hidden;
-    }
+        .intro-container iframe {
+            width: 100vw;
+            height: 56.25vw; /* 16:9 Aspect Ratio */
+            max-height: 100vh;
+            max-width: 177.77vh; /* 16:9 Aspect Ratio */
+        }
 
-    /* --- CENTER STACK (Gear > Smoke > Beaker > Logo) --- */
-    .center-stack {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      z-index: 10; 
-      width: 400px; height: 500px;
-      display: flex; justify-content: center; align-items: center;
-    }
+        .enter-btn {
+            background: #00FFFF;
+            color: #000;
+            border: 5px solid #FF00FF;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 0 10px #FF00FF;
+            animation: pulse 1s infinite alternate;
+        }
+        @keyframes pulse {
+            from { box-shadow: 0 0 10px #FF00FF; }
+            to { box-shadow: 0 0 20px #00FFFF; }
+        }
 
-    /* Layer 1: Gear (Back) */
-    .gear {
-      position: absolute; width: 450px; height: 450px;
-      background: url('https://www.wisc-online.com/assetrepository/getfile?id=2929&getType=view&width=0&height=0') center/contain no-repeat;
-      animation: spin 20s linear infinite; z-index: 1; opacity: 0.7;
-    }
-    @keyframes spin { 100% { transform: rotate(360deg); } }
+        /* HUB STYLING */
+        #hub-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url(https://i.imgur.com/K9b5R23.gif); /* Base Hub BG */
+            background-size: cover;
+        }
 
-    /* Layer 2: Smoke (Middle) */
-    .smoke {
-      position: absolute; top: -120px; left: 60%; 
-      width: 200px; height: 350px;
-      background: url('https://giffiles.alphacoders.com/205/20595.gif') center/cover no-repeat;
-      transform: translateX(-50%) rotate(90deg);
-      mix-blend-mode: screen; z-index: 2; opacity: 0.6; pointer-events: none;
-    }
+        .grid-item {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 5px solid #FF00FF;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 15px #00FFFF;
+            overflow: hidden;
+            text-align: center;
+            font-size: 0.7em;
+        }
 
-    /* Layer 3: Beaker (Front) */
-    .beaker {
-      position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
-      width: 250px; height: 350px;
-      background: url('https://www.pngkey.com/png/full/109-1099033_beaker-with-liquid-png-chemicals-in-a-beaker.png') center/contain no-repeat;
-      animation: float 4s ease-in-out infinite; z-index: 3;
-      filter: drop-shadow(0 0 20px #00ff00);
-    }
-    @keyframes float { 0%,100%{transform:translate(-50%, -50%);} 50%{transform:translate(-50%, -60px);} }
+        .grid-item:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            box-shadow: 0 0 25px 5px #FF00FF;
+        }
+        
+        /* ITEM POSITIONS (CHAOTIC LAYOUT) */
+        .grid-item-branding { top: 15%; left: 10%; transform: translate(-50%, -50%) rotate(-8deg); }
+        .grid-item-titles { top: 50%; left: 20%; transform: translate(-50%, -50%) rotate(5deg); }
+        .grid-item-video { top: 80%; left: 15%; transform: translate(-50%, -50%) rotate(12deg); }
+        .grid-item-writing { top: 20%; left: 80%; transform: translate(-50%, -50%) rotate(10deg); }
+        .grid-item-stream { top: 50%; left: 85%; transform: translate(-50%, -50%) rotate(-15deg); }
+        .grid-item-drawings { top: 85%; left: 80%; transform: translate(-50%, -50%) rotate(-4deg); }
+        .grid-item-graphics { top: 10%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); }
+        .grid-item-voice { top: 85%; left: 50%; transform: translate(-50%, -50%) rotate(-9deg); }
 
-    /* Layer 4: Logo Text */
-    .logo { 
-      position: absolute; top: 0; width: 100%;
-      font-family: 'Creepster', cursive; font-size: 5rem; 
-      color: #ff00ff; letter-spacing: 2px; text-align: center;
-      text-shadow: 4px 4px 0 #000, -2px -2px 0 #fff, 0 0 25px #ff00ff;
-      z-index: 20; 
-      animation: logo-bounce 3s infinite ease-in-out;
-    }
-    .logo span { display: block; line-height: 0.8; }
-    .logo span:last-child { color: #d500d5; padding-left: 20px; }
-    @keyframes logo-bounce { 0%,100%{transform: scale(1);} 50%{transform: scale(1.05);} }
+        .logo-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            transform: translate(-50%, -50%) rotate(0deg);
+            z-index: 5;
+            animation: spin 10s infinite linear;
+        }
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
 
-    /* CONTACT BUTTON - CAUTION STYLE */
-    .contact-btn { 
-      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-      background: repeating-linear-gradient(45deg, #ffcc00, #ffcc00 10px, #000 10px, #000 20px);
-      color: #fff; font-family: 'Press Start 2P'; font-size: 1.2rem;
-      border: 3px solid #ff0000; padding: 15px 30px; 
-      cursor: pointer; z-index: 30;
-      text-shadow: 2px 2px 0 #000;
-      box-shadow: 0 0 15px #ff0000;
-      animation: pulse-danger 1s infinite;
-    }
-    .contact-btn:hover { transform: translateX(-50%) scale(1.1); box-shadow: 0 0 30px #ff0000; }
-    @keyframes pulse-danger { 0%,100%{box-shadow: 0 0 15px #ff0000;} 50%{box-shadow: 0 0 5px #ff0000;} }
+        /* NEW TEST TUBE ELEMENT */
+        .testtube {
+            width: 200px;
+            height: 200px;
+            background: url(https://team-molequilizer.web.app/img/learn/Testtube.gif) no-repeat center center;
+            background-size: contain;
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            z-index: 10;
+        }
 
-    /* --- THE CLUSTER (Navigation Words) --- */
-    .nav-item {
-      position: absolute;
-      font-family: 'Bangers', cursive; font-size: 2.5rem; 
-      text-transform: uppercase; cursor: pointer; z-index: 50;
-      text-shadow: 3px 3px 0 #000, 0 0 10px rgba(0,0,0,0.8);
-      transition: 0.2s; white-space: nowrap;
-    }
-    .nav-item:hover { transform: scale(1.2) rotate(-5deg) !important; color: #fff !important; text-shadow: 0 0 20px #fff; z-index: 100; }
+        /* WIZARD & DISCLAIMER ASSISTANT */
+        .wizard-container {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            z-index: 100;
+        }
+        .wizard-container img { width: 150px; }
+        .speech {
+            background: #fff;
+            color: #000;
+            padding: 10px;
+            border: 5px solid #000;
+            border-radius: 10px;
+            position: absolute;
+            top: -50px;
+            left: 100px;
+            width: 250px;
+            font-size: 0.6em;
+            text-align: center;
+            box-shadow: 5px 5px 0 #FF00FF;
+            animation: bobble 1s infinite alternate;
+        }
+        @keyframes bobble {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
 
-    /* Position Logic */
-    .pos-branding { top: 20%; left: 25%; color: #ffcc00; transform: rotate(-15deg); }
-    .pos-titles { top: 12%; left: 50%; transform: translateX(-50%) rotate(-5deg); color: #00ccff; }
-    .pos-drawings { top: 20%; right: 25%; color: #ff9900; transform: rotate(10deg); }
-    .pos-video { top: 45%; right: 18%; color: #ff3366; transform: rotate(15deg); }
-    .pos-stream { bottom: 25%; right: 22%; color: #fff; transform: rotate(5deg); }
-    .pos-voice { bottom: 15%; left: 50%; transform: translateX(-50%) rotate(-10deg); color: #cc66ff; }
-    .pos-graphics { bottom: 25%; left: 25%; color: #ff0033; transform: rotate(8deg); }
-    .pos-writing { top: 45%; left: 18%; color: #ff6600; transform: rotate(-12deg); }
+        /* NEW DISCLAIMER ASSISTANT */
+        .disclaimer-assistant {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            background: url(https://giffiles.alphacoders.com/361/36165.gif) no-repeat center center;
+            background-size: contain;
+            z-index: 100;
+        }
+        .assistant-bubble {
+            background: #fff;
+            color: #000;
+            padding: 10px;
+            border: 5px solid #000;
+            border-radius: 10px;
+            position: absolute;
+            top: -50px;
+            right: 130px;
+            width: 200px;
+            font-size: 0.6em;
+            text-align: center;
+            box-shadow: -5px 5px 0 #00FFFF;
+            animation: bounce 0.5s infinite alternate;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-3px) scaleX(1.02); }
+        }
 
-    /* --- Modals & Content --- */
-    #modal, #example-modal { 
-      display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-      width: 90%; max-width: 500px; background: #c0c0c0; 
-      border: 3px solid #000; box-shadow: 10px 10px 0 #000; 
-      padding: 3px; z-index: 1000; font-family: 'MS Sans Serif', sans-serif; 
-    }
-    .modal-title { background: #000080; color: #fff; padding: 4px 8px; display: flex; justify-content: space-between; font-weight: bold; }
-    .modal-content { padding: 15px; background: #c0c0c0; color: #000; }
-    .modal-content input, .modal-content textarea, .modal-content select { width: 100%; margin-bottom: 10px; border: 2px inset #fff; padding: 5px; font-family: monospace; }
-    .modal-content button { width: 100%; padding: 8px; background: #ddd; border: 2px outset #fff; cursor: pointer; font-weight: bold; }
 
-    .section-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; border: none; opacity: 0.3; object-fit: cover; }
-    .content { 
-      max-width: 800px; margin: 60px auto; 
-      background: rgba(0,0,0,0.8); padding: 30px; 
-      border: 2px solid #fff; border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
-    }
-    .back-home { 
-      position: fixed; top: 20px; right: 20px; 
-      background: #ff0000; color: #fff; padding: 10px 20px; 
-      border: 3px solid #fff; cursor: pointer; 
-      font-family: 'Press Start 2P'; z-index: 300; 
-      box-shadow: 5px 5px 0 #000; 
-    }
-    .back-home:hover { transform: scale(1.1); }
-    
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-    .grid-item { height: 180px; background: #333; border: 2px solid #fff; position: relative; cursor: pointer; overflow: hidden; transition: 0.2s; }
-    .grid-item:hover { border-color: #ff0; transform: scale(1.05); z-index: 10; }
-    .grid-item img { width: 100%; height: 100%; object-fit: cover; }
-    .grid-item .description { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: #fff; padding: 5px; font-size: 0.8em; }
+        /* SECTION VIEW (CONTENT WINDOW) */
+        section {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            z-index: 10;
+        }
+        section.active { display: block; }
+        
+        .section-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-repeat: repeat;
+            z-index: -1;
+            opacity: 0.9;
+            filter: hue-rotate(0deg) saturate(1.5);
+            transition: all 0.5s;
+        }
 
-    /* Wizard */
-    .wizard-container { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 100; animation: wiggle 3s infinite; }
-    .wizard { width: 120px; height: 120px; background: url('https://img1.picmix.com/output/stamp/normal/6/3/1/6/1996136_0f2d1.gif') center/contain no-repeat; }
-    .speech { position: absolute; top: -40px; right: 80px; background: #fff; color: #000; padding: 5px 10px; border: 2px solid #000; font-family: 'Comic Sans MS'; border-radius: 10px; white-space: nowrap; }
-    @keyframes wiggle { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
+        .content {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            min-height: 80vh;
+            text-align: center;
+            font-size: 0.8em;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
 
-    /* MOBILE ADJUSTMENTS */
-    @media (max-width: 768px) {
-      .logo { font-size: 3.5rem; top: 20px; }
-      .center-stack { width: 300px; height: 400px; }
-      .gear { width: 300px; height: 300px; }
-      .beaker { width: 180px; height: 250px; }
-      .nav-item { font-size: 1.5rem; }
-      
-      /* Squeeze items in */
-      .pos-branding { left: 5%; top: 15%; }
-      .pos-drawings { right: 5%; top: 15%; }
-      .pos-writing { left: 5%; top: 40%; }
-      .pos-video { right: 5%; top: 40%; }
-      .pos-graphics { left: 5%; bottom: 25%; }
-      .pos-stream { right: 5%; bottom: 25%; }
-    }
-  </style>
+        .close-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #FF00FF;
+            color: #000;
+            padding: 10px;
+            border: 5px solid #00FFFF;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        /* TRANSITION OVERLAY */
+        #transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0) 0%, #000 100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;
+            z-index: 99;
+        }
+        #transition-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* MODAL (ORDER WINDOW) */
+        #modal, #example-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            padding-top: 50px;
+        }
+
+        .modal-content {
+            background-color: #303030;
+            margin: 5% auto;
+            padding: 20px;
+            border: 10px solid #00FFFF;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 0 20px #FF00FF;
+            text-align: left;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        .modal-content input, .modal-content textarea, .modal-content select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            display: inline-block;
+            border: 3px solid #FF00FF;
+            box-sizing: border-box;
+            background: #111;
+            color: #00FFFF;
+        }
+
+        .contact-btn {
+            background: #fff;
+            color: #000;
+            padding: 10px 15px;
+            border: 5px solid #000;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1em;
+            margin-top: 20px;
+            /* FIX: Make text smaller and add black outline */
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
+        .contact-btn:hover { background: #FF00FF; }
+
+        /* UNIVERSAL MEMPHIS FOOTER */
+        #memphis-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #FF00FF; /* Bold Primary Color */
+            border-top: 5px dashed #00FFFF;
+            color: #000;
+            text-align: center;
+            font-size: 0.5em;
+            z-index: 500;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+        }
+        #memphis-footer a {
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 3px 6px;
+            background-color: #00FFFF;
+            border: 2px solid #000;
+        }
+        #memphis-footer .pattern-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(45deg, #FF00FF, #FF00FF 10px, #FFFF00 10px, #FFFF00 20px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        /* --- UNIQUE SECTION THEMES (NEOCITIES VIBE) --- */
+        
+        /* 1. BRANDING (VHS/Static Theme) */
+        #section-branding .section-bg {
+            background-image: url(https://i.imgur.com/L7p8X8z.gif); /* TV Static GIF */
+            background-size: cover;
+            opacity: 1;
+        }
+        #section-branding .content {
+            background-color: rgba(20, 255, 20, 0.9); /* Green Terminal Text */
+            color: #000;
+            border: 8px solid #000;
+            box-shadow: inset 0 0 20px #FF00FF;
+            font-family: monospace;
+        }
+
+        /* 2. TITLES (3D Cyber/Arcade Theme) */
+        #section-titles .section-bg {
+            background-image: url(https://i.imgur.com/x5S6BwJ.gif); /* Neon Grid GIF */
+            background-size: cover;
+        }
+        #section-titles .content {
+            background-color: rgba(255, 0, 255, 0.85); /* Magenta */
+            border: 5px dotted #00FFFF;
+            color: #000;
+        }
+        .chrome-text {
+            font-family: 'Bangers', cursive;
+            font-size: 3em;
+            color: #fff;
+            text-shadow: 
+                -2px -2px 0 #000, 
+                2px -2px 0 #000, 
+                -2px 2px 0 #000, 
+                2px 2px 0 #000,
+                0 0 10px #00FFFF;
+        }
+
+        /* 3. VIDEO (Newgrounds/Flash Theme) */
+        #section-video .section-bg {
+            background-image: url(https://i.imgur.com/uR2xY8X.gif); /* Pixel Chaos */
+            background-size: 200px;
+            background-repeat: repeat;
+        }
+        #section-video .content {
+            background-color: rgba(255, 255, 0, 0.95); /* Yellow */
+            color: #000;
+            border: 10px groove #000;
+        }
+        .price-table th, .price-table td { border: 2px solid #000; padding: 5px; }
+
+        /* 4. WRITING (Terminal Screen Theme) */
+        #section-writing .section-bg {
+            background-image: url(https://i.imgur.com/V9r9p0G.gif); /* Terminal Lines */
+            background-color: #000;
+            opacity: 1;
+        }
+        #section-writing .content {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #0F0;
+            border: 5px solid #0F0;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 15px #0F0;
+        }
+        
+        /* 5. STREAM (Vaporwave/Twitch Theme) */
+        #section-stream .section-bg {
+            background-image: url(https://i.imgur.com/W2d7z0d.gif); /* Vaporwave Grid */
+            background-size: cover;
+            filter: hue-rotate(180deg) brightness(1.2);
+        }
+        #section-stream .content {
+            background-color: rgba(255, 0, 255, 0.6);
+            color: #00FFFF;
+            border: 5px dashed #00FFFF;
+            text-shadow: 1px 1px 2px #000;
+        }
+        
+        /* 6. DRAWINGS (DeviantArt/Sketchbook Theme) */
+        #section-drawings .section-bg {
+            background-image: url(https://i.imgur.com/HqXz47N.gif); /* Sketchbook background */
+            background-size: cover;
+        }
+        #section-drawings .content {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: 10px double #333;
+        }
+        .art-placeholder { width: 100px; height: 100px; background-color: #f0f0f0; border: 3px solid #000; display: inline-block; margin: 5px; }
+
+        /* 7. GRAPHICS (Y2K/GeoCities Theme) */
+        #section-graphics .section-bg {
+            background-image: url(https://i.imgur.com/Q9E1K6H.gif); /* Y2K Pattern */
+            background-size: 150px;
+        }
+        #section-graphics .content {
+            background-color: rgba(0, 0, 255, 0.9); /* Blue */
+            color: #FFFF00;
+            border: 5px ridge #FF00FF;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        /* 8. VOICE (Soundboard Theme) */
+        #section-voice .section-bg {
+            background-image: url(https://i.imgur.com/gK9J6r2.gif); /* Sound Wave GIF */
+            background-size: cover;
+        }
+        #section-voice .content {
+            background-color: rgba(0, 255, 255, 0.8); /* Cyan */
+            color: #000;
+            border: 8px inset #FF00FF;
+            font-family: Arial, sans-serif;
+        }
+
+    </style>
 </head>
 <body>
 
-  <div id="loading-curtain">
-    <div class="loader-text">LOADING LABS...</div>
-  </div>
+    <div id="loading-curtain">
+        LOADING LABS... <span style="animation: flicker 0.5s infinite alternate;">[BOOTING]</span>
+    </div>
 
-  <div class="intro-container">
-    <iframe src="https://player.vimeo.com/video/893137606?autoplay=1&loop=1&muted=1&background=1" allow="autoplay; fullscreen"></iframe>
-    <button class="skip-btn" onclick="skipIntro()">ENTER LAB</button>
-  </div>
-  
-  <div id="transition-overlay"></div>
+    <div class="intro-container">
+        <iframe id="intro-video" width="100%" height="100%" src="https://www.youtube.com/embed/n4dEVR5VU6U?autoplay=1&mute=1&controls=0&loop=1&playlist=n4dEVR5VU6U" frameborder="0" allow="autoplay; encrypted-media; gyroscope;" allowfullscreen></iframe>
+        <button class="enter-btn" onclick="skipIntro()">ENTER LAB (SKIP INTRO)</button>
+    </div>
 
-  <iframe id="bg-iframe" src="https://www.youtube.com/embed/KRcNsMWgD1I?autoplay=1&mute=1&loop=1&playlist=KRcNsMWgD1I&controls=0&modestbranding=1&rel=0" allow="autoplay; fullscreen"></iframe>
-  <div class="lightning-left"></div>
-  <div class="lightning-right"></div>
+    <div id="hub-container">
+        <div class="testtube"></div> <div class="logo-hub grid-item" onclick="hideAllSections()">
+            <span style="font-size: 1.5em; color: #FFFF00;">C<br>O<br>L<br>E<br>L<br>A<br>B<br>S</span>
+        </div>
 
-  <div class="logo-container">
+        <div class="grid-item-branding grid-item" onclick="showSection('section-branding')">
+            BRANDING<br>[LOGO/INTRO]
+        </div>
+        <div class="grid-item-titles grid-item" onclick="showSection('section-titles')">
+            TITLES<br>[CHROME/3D]
+        </div>
+        <div class="grid-item-video grid-item" onclick="showSection('section-video')">
+            VIDEO<br>[EDITING]
+        </div>
+        <div class="grid-item-writing grid-item" onclick="showSection('section-writing')">
+            WRITING<br>[SCRIPT/LORE]
+        </div>
+        <div class="grid-item-stream grid-item" onclick="showSection('section-stream')">
+            STREAM<br>[LAYOUTS]
+        </div>
+        <div class="grid-item-drawings grid-item" onclick="showSection('section-drawings')">
+            DRAWINGS<br>[ART/FANART]
+        </div>
+        <div class="grid-item-graphics grid-item" onclick="showSection('section-graphics')">
+            GRAPHICS<br>[THUMBNAILS]
+        </div>
+        <div class="grid-item-voice grid-item" onclick="showSection('section-voice')">
+            VOICE<br>[ACTING]
+        </div>
+        
+        <div class="grid-item" style="top: 50%; left: 50%; width: 200px; height: 100px; transform: translate(-50%, -50%) rotate(-2deg); z-index: 20;" onclick="document.getElementById('modal').style.display='block'">
+            <button class="contact-btn">⚠ ORDER NOW ⚠</button>
+        </div>
+
+    </div>
+
+    <div class="wizard-container">
+        <img src="https://i.imgur.com/eKk9w3e.gif" alt="Animated Wizard">
+        <div class="speech">
+            ⚠️ DISCLAIMER ⚠️<br>This will open your email client at **coleoisherio@gmail.com**
+        </div>
+    </div>
     
-    <div class="center-stack">
-      <div class="gear"></div>
-      <div class="smoke"></div>
-      <div class="beaker"></div>
-      <div class="logo">
-        <span>COLE</span>
-        <span>LABS</span>
-      </div>
-      <button class="contact-btn" onclick="document.getElementById('modal').style.display='block'">⚠ ORDER NOW ⚠</button>
+    <div class="disclaimer-assistant">
+        <div class="assistant-bubble">
+            **ENQUIRE ME FOR PRICES** or see the site for more info! (Rates are also listed below).
+        </div>
     </div>
 
-    <div class="nav-item pos-branding" onclick="showSection('section-branding')">Branding</div>
-    <div class="nav-item pos-titles" onclick="showSection('section-titles')">Titles</div>
-    <div class="nav-item pos-drawings" onclick="showSection('section-drawings')">Drawings</div>
-    <div class="nav-item pos-writing" onclick="showSection('section-writing')">Writing</div>
-    <div class="nav-item pos-video" onclick="showSection('section-video')">Video<br>Editing</div>
-    <div class="nav-item pos-graphics" onclick="showSection('section-graphics')">Graphics</div>
-    <div class="nav-item pos-voice" onclick="showSection('section-voice')">Voice<br>Acting</div>
-    <div class="nav-item pos-stream" onclick="showSection('section-stream')">Stream<br>Assets</div>
+    <div id="transition-overlay"></div>
 
-    <div class="wizard-container" onclick="document.getElementById('modal').style.display='block'">
-      <div class="speech">Click me!</div>
-      <div class="wizard"></div>
+    <section id="section-branding">
+        <div class="section-bg"></div>
+        <button class="close-btn" onclick="hideAllSections()">X CLOSE</button>
+        <div class="content">
+            <h1>:: ACCESS GRANTED: BRANDING [250 USD] ::</h1>
+            <p style="text-decoration: underline;">**[SYSTEM ALERT]** This service includes:</p>
+            <ul style="list-style: '>> ';">
+                <li>**LOGOS:** High-res vector graphics for all platforms.</li>
+                <li>**INTRO/OUTROS:** Animated video sequences (up to 15 seconds).</li>
+                <li>**STYLE GUIDE:** Color palette, font choices, and general aesthetic rules.</li>
+            </ul>
+            <div style="margin-top: 30px; border: 5px double #000; padding: 15px;">
+                <p>— **PLACEHOLDER:** INTRO/OUTRO REEL —</p>
+                <img src="https://i.imgur.com/k6x3E6X.gif" alt="VHS Glitch Logo" style="width: 80%; max-width: 400px; border: 2px dashed #FF00FF;">
+                <p>Check my [Newgrounds profile](https://www.newgrounds.com/art/view/coleoiscooleo) for original art assets!</p>
+            </div>
+            <p>Ready to establish your digital identity? **[ORDER NOW]**</p>
+        </div>
+    </section>
+
+    <section id="section-titles">
+        <div class="section-bg"></div>
+        <button class="close-btn" onclick="hideAllSections()">X CLOSE</button>
+        <div class="content">
+            <div class="chrome-text">TITLE CARD LABORATORY</div>
+            <p style="color: #000; margin-top: 20px;">PRICE: **$50 USD** (TBD)</p>
+            <div style="background-color: #333; padding: 20px; border: 5px solid #000; margin-top: 20px;">
+                <p style="color: #00FFFF; text-align: left;">[TITLE_EXAMPLE.EXE]</p>
+                <img src="https://i.imgur.com/tH6zN0O.gif" alt="Rotating 3D Title" style="width: 70%; max-width: 300px; border: 3px solid #FFFF00;">
+                <p style="color: #00FFFF; text-align: right;">[END_OF_TITLE_RENDER]</p>
+            </div>
+            <p>Need that 90s CD-ROM aesthetic for your project? **[I can render it!]**</p>
+        </div>
+    </section>
+
+    <section id="section-video">
+        <div class="section-bg"></div>
+        <button class="close-btn" onclick="hideAllSections()">X CLOSE</button>
+        <div class="content">
+            <h1 style="font-family: 'Bangers', cursive; font-size: 3em;">COLEO'S VIDEO FACTORY!</h1>
+            <p>From Flash animation vibes to cinematic edits, get your video professionally sliced.</p>
+            <table class="price-table" style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+                <caption style="font-weight: bold; padding: 10px; background: #FF00FF; color: #000;">**VIDEO EDITING RATES**</caption>
+                <thead>
+                    <tr><th>Project Type</th><th>Length</th><th>PRICE (USD)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Shorts/TikToks</td><td>< 1 min</td><td>**$100**</td></tr>
+                    <tr><td>Standard Video</td><td>1 - 10 mins</td><td>**$500**</td></tr>
+                    <tr><td>Long-Form Content</td><td>10 - 20 mins</td><td>**$1000**</td></tr>
+                    <tr><td>Extended Feature</td><td>20 - 30 mins</td><td>**$1500**</td></tr>
+                    <tr><td>Full Length Film</td><td>30+ mins</td><td>**$2000+**</td></tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 30px;"><img src="https://i.imgur.com/8Q7p7uM.png" alt="Transparent Boombox GIF" style="width: 150px; float: left; margin-right: 15px;">**YouTube Channel:** [@ColeoIsCooleo](https://www.youtube.com/@ColeoIsCooleo)</div>
+        </div>
+    </section>
+
+    <section id="section-writing">
+        <div class="section-bg"></div>
+        <button class="close-btn" onclick="hideAllSections()">X CLOSE</button>
+        <div class="content">
+            <p>> C:\USER\COLELABS\SCRIPT.TXT</p>
+            <pre style="white-space: pre-wrap;">
+$ SCRIPT_LORE_DUMP: CLUSTER_PROJECT
+$ INITIALIZING...
+
+01 | FADE IN: GREEN TEXT ON BLACK SCREEN
+02 | 
+03 | **INT. LAB - NIGHT**
+04 | 
+05 | A single, flickering fluorescent bulb hums. COLEO (20s, nervous, wears a backwards hat) is furiously typing. A TEST TUBE (See: Hub Asset) is bubbling dangerously.
+06 | 
+07 |                   COLEO
+08 |       (to himself)
+09 |     The "Lost Island AU" data... 
+10 |     it's corrupting the entire system!
+11 | 
+12 | **INSERT USER-PROVIDED FAN LORE/SCRIPT HERE**
+13 | 
+14 | $ END_OF_FILE
+15 | $ **WRITING SERVICE: $50 USD per Title Card**
+            </pre>
+            <p>> _</p>
+        </div>
+    </section>
+
+    <section id="section-stream">
+        <div class="section-bg"></div>
+        <button class="close-btn" onclick="hideAllSections()">X CLOSE</button>
+        <div class="content">
+            <h1>VAPOR-STREAM OVERLAYS // ₡ØLΞØ ŁλB$</h1>
+            <img src="https://i.imgur.com/K1T7lJt.gif" alt="Transparent Glitch Art" style="width: 100px; float: right; margin-left: 10px;">
+            <p>Enhance your Twitch or YouTube stream with custom, aesthetic layouts.</p>
+            <ul style="list-style: '▶ ';">
+                <li>**Static Layouts:** $50 USD</li>
+                <li>**Animated Layouts (Source/Alerts):** $100 USD</li>
+            </ul>
+            <div style="margin-top: 30px; padding: 15px; background: rgba(0, 0, 0, 0.5); border: 3px solid #FF00FF;">
+                <p style="color: #FFFF00;">**TWITCH CHANNEL:** [twitch.tv/coleoisherio](https://www.twitch.tv/coleoisherio)</p>
+                <img src="https://i.imgur.com/7Yj1L8Z.gif" alt="Twitch Overlay Placeholder" style="width: 100%; border: 1px solid #00FFFF;">
+            </div>
+            <p>Let's make your stream look like a 90s fever dream! **[HIT ME UP]**</p>
+        </div>
+    </section>
+
+    <section id="section-drawings">
+        <div class="section-bg"></div>
+        <button class="close-btn" onclick="hideAllSections()">X CLOSE</button>
+        <div class="content">
+            <h1 style="color: #FF00FF; text-shadow: 1px 1px #000;">:: C O L E O A R T S ::</h1>
+            <p style="color: #555;">(All art assets are drawn by me or fanart by friends like JavaJake)</p>
+            <div style="border: 1px solid #999; padding: 10px; margin-bottom: 20px;">
+                <div class="art-placeholder" onclick="openExample('Compilation of ColeoIsCooleo')">Art 1</div>
+                <div class="art-placeholder" onclick="openExample('floatie-Coleo')">Art 2</div>
+                <div class="art-placeholder" onclick="openExample('Coleo and the Ink Machine')">Art 3</div>
+            </div>
+            <p>**DeviantArt:** [coleoiscooleo](https://www.deviantart.com/tag/coleoiscooleo)</p>
+            <p>**Newgrounds:** [Check my profile for more](https://www.newgrounds.com/art/view/coleoiscooleo/fired)</p>
+            <p style="margin-top: 20px;">**PRICING:** $50 USD for a custom drawing/illustration (This is a placeholder rate).</p>
+        </div>
+    </section>
+
+    <section id="section-graphics">
+        <div class="section-bg"></div>
+        <button class="close-btn" onclick="hideAllSections()">X CLOSE</button>
+        <div class="content">
+            <h1 style="color: #FF00FF;">✨ THUMBNAIL ZONE: $50 USD ✨</h1>
+            <img src="https://i.imgur.com/lM5p9b5.gif" alt="Transparent Rotating Star" style="width: 50px; float: left;">
+            <p>High-impact, custom-designed thumbnails for YouTube and other platforms.</p>
+            <ul style="list-style: '⭐ ';">
+                <li>**Thumbnail Rate:** $50 USD</li>
+            </ul>
+            <p style="margin-top: 30px;">**[INSTAGRAM PLACEMENT]**</p>
+            <img src="https://i.imgur.com/i9g5k0Y.png" alt="Transparent Y2K Phone" style="width: 100px; display: block; margin: 10px auto;">
+            <p>Instagram: [coleoiscooleo](https://www.instagram.com/coleoiscooleo/)</p>
+            <p style="font-size: 0.9em; margin-top: 20px;">Need a GeoCities-style banner? I got you. **<Blink>**</p>
+        </div>
+    </section>
+
+    <section id="section-voice">
+        <div class="section-bg"></div>
+        <button class="close-btn" onclick="hideAllSections()">X CLOSE</button>
+        <div class="content">
+            <h1 style="color: #000;">[AUDIO_INTERFACE_ONLINE]</h1>
+            <p>Offering voice acting services for animations, games, or commercials.</p>
+            <div style="margin: 20px; padding: 10px; background: rgba(0, 0, 0, 0.7); border: 5px solid #FF00FF;">
+                <p style="color: #FF00FF;">**VOICE DEMO [PLACEHOLDER]**</p>
+                <div style="height: 50px; background: repeating-linear-gradient(90deg, #00FFFF, #00FFFF 5px, transparent 5px, transparent 10px);"></div>
+                <p style="color: #FF00FF;">**FEATURING:** Sound Effects, Character Voices, and Announcer Reads.</p>
+            </div>
+            <p>Contact for rates on specific voice projects! We can simulate any old-school mic quality.</p>
+            <img src="https://i.imgur.com/YgY71mK.gif" alt="Transparent Pixel Speaker GIF" style="width: 80px;">
+        </div>
+    </section>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('modal').style.display='none'" style="float: right; font-size: 2em; cursor: pointer;">&times;</span>
+            <h2 style="text-align: center; color: #00FFFF;">:: NEW ORDER REQUEST FORM ::</h2>
+            <p style="text-align: center; font-size: 0.8em; color: #FFFF00;">Fill out the form below and click **EMAIL: coleoisherio@gmail.com** to send your request.</p>
+            
+            <form action="mailto:coleoisherio@gmail.com" method="post" enctype="text/plain">
+                <label for="email">EMAIL:</label>
+                <input type="text" id="email" name="Email" required placeholder="your.email@example.com">
+
+                <label for="service">SERVICE REQUIRED:</label>
+                <select id="service" name="Service" required>
+                    <option value="" disabled selected>-- SELECT A LAB SERVICE --</option>
+                    <option value="Branding Package">Branding Package ($250)</option>
+                    <option value="Animated Stream Layout">Animated Stream Layout ($100)</option>
+                    <option value="Static Stream Layout">Static Stream Layout ($50)</option>
+                    <option value="Video Editing (Short)">Video Editing (Shorts: $100)</option>
+                    <option value="Video Editing (Long)">Video Editing (Long-Form: $500+)</option>
+                    <option value="Graphics/Thumbnails">Graphics/Thumbnails ($50)</option>
+                    <option value="Titles">Titles/Text Graphics ($50)</option>
+                    <option value="Drawings">Drawings ($50)</option>
+                    <option value="Other">Other (Specify in Details)</option>
+                </select>
+
+                <label for="price">PRICE RANGE (Target):</label>
+                <select id="price" name="Price Range" required>
+                    <option value="" disabled selected>-- SELECT YOUR BUDGET --</option>
+                    <option value="<$100">$0 - $100</option>
+                    <option value="$100-$300">$100 - $300</option>
+                    <option value="$300-$1000">$300 - $1000</option>
+                    <option value="$1000+">$1000+</option>
+                </select>
+
+                <label for="details">TELL US DETAILS (Be Specific!):</label>
+                <textarea id="details" name="Details" rows="6" required placeholder="E.g., I need a logo, 10-second intro, and a color palette based on 90s anime."></textarea>
+                
+                <button type="submit" class="contact-btn">EMAIL: coleoisherio@gmail.com</button>
+            </form>
+        </div>
     </div>
-  </div>
 
-  <section id="section-branding">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>BRANDING</h2>
-      <p>Intros, Outros, Banners & Backgrounds.</p>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Branding Pkg - $175')"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c9c3e262629861.5a96ab73c8d35.gif"><div class="description">Package</div></div>
-        <div class="grid-item" onclick="openExample('Logo Intro - $75')"><img src="https://i.pinimg.com/originals/91/92/2f/91922f5188849646b52c00f68d6f5172.gif"><div class="description">Logo Intro</div></div>
-      </div>
+    <div id="example-modal" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <span class="close" onclick="document.getElementById('example-modal').style.display='none'" style="float: right; font-size: 2em; cursor: pointer;">&times;</span>
+            <div id="example-content"></div>
+        </div>
     </div>
-  </section>
 
-  <section id="section-titles">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>TITLES & TEXT</h2>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('3D Chrome - $40')"><img src="https://img.freepik.com/premium-photo/chrome-text-effect-editable-liquid-metal-style-premium-vector_862489-3543.jpg"><div class="description">Chrome</div></div>
-      </div>
-    </div>
-  </section>
+    <footer id="memphis-footer">
+        <div class="pattern-bar"></div>
+        <p style="margin: 0; padding-right: 20px;">
+            CONTACT COLEO: &nbsp;
+            <a href="mailto:coleoisherio@gmail.com">EMAIL</a> |
+            <a href="https://twitter.com/Cooleo_is_coleo" target="_blank">TWITTER</a> |
+            <a href="https://instagram.com/coleoiscooleo" target="_blank">INSTAGRAM</a>
+        </p>
+    </footer>
 
-  <section id="section-video">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>VIDEO EDITING</h2>
-      <p>Chaotic, Fast-Paced & Fun.</p>
-      <iframe width="100%" height="350" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"></iframe>
-    </div>
-  </section>
+    <script>
+        // 1. Loading Handling
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loading-curtain');
+            
+            // Ensures the initial loader disappears after 1 second, preventing the "forever loop"
+            setTimeout(() => {
+                if(loader) {
+                    loader.style.opacity = 0;
+                    // Wait for the fade to finish before setting display: none
+                    setTimeout(() => loader.style.display = 'none', 1000);
+                }
+            }, 1000); 
 
-  <section id="section-writing">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>WRITING</h2>
-      <div style="background:#fff; color:#000; padding:15px; font-family:'Courier New'; text-align:left;">
-        <p><strong>EXT. SPACE - NIGHT</strong></p>
-        <p>The wizard floats by. He looks tired.</p>
-        <p><strong>WIZARD</strong><br>I need a coffee.</p>
-      </div>
-    </div>
-  </section>
+            // **FIX: Auto-skip the intro after 3 seconds**
+            setTimeout(skipIntro, 3000); 
+        });
 
-  <section id="section-stream">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>STREAM ASSETS</h2>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Overlay - $100')"><img src="https://i.pinimg.com/originals/18/48/43/18484345437894378.gif"><div class="description">Overlay</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-drawings">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>DRAWINGS</h2>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Character - $50')"><img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339"><div class="description">Character</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-graphics">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>GRAPHICS</h2>
-      <p>Thumbnails & Social Media.</p>
-      <div class="grid">
-        <div class="grid-item" onclick="openExample('Thumbnail - $50')"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"><div class="description">Thumb</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-voice">
-    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
-    <div class="content">
-      <h2>VOICE ACTING</h2>
-      <p>Audio samples loaded.</p>
-    </div>
-  </section>
-
-  <div id="modal">
-    <div class="modal-title">ORDER FORM.EXE <span onclick="document.getElementById('modal').style.display='none'" style="cursor:pointer;">X</span></div>
-    <div class="modal-content">
-      <form action="mailto:coleoisherio@gmail.com" method="post" enctype="text/plain">
-        <label>WHO ARE YOU?</label>
-        <input type="text" name="name" required>
-        <label>SERVICE REQUIRED:</label>
-        <select name="service">
-          <option>Video Editing</option><option>Graphic Design</option><option>Voice Acting</option><option>Writing</option><option>Other</option>
-        </select>
-        <label>DETAILS:</label>
-        <textarea name="desc" rows="4"></textarea>
-        <button type="submit">TRANSMIT DATA</button>
-      </form>
-    </div>
-  </div>
-
-  <div id="example-modal">
-    <div class="modal-title">FILE_PREVIEW.JPG <span onclick="document.getElementById('example-modal').style.display='none'" style="cursor:pointer;">X</span></div>
-    <div class="modal-content" id="example-content"></div>
-  </div>
-
-<script>
-    // 1. Loading Handling
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('loading-curtain');
-      
-      // Ensure the loader disappears after 1 second, even if other resources are slow
-      setTimeout(() => {
-        if(loader) {
-          loader.style.opacity = 0;
-          setTimeout(() => loader.style.display = 'none', 1000);
+        // 2. Intro Skip
+        function skipIntro() {
+            const intro = document.querySelector('.intro-container');
+            if (intro.style.display === 'none') return; // Already skipped
+            
+            intro.classList.add('fade-out');
+            
+            // Wait for the CSS transition (1s) to finish before setting display: none
+            setTimeout(() => {
+                intro.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling if needed
+            }, 1000); 
         }
-      }, 1000); // Wait 1 second before starting to fade out the 'LOADING LABS...' screen
 
-      // Optional: Auto-skip the intro after a few seconds if the user doesn't click
-      // If you want the intro to play automatically:
-      // setTimeout(skipIntro, 4000); 
-    });
+        // 3. Navigation Logic (Uses Transition Overlay)
+        function showSection(id) {
+            const overlay = document.getElementById('transition-overlay');
+            overlay.classList.add('active'); // Start transition fade to black
 
-    // 2. Intro Skip
-    function skipIntro() {
-      const intro = document.querySelector('.intro-container');
-      intro.classList.add('fade-out');
-      
-      // Wait for the CSS transition (1s) to finish before setting display: none
-      setTimeout(() => {
-        intro.style.display = 'none';
-      }, 1000); 
-      
-      document.body.style.overflow = 'hidden'; // Keep hub centered
-    }
+            setTimeout(() => {
+                // Hide all and show target
+                document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+                const target = document.getElementById(id);
+                if(target) target.classList.add('active');
+                
+                // End transition fade out
+                overlay.classList.remove('active');
+                window.scrollTo(0, 0); // Scroll to top of the new section
+            }, 500); // Wait 0.5s for the overlay to become fully active
+        }
 
-    // 3. Navigation Logic
-    function showSection(id) {
-      const overlay = document.getElementById('transition-overlay');
-      overlay.classList.add('active');
+        function hideAllSections() {
+            const overlay = document.getElementById('transition-overlay');
+            overlay.classList.add('active'); // Start transition fade to black
 
-      setTimeout(() => {
-        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        const target = document.getElementById(id);
-        if(target) target.classList.add('active');
-        overlay.classList.remove('active');
-      }, 500);
-    }
+            setTimeout(() => {
+                document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+                overlay.classList.remove('active'); // End transition fade out
+            }, 500);
+        }
 
-    function hideAllSections() {
-      const overlay = document.getElementById('transition-overlay');
-      overlay.classList.add('active');
+        // 4. Modal Logic for Drawings Section
+        function openExample(title) {
+            const modal = document.getElementById('example-modal');
+            const content = document.getElementById('example-content');
+            content.innerHTML = `
+                <h3 style="margin-bottom:10px; color:#000; font-family: 'Press Start 2P', cursive;">:: ${title} ::</h3>
+                <p style="color:#000;">This is the expanded view of the work **"${title}"**.</p>
+                <img src="https://i.imgur.com/k6x3E6X.gif" style="width: 100%; max-width: 300px; border: 5px solid #FF00FF;">
+                <p style="font-family: Arial, sans-serif; color:#000;">(Placeholder image. In your live site, link to the actual art!)<p>
+                <button onclick="document.getElementById('example-modal').style.display='none'" style="margin-top:20px; padding: 10px; background: #000; color: #fff; border: 5px solid #00FFFF; cursor: pointer; font-family: 'Press Start 2P', cursive;">CLOSE WINDOW</button>
+            `;
+            modal.style.display = 'block';
+        }
+    </script>
 
-      setTimeout(() => {
-        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        overlay.classList.remove('active');
-      }, 500);
-    }
-
-    // 4. Modal Logic
-    function openExample(title) {
-      const modal = document.getElementById('example-modal');
-      const content = document.getElementById('example-content');
-      content.innerHTML = `
-        <h3 style="margin-bottom:10px; color:#000;">${title}</h3>
-        <p>This is a placeholder for the expanded view of this work. Imagine a high-res image or video here.</p>
-        <button onclick="document.getElementById('example-modal').style.display='none'" style="margin-top:20px;">CLOSE</button>
-      `;
-      modal.style.display = 'block';
-    }
-  </script>
 </body>
 </html>
