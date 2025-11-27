@@ -21,20 +21,21 @@
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       background: #000; z-index: 100000;
       display: flex; justify-content: center; align-items: center;
+      transition: opacity 1s ease;
     }
     .loader-text {
-      color: #fff; font-family: 'Orbitron'; animation: blink 0.2s infinite; font-size: 2em;
+      color: #0f0; font-family: 'Orbitron'; animation: blink 0.2s infinite; font-size: 2em; text-shadow: 0 0 10px #0f0;
     }
-    @keyframes blink { 0%,100%{opacity:1; color:#fff;} 50%{opacity:0.3; color:#0f0;} }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
     /* --- Intro Video --- */
     .intro-container {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999;
-      transition: all 1.5s ease-out; background: #000;
+      transition: all 1s ease-out; background: #000;
     }
-    .intro-container iframe { width: 100%; height: 100%; border: none; object-fit: cover; }
+    .intro-container iframe { width: 100%; height: 100%; border: none; object-fit: cover; pointer-events: none;}
     .intro-container.fade-out {
-      opacity: 0; transform: scale(2); pointer-events: none; filter: blur(10px);
+      opacity: 0; transform: scale(1.5); pointer-events: none; filter: blur(20px);
     }
     .skip-btn {
       position: absolute; bottom: 40px; right: 40px; background: rgba(0,0,0,0.8);
@@ -46,22 +47,22 @@
     /* --- Transitions --- */
     section {
       display: none; opacity: 0; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      overflow-y: auto; padding: 40px; z-index: 200; color: #000; text-align: center;
-      transition: opacity 0.5s ease, transform 0.5s ease; transform: scale(0.9);
+      overflow-y: auto; padding: 60px 20px; z-index: 200; color: #fff; text-align: center;
+      transition: opacity 0.5s ease;
     }
-    section.active { display: block; opacity: 1; transform: scale(1); }
+    section.active { display: block; opacity: 1; }
     
     #transition-overlay {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       background: #000; z-index: 150; opacity: 0; pointer-events: none;
       transition: opacity 0.3s ease;
     }
-    #transition-overlay.active { opacity: 1; }
+    #transition-overlay.active { opacity: 1; pointer-events: all; }
 
     /* --- Background Assets --- */
-    #bg-iframe { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; border: none; pointer-events: none; object-fit: cover; opacity: 0.5; }
-    .lightning-left { position: absolute; top: 0; left: 0; width: 20%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.4; mix-blend-mode: screen; pointer-events: none; z-index: -1; }
-    .lightning-right { position: absolute; top: 0; right: 0; width: 20%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.4; mix-blend-mode: screen; pointer-events: none; z-index: -1; transform: rotate(180deg); }
+    #bg-iframe { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -5; border: none; pointer-events: none; opacity: 0.6; transform: scale(1.2); }
+    .lightning-left { position: absolute; top: 0; left: 0; width: 25%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: -4; }
+    .lightning-right { position: absolute; top: 0; right: 0; width: 25%; height: 100%; background: url('https://i.pinimg.com/originals/bd/6a/47/bd6a4792b98ce20f0baca4b794de3a49.gif') center/cover no-repeat; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; z-index: -4; transform: rotate(180deg); }
 
     /* --- HUB CONTAINER --- */
     .logo-container { 
@@ -69,378 +70,355 @@
       overflow: hidden;
     }
 
-    /* --- CENTER STACK (Beaker + Logo) --- */
+    /* --- CENTER STACK (Gear > Smoke > Beaker > Logo) --- */
     .center-stack {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
       z-index: 10; 
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      width: 400px; height: 500px; /* Container size */
+      width: 400px; height: 500px;
+      display: flex; justify-content: center; align-items: center;
     }
 
-    /* THE LOGO - KOOKY & SPLIT */
-    .logo { 
-      font-family: 'Creepster', cursive; /* Kooky font */
-      font-size: 5.5rem; /* Big */
-      color: #ff00ff; 
-      letter-spacing: 2px;
-      line-height: 0.85;
-      text-shadow: 
-        5px 5px 0 #000, 
-        -2px -2px 0 #fff,
-        0 0 25px #ff00ff;
-      z-index: 20; 
-      text-align: center; 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 30px; /* Space for beaker bubble */
-      animation: float-logo 3s infinite ease-in-out;
+    /* Layer 1: Gear (Back) */
+    .gear {
+      position: absolute; width: 450px; height: 450px;
+      background: url('https://www.wisc-online.com/assetrepository/getfile?id=2929&getType=view&width=0&height=0') center/contain no-repeat;
+      animation: spin 20s linear infinite; z-index: 1; opacity: 0.7;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    /* Layer 2: Smoke (Middle) */
+    .smoke {
+      position: absolute; top: -120px; left: 60%; 
+      width: 200px; height: 350px;
+      background: url('https://giffiles.alphacoders.com/205/20595.gif') center/cover no-repeat;
+      transform: translateX(-50%) rotate(90deg);
+      mix-blend-mode: screen; z-index: 2; opacity: 0.6; pointer-events: none;
     }
 
-    .logo span:nth-child(1) { /* COLE */
-      transform: rotate(-6deg);
-      color: #ff00ff;
-    }
-    .logo span:nth-child(2) { /* LABS */
-      transform: rotate(4deg) translateX(15px);
-      color: #d500d5;
-    }
-
-    @keyframes float-logo { 
-      0%,100% { transform: scale(1) rotate(0deg); } 
-      50% { transform: scale(1.05) rotate(2deg); } 
-    }
-
+    /* Layer 3: Beaker (Front) */
     .beaker {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 280px; height: 380px;
-      background: url('https://www.clker.com/cliparts/k/9/F/f/a/P/beaker-hi.png') center/contain no-repeat;
-      animation: bubble 3s infinite ease-in-out;
-      z-index: 5; /* Behind Logo */
-      filter: drop-shadow(0 0 30px #00ff00);
-      opacity: 0.8;
+      position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
+      width: 250px; height: 350px;
+      background: url('https://www.pngkey.com/png/full/109-1099033_beaker-with-liquid-png-chemicals-in-a-beaker.png') center/contain no-repeat;
+      animation: float 4s ease-in-out infinite; z-index: 3;
+      filter: drop-shadow(0 0 20px #00ff00);
     }
-    @keyframes bubble { 0%,100%{transform: translate(-50%, -50%) scale(1);} 50%{transform: translate(-50%, -50%) scale(1.03);} }
+    @keyframes float { 0%,100%{transform:translate(-50%, -50%);} 50%{transform:translate(-50%, -60px);} }
 
-    .contact-btn { 
-      background: #00ff00; color: #000; font-weight: bold; border: 3px solid #000; 
-      padding: 12px 25px; box-shadow: 5px 5px 0 #000; cursor: pointer; 
-      font-family: 'Press Start 2P'; z-index: 25; 
-      font-size: 1rem;
-      position: absolute; bottom: 40px; /* Anchored to bottom of beaker stack */
-      animation: pulse-btn 1s infinite;
+    /* Layer 4: Logo Text */
+    .logo { 
+      position: absolute; top: 0; width: 100%;
+      font-family: 'Creepster', cursive; font-size: 5rem; 
+      color: #ff00ff; letter-spacing: 2px; text-align: center;
+      text-shadow: 4px 4px 0 #000, -2px -2px 0 #fff, 0 0 25px #ff00ff;
+      z-index: 20; 
+      animation: logo-bounce 3s infinite ease-in-out;
     }
-    @keyframes pulse-btn { 0%,100%{transform: scale(1);} 50%{transform: scale(1.1);} }
+    .logo span { display: block; line-height: 0.8; }
+    .logo span:last-child { color: #d500d5; padding-left: 20px; }
+    @keyframes logo-bounce { 0%,100%{transform: scale(1);} 50%{transform: scale(1.05);} }
+
+    /* CONTACT BUTTON - CAUTION STYLE */
+    .contact-btn { 
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: repeating-linear-gradient(45deg, #ffcc00, #ffcc00 10px, #000 10px, #000 20px);
+      color: #fff; font-family: 'Press Start 2P'; font-size: 1.2rem;
+      border: 3px solid #ff0000; padding: 15px 30px; 
+      cursor: pointer; z-index: 30;
+      text-shadow: 2px 2px 0 #000;
+      box-shadow: 0 0 15px #ff0000;
+      animation: pulse-danger 1s infinite;
+    }
+    .contact-btn:hover { transform: translateX(-50%) scale(1.1); box-shadow: 0 0 30px #ff0000; }
+    @keyframes pulse-danger { 0%,100%{box-shadow: 0 0 15px #ff0000;} 50%{box-shadow: 0 0 5px #ff0000;} }
 
     /* --- THE CLUSTER (Navigation Words) --- */
-    /* Logic: Tight around center. Big font (Bangers). */
     .nav-item {
       position: absolute;
-      font-family: 'Bangers', cursive; 
-      font-size: 3rem; /* Big */
-      line-height: 1;
-      text-transform: uppercase;
-      cursor: pointer;
-      z-index: 50;
-      text-shadow: 
-        3px 3px 0 #000, 
-        -1px -1px 0 #000,  
-        1px -1px 0 #000,
-        0 0 10px rgba(0,0,0,0.5);
-      transition: transform 0.2s ease;
-      white-space: nowrap;
+      font-family: 'Bangers', cursive; font-size: 2.5rem; 
+      text-transform: uppercase; cursor: pointer; z-index: 50;
+      text-shadow: 3px 3px 0 #000, 0 0 10px rgba(0,0,0,0.8);
+      transition: 0.2s; white-space: nowrap;
     }
-    .nav-item:hover { transform: scale(1.2) !important; z-index: 100 !important; filter: drop-shadow(0 0 10px white); }
+    .nav-item:hover { transform: scale(1.2) rotate(-5deg) !important; color: #fff !important; text-shadow: 0 0 20px #fff; z-index: 100; }
 
-    /* CLUSTER POSITIONS - TIGHT HUG around the 400x500 center stack */
-
-    /* Top Left - Yellows */
-    .pos-branding { 
-      top: 25%; left: 28%; 
-      color: #ffcc00; transform: rotate(-15deg); 
-    }
-    
-    /* Top Center - Blue */
-    .pos-titles { 
-      top: 18%; left: 50%; transform: translateX(-50%) rotate(-5deg); 
-      color: #00ccff; 
-    }
-
-    /* Top Right - Orange/Red */
-    .pos-drawings { 
-      top: 25%; right: 28%; 
-      color: #ff9900; transform: rotate(10deg); 
-    }
-
-    /* Mid Right - Pink */
-    .pos-video { 
-      top: 42%; right: 20%; 
-      color: #ff3366; transform: rotate(15deg); 
-    }
-
-    /* Bottom Right - White/Pink */
-    .pos-stream { 
-      top: 58%; right: 22%; 
-      color: #fff; text-shadow: 3px 3px 0 #ff3366, 3px 3px 0 #000;
-      transform: rotate(5deg); 
-    }
-
-    /* Bottom Center - Purple */
-    .pos-voice { 
-      bottom: 18%; left: 58%; 
-      color: #cc66ff; transform: rotate(-10deg); 
-    }
-
-    /* Bottom Left - Red */
-    .pos-graphics { 
-      bottom: 20%; left: 28%; 
-      color: #ff0033; transform: rotate(8deg); 
-    }
-
-    /* Mid Left - Orange */
-    .pos-writing { 
-      top: 45%; left: 20%; 
-      color: #ff6600; transform: rotate(-12deg); 
-    }
-
+    /* Position Logic */
+    .pos-branding { top: 20%; left: 25%; color: #ffcc00; transform: rotate(-15deg); }
+    .pos-titles { top: 12%; left: 50%; transform: translateX(-50%) rotate(-5deg); color: #00ccff; }
+    .pos-drawings { top: 20%; right: 25%; color: #ff9900; transform: rotate(10deg); }
+    .pos-video { top: 45%; right: 18%; color: #ff3366; transform: rotate(15deg); }
+    .pos-stream { bottom: 25%; right: 22%; color: #fff; transform: rotate(5deg); }
+    .pos-voice { bottom: 15%; left: 50%; transform: translateX(-50%) rotate(-10deg); color: #cc66ff; }
+    .pos-graphics { bottom: 25%; left: 25%; color: #ff0033; transform: rotate(8deg); }
+    .pos-writing { top: 45%; left: 18%; color: #ff6600; transform: rotate(-12deg); }
 
     /* --- Modals & Content --- */
-    #modal, #example-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 600px; background: #c0c0c0; border: 3px solid #000; box-shadow: 10px 10px 0 #000; padding: 4px; z-index: 400; font-family: 'MS Sans Serif', sans-serif; }
-    .modal-title { background: #000080; color: #fff; padding: 5px; display: flex; justify-content: space-between; font-weight: bold; }
-    .modal-content { padding: 15px; background: #c0c0c0; }
+    #modal, #example-modal { 
+      display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+      width: 90%; max-width: 500px; background: #c0c0c0; 
+      border: 3px solid #000; box-shadow: 10px 10px 0 #000; 
+      padding: 3px; z-index: 1000; font-family: 'MS Sans Serif', sans-serif; 
+    }
+    .modal-title { background: #000080; color: #fff; padding: 4px 8px; display: flex; justify-content: space-between; font-weight: bold; }
+    .modal-content { padding: 15px; background: #c0c0c0; color: #000; }
     .modal-content input, .modal-content textarea, .modal-content select { width: 100%; margin-bottom: 10px; border: 2px inset #fff; padding: 5px; font-family: monospace; }
-    .modal-content button { width: 100%; padding: 10px; background: #ddd; border: 2px outset #fff; cursor: pointer; font-weight: bold; }
+    .modal-content button { width: 100%; padding: 8px; background: #ddd; border: 2px outset #fff; cursor: pointer; font-weight: bold; }
 
-    .section-bg { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; border: none; pointer-events: none; object-fit: cover; }
-    .content { max-width: 900px; margin: 80px auto; background: rgba(0,0,0,0.9); padding: 30px; border: 4px solid #fff; text-align: center; }
-    .back-home { position: fixed; top: 20px; left: 20px; background: #ff0; color: #000; padding: 15px; border: 4px solid #000; cursor: pointer; font-family: 'Press Start 2P'; z-index: 350; box-shadow: 5px 5px 0 #000; }
+    .section-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; border: none; opacity: 0.3; object-fit: cover; }
+    .content { 
+      max-width: 800px; margin: 60px auto; 
+      background: rgba(0,0,0,0.8); padding: 30px; 
+      border: 2px solid #fff; border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+    .back-home { 
+      position: fixed; top: 20px; right: 20px; 
+      background: #ff0000; color: #fff; padding: 10px 20px; 
+      border: 3px solid #fff; cursor: pointer; 
+      font-family: 'Press Start 2P'; z-index: 300; 
+      box-shadow: 5px 5px 0 #000; 
+    }
+    .back-home:hover { transform: scale(1.1); }
     
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-    .grid-item { height: 200px; background: #333; border: 2px solid #fff; position: relative; cursor: pointer; overflow: hidden; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+    .grid-item { height: 180px; background: #333; border: 2px solid #fff; position: relative; cursor: pointer; overflow: hidden; transition: 0.2s; }
     .grid-item:hover { border-color: #ff0; transform: scale(1.05); z-index: 10; }
     .grid-item img { width: 100%; height: 100%; object-fit: cover; }
     .grid-item .description { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: #fff; padding: 5px; font-size: 0.8em; }
 
-    .wizard-container { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 100; animation: wizard-wiggle 3s infinite; }
-    .wizard { width: 100px; height: 100px; background: url('https://img1.picmix.com/output/stamp/normal/6/3/1/6/1996136_0f2d1.gif') center/contain no-repeat; }
-    .speech { position: absolute; top: -50px; left: -160px; background: #fff; color: #000; padding: 8px; border: 2px solid #000; font-family: 'Comic Sans MS'; width: 200px; text-align: center; border-radius: 10px; }
-    @keyframes wizard-wiggle { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
+    /* Wizard */
+    .wizard-container { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 100; animation: wiggle 3s infinite; }
+    .wizard { width: 120px; height: 120px; background: url('https://img1.picmix.com/output/stamp/normal/6/3/1/6/1996136_0f2d1.gif') center/contain no-repeat; }
+    .speech { position: absolute; top: -40px; right: 80px; background: #fff; color: #000; padding: 5px 10px; border: 2px solid #000; font-family: 'Comic Sans MS'; border-radius: 10px; white-space: nowrap; }
+    @keyframes wiggle { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
 
     /* MOBILE ADJUSTMENTS */
     @media (max-width: 768px) {
-      .logo { font-size: 14vw; margin-top: -80px; } 
-      .nav-item { font-size: 8vw; } 
-      .center-stack { height: 350px; }
-
-      /* Push items slightly out on mobile to prevent overlap with big logo */
-      .pos-branding { top: 12%; left: 5%; }
-      .pos-titles { top: 8%; left: 50%; }
-      .pos-drawings { top: 12%; right: 5%; }
+      .logo { font-size: 3.5rem; top: 20px; }
+      .center-stack { width: 300px; height: 400px; }
+      .gear { width: 300px; height: 300px; }
+      .beaker { width: 180px; height: 250px; }
+      .nav-item { font-size: 1.5rem; }
       
-      .pos-writing { top: 35%; left: 2%; }
-      .pos-video { top: 35%; right: 2%; }
-      
-      .pos-graphics { bottom: 20%; left: 5%; }
-      .pos-stream { bottom: 20%; right: 5%; }
-      .pos-voice { bottom: 12%; left: 50%; transform: translateX(-50%) rotate(-5deg); }
-      
-      .contact-btn { bottom: 20px; width: 60%; font-size: 0.8rem; }
+      /* Squeeze items in */
+      .pos-branding { left: 5%; top: 15%; }
+      .pos-drawings { right: 5%; top: 15%; }
+      .pos-writing { left: 5%; top: 40%; }
+      .pos-video { right: 5%; top: 40%; }
+      .pos-graphics { left: 5%; bottom: 25%; }
+      .pos-stream { right: 5%; bottom: 25%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- LOADING CURTAIN -->
   <div id="loading-curtain">
-    <div class="loader-text">LOADING LAB...</div>
+    <div class="loader-text">LOADING LABS...</div>
   </div>
 
-  <!-- INTRO -->
   <div class="intro-container">
-    <iframe src="https://player.vimeo.com/video/893137606?autoplay=1&loop=1&muted=1&background=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    <button class="skip-btn" onclick="skipIntro()">SKIP INTRO</button>
+    <iframe src="https://player.vimeo.com/video/893137606?autoplay=1&loop=1&muted=1&background=1" allow="autoplay; fullscreen"></iframe>
+    <button class="skip-btn" onclick="skipIntro()">ENTER LAB</button>
   </div>
   
   <div id="transition-overlay"></div>
 
-  <!-- MAIN BACKGROUND -->
-  <iframe id="bg-iframe" src="https://www.youtube.com/embed/KRcNsMWgD1I?autoplay=1&mute=1&loop=1&playlist=KRcNsMWgD1I&controls=0&modestbranding=1&rel=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  <iframe id="bg-iframe" src="https://www.youtube.com/embed/KRcNsMWgD1I?autoplay=1&mute=1&loop=1&playlist=KRcNsMWgD1I&controls=0&modestbranding=1&rel=0" allow="autoplay; fullscreen"></iframe>
   <div class="lightning-left"></div>
   <div class="lightning-right"></div>
 
-  <!-- MAIN HUB -->
   <div class="logo-container">
     
-    <!-- CENTER PIECE -->
     <div class="center-stack">
-      <h1 class="logo">
+      <div class="gear"></div>
+      <div class="smoke"></div>
+      <div class="beaker"></div>
+      <div class="logo">
         <span>COLE</span>
         <span>LABS</span>
-      </h1>
-      <div class="beaker"></div>
-      <button class="contact-btn" onclick="document.getElementById('modal').style.display='block'">CONTACT</button>
+      </div>
+      <button class="contact-btn" onclick="document.getElementById('modal').style.display='block'">⚠ ORDER NOW ⚠</button>
     </div>
 
-    <!-- THE CHAOS CLOUD -->
-    
     <div class="nav-item pos-branding" onclick="showSection('section-branding')">Branding</div>
     <div class="nav-item pos-titles" onclick="showSection('section-titles')">Titles</div>
     <div class="nav-item pos-drawings" onclick="showSection('section-drawings')">Drawings</div>
-    
     <div class="nav-item pos-writing" onclick="showSection('section-writing')">Writing</div>
     <div class="nav-item pos-video" onclick="showSection('section-video')">Video<br>Editing</div>
-    
     <div class="nav-item pos-graphics" onclick="showSection('section-graphics')">Graphics</div>
     <div class="nav-item pos-voice" onclick="showSection('section-voice')">Voice<br>Acting</div>
     <div class="nav-item pos-stream" onclick="showSection('section-stream')">Stream<br>Assets</div>
 
-    <!-- Wizard Helper -->
     <div class="wizard-container" onclick="document.getElementById('modal').style.display='block'">
+      <div class="speech">Click me!</div>
       <div class="wizard"></div>
-      <div class="speech" id="speechBox">Welcome to the Lab!</div>
     </div>
   </div>
 
-  <!-- SECTIONS -->
-  
-  <!-- Branding -->
   <section id="section-branding">
-    <iframe class="section-bg" src="https://player.vimeo.com/video/137685600?background=1" allow="autoplay; fullscreen"></iframe>
-    <button class="back-home" onclick="hideAllSections()">Return to Hub</button>
+    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
       <h2>BRANDING</h2>
-      <p>Intros, Outros, Banners & Backgrounds. Packages from $100.</p>
+      <p>Intros, Outros, Banners & Backgrounds.</p>
       <div class="grid">
-        <div class="grid-item" onclick="openExample('Branding Package: $175')"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c9c3e262629861.5a96ab73c8d35.gif"><div class="description">Full Package</div></div>
-        <div class="grid-item" onclick="openExample('Logo Intro: $75')"><img src="https://i.pinimg.com/originals/91/92/2f/91922f5188849646b52c00f68d6f5172.gif"><div class="description">Logo Intro</div></div>
+        <div class="grid-item" onclick="openExample('Branding Pkg - $175')"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c9c3e262629861.5a96ab73c8d35.gif"><div class="description">Package</div></div>
+        <div class="grid-item" onclick="openExample('Logo Intro - $75')"><img src="https://i.pinimg.com/originals/91/92/2f/91922f5188849646b52c00f68d6f5172.gif"><div class="description">Logo Intro</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Titles -->
   <section id="section-titles">
-    <iframe class="section-bg" src="https://player.vimeo.com/video/229046033?background=1" allow="autoplay; fullscreen"></iframe>
-    <button class="back-home" onclick="hideAllSections()">Return to Hub</button>
+    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
-      <h2>TITLES & HEADERS</h2>
-      <p>3D Chrome & Kinetic Text.</p>
+      <h2>TITLES & TEXT</h2>
       <div class="grid">
-        <div class="grid-item" onclick="openExample('3D Chrome: $40')"><img src="https://img.freepik.com/premium-photo/chrome-text-effect-editable-liquid-metal-style-premium-vector_862489-3543.jpg"><div class="description">3D Chrome</div></div>
-        <div class="grid-item" onclick="openExample('Kinetic Type: $60')"><img src="https://i.pinimg.com/originals/c9/77/4f/c9774f76274718536340263f90112461.gif"><div class="description">Kinetic</div></div>
+        <div class="grid-item" onclick="openExample('3D Chrome - $40')"><img src="https://img.freepik.com/premium-photo/chrome-text-effect-editable-liquid-metal-style-premium-vector_862489-3543.jpg"><div class="description">Chrome</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Video -->
   <section id="section-video">
-    <iframe class="section-bg" src="https://player.vimeo.com/video/514256554?background=1" allow="autoplay; fullscreen"></iframe>
-    <button class="back-home" onclick="hideAllSections()">Return to Hub</button>
+    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
       <h2>VIDEO EDITING</h2>
-      <p>Visual Flow & Comedy Editing.</p>
-      <iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"></iframe>
+      <p>Chaotic, Fast-Paced & Fun.</p>
+      <iframe width="100%" height="350" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"></iframe>
     </div>
   </section>
 
-  <!-- Writing -->
   <section id="section-writing">
-    <iframe class="section-bg" src="https://player.vimeo.com/video/431207604?background=1" allow="autoplay; fullscreen"></iframe>
-    <button class="back-home" onclick="hideAllSections()">Return to Hub</button>
+    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
       <h2>WRITING</h2>
-      <p>Scripts, Research, Comedy & Drama.</p>
-      <div style="background:#fff; color:#000; padding:20px; font-family:'Courier New'; border:2px solid #000;">
-        <h3>[SCRIPT SAMPLE]</h3>
-        <p>EXT. SPACE - NIGHT</p>
-        <p>The beaker floats aimlessly. A wizard appears.</p>
+      <div style="background:#fff; color:#000; padding:15px; font-family:'Courier New'; text-align:left;">
+        <p><strong>EXT. SPACE - NIGHT</strong></p>
+        <p>The wizard floats by. He looks tired.</p>
+        <p><strong>WIZARD</strong><br>I need a coffee.</p>
       </div>
     </div>
   </section>
 
-  <!-- Stream -->
   <section id="section-stream">
-    <iframe class="section-bg" src="https://player.vimeo.com/video/284478332?background=1" allow="autoplay; fullscreen"></iframe>
-    <button class="back-home" onclick="hideAllSections()">Return to Hub</button>
+    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
       <h2>STREAM ASSETS</h2>
-      <p>Overlays, Alerts & Emotes.</p>
       <div class="grid">
-        <div class="grid-item" onclick="openExample('Overlay: $100')"><img src="https://i.pinimg.com/originals/18/48/43/18484345437894378.gif"><div class="description">Overlay</div></div>
-        <div class="grid-item" onclick="openExample('Emotes: $30')"><img src="https://pbs.twimg.com/media/Eqtq91XXAAUuJ2G.jpg"><div class="description">Emotes</div></div>
+        <div class="grid-item" onclick="openExample('Overlay - $100')"><img src="https://i.pinimg.com/originals/18/48/43/18484345437894378.gif"><div class="description">Overlay</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Drawings -->
   <section id="section-drawings">
-    <iframe class="section-bg" src="https://player.vimeo.com/video/62613453?background=1" allow="autoplay; fullscreen"></iframe>
-    <button class="back-home" onclick="hideAllSections()">Return to Hub</button>
+    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
       <h2>DRAWINGS</h2>
-      <p>Digital Art & Character Design.</p>
       <div class="grid">
-        <div class="grid-item" onclick="openExample('Character Art: $50')"><img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339"><div class="description">Character</div></div>
+        <div class="grid-item" onclick="openExample('Character - $50')"><img src="https://art.ngfiles.com/images/4608000/4608514_coleoiscooleo_nitro-titan.png?f1719201339"><div class="description">Character</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Graphics -->
   <section id="section-graphics">
-    <iframe class="section-bg" src="https://player.vimeo.com/video/392174949?background=1" allow="autoplay; fullscreen"></iframe>
-    <button class="back-home" onclick="hideAllSections()">Return to Hub</button>
+    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
       <h2>GRAPHICS</h2>
-      <p>Thumbnails & Social Kits.</p>
+      <p>Thumbnails & Social Media.</p>
       <div class="grid">
-        <div class="grid-item" onclick="openExample('Thumbnail: $50')"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"><div class="description">Thumbnail</div></div>
+        <div class="grid-item" onclick="openExample('Thumbnail - $50')"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"><div class="description">Thumb</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Voice -->
   <section id="section-voice">
-    <iframe class="section-bg" src="https://player.vimeo.com/video/134056152?background=1" allow="autoplay; fullscreen"></iframe>
-    <button class="back-home" onclick="hideAllSections()">Return to Hub</button>
+    <button class="back-home" onclick="hideAllSections()">X CLOSE</button>
     <div class="content">
       <h2>VOICE ACTING</h2>
-      <p>Narration & Character Voices.</p>
-      <div style="border:2px solid #00f; padding:20px; margin-top:20px;">
-        <p style="color:#00f;">> PLAYING SAMPLE...</p>
-      </div>
+      <p>Audio samples loaded.</p>
     </div>
   </section>
 
-  <!-- Modals -->
   <div id="modal">
-    <div class="modal-title">CONTACT <span onclick="document.getElementById('modal').style.display='none'" style="cursor:pointer;">X</span></div>
+    <div class="modal-title">ORDER FORM.EXE <span onclick="document.getElementById('modal').style.display='none'" style="cursor:pointer;">X</span></div>
     <div class="modal-content">
       <form action="mailto:coleoisherio@gmail.com" method="post" enctype="text/plain">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
+        <label>WHO ARE YOU?</label>
+        <input type="text" name="name" required>
+        <label>SERVICE REQUIRED:</label>
         <select name="service">
-          <option>Branding</option><option>Drawings</option><option>Video</option><option>Titles</option><option>Stream</option><option>Writing</option><option>Graphics</option><option>Voice</option>
+          <option>Video Editing</option><option>Graphic Design</option><option>Voice Acting</option><option>Writing</option><option>Other</option>
         </select>
-        <textarea name="desc" rows="5" placeholder="Details..."></textarea>
-        <button type="submit">SEND</button>
+        <label>DETAILS:</label>
+        <textarea name="desc" rows="4"></textarea>
+        <button type="submit">TRANSMIT DATA</button>
       </form>
     </div>
   </div>
 
   <div id="example-modal">
-    <div class="modal-title">INFO <span onclick="document.getElementById('example-modal').style.display='none'" style="cursor:pointer;">X</span></div>
+    <div class="modal-title">FILE_PREVIEW.JPG <span onclick="document.getElementById('example-modal').style.display='none'" style="cursor:pointer;">X</span></div>
     <div class="modal-content" id="example-content"></div>
   </div>
 
   <script>
+    // 1. Loading Handling
     window.addEventListener('load', () => {
-      document.getElementById('loading-curtain').style.display = 'none';
-      setTimeout(skipIntro, 3000);
+      const loader = document.getElementById('loading-curtain');
+      if(loader) {
+        loader.style.opacity = 0;
+        setTimeout(() => loader.style.display = 'none', 1000);
+      }
+      // Auto-skip intro for testing if desired, or let user click
+      // setTimeout(skipIntro, 4000); 
     });
+
+    // 2. Intro Skip
     function skipIntro() {
-      document.querySelector('.intro-container').classList.add('fade-out');
-      document.body.style.overflow = '';
+      const intro = document.querySelector('.intro-container');
+      intro.classList.add('fade-out');
+      setTimeout(() => intro.style.display = 'none', 1000);
+      document.body.style.overflow = 'hidden'; // Keep body locked
     }
+
+    // 3. Navigation Logic
     function showSection(id) {
-      document.getElementById('transition-overlay').classList.add('active');
+      // Create transition effect
+      const overlay = document.getElementById('transition-overlay');
+      overlay.classList.add('active');
+
       setTimeout(() => {
-        if(document.querySe
+        // Hide all current sections
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        
+        // Show target section
+        const target = document.getElementById(id);
+        if(target) target.classList.add('active');
+
+        // Remove overlay to reveal new content
+        overlay.classList.remove('active');
+      }, 500);
+    }
+
+    function hideAllSections() {
+      const overlay = document.getElementById('transition-overlay');
+      overlay.classList.add('active');
+
+      setTimeout(() => {
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        overlay.classList.remove('active');
+      }, 500);
+    }
+
+    // 4. Modal Logic
+    function openExample(title) {
+      const modal = document.getElementById('example-modal');
+      const content = document.getElementById('example-content');
+      content.innerHTML = `
+        <h3 style="margin-bottom:10px; color:#000;">${title}</h3>
+        <p>This is a placeholder for the expanded view of this work. Imagine a high-res image or video here.</p>
+        <button onclick="document.getElementById('example-modal').style.display='none'" style="margin-top:20px;">CLOSE</button>
+      `;
+      modal.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
